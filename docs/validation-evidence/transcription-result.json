@@ -1,0 +1,133 @@
+{
+  "project": {
+    "version": 1,
+    "words": [
+      {
+        "id": "745bff96-365a-484a-a3a2-e76be838a7c6",
+        "text": "Every",
+        "start": 0.18,
+        "end": 0.66
+      },
+      {
+        "id": "d60a3804-ba1c-473c-af62-d31937ff7279",
+        "text": "great",
+        "start": 0.66,
+        "end": 1.02
+      },
+      {
+        "id": "9edca2e8-8e7b-4266-97dc-58d8a760f853",
+        "text": "story",
+        "start": 1.02,
+        "end": 1.38
+      },
+      {
+        "id": "83a06360-1a08-4551-bf6d-e8e269055a92",
+        "text": "starts",
+        "start": 1.38,
+        "end": 1.62
+      },
+      {
+        "id": "28b829d4-354b-4fa8-a5cd-6d8ba29fcb75",
+        "text": "with",
+        "start": 1.62,
+        "end": 1.9
+      },
+      {
+        "id": "9572ef79-f830-43cc-ae1f-7b9de01df657",
+        "text": "a",
+        "start": 1.9,
+        "end": 1.98
+      },
+      {
+        "id": "e2630625-e9c6-4377-ad89-713e2b4eb23e",
+        "text": "single",
+        "start": 1.98,
+        "end": 2.22
+      },
+      {
+        "id": "47db236f-929a-49b0-ab99-d42aa547db1f",
+        "text": "word,",
+        "start": 2.22,
+        "end": 2.6
+      },
+      {
+        "id": "69bb4426-d182-4b90-9bc6-44b36f3ef8c1",
+        "text": "make",
+        "start": 2.68,
+        "end": 2.88
+      },
+      {
+        "id": "2ede55d8-dfa5-4fcc-bc8e-ae6de44ea4e7",
+        "text": "yours",
+        "start": 2.88,
+        "end": 3.18
+      },
+      {
+        "id": "4f5d4c27-a9c0-4a3a-8445-22214144ef05",
+        "text": "impossible",
+        "start": 3.18,
+        "end": 3.74
+      },
+      {
+        "id": "267843b6-9a79-4b8f-895c-f1cf45d1a70a",
+        "text": "to",
+        "start": 3.74,
+        "end": 4.12
+      },
+      {
+        "id": "5ae84047-13c2-482c-b3d0-4ee7b3aad893",
+        "text": "ignore.",
+        "start": 4.12,
+        "end": 4.54
+      }
+    ],
+    "style": {
+      "preset": "impact",
+      "font": "Barlow Condensed",
+      "size": 74,
+      "color": "#ffffff",
+      "accent": "#c5f568",
+      "strokeColor": "#161419",
+      "stroke": 7,
+      "shadow": 45,
+      "position": 71,
+      "strength": 75,
+      "grouping": 3,
+      "uppercase": true
+    },
+    "title": "A story worth telling",
+    "sourceName": "story.mp4"
+  },
+  "requests": [
+    {
+      "url": "https://huggingface.co/Xenova/whisper-tiny/resolve/main/tokenizer.json",
+      "method": "GET"
+    },
+    {
+      "url": "https://huggingface.co/Xenova/whisper-tiny/resolve/main/tokenizer_config.json",
+      "method": "GET"
+    },
+    {
+      "url": "https://huggingface.co/Xenova/whisper-tiny/resolve/main/config.json",
+      "method": "GET"
+    },
+    {
+      "url": "https://huggingface.co/Xenova/whisper-tiny/resolve/main/preprocessor_config.json",
+      "method": "GET"
+    },
+    {
+      "url": "https://huggingface.co/Xenova/whisper-tiny/resolve/main/onnx/encoder_model_quantized.onnx",
+      "method": "GET"
+    },
+    {
+      "url": "https://huggingface.co/Xenova/whisper-tiny/resolve/main/onnx/decoder_model_merged_quantized.onnx",
+      "method": "GET"
+    },
+    {
+      "url": "https://huggingface.co/Xenova/whisper-tiny/resolve/main/generation_config.json",
+      "method": "GET"
+    }
+  ],
+  "errors": [],
+  "elapsedMs": 17131
+}

@@ -1,0 +1,795 @@
+[
+  {
+    "name": "@emnapi/runtime",
+    "version": "1.11.3",
+    "license": "MIT",
+    "noticeFiles": [
+      "LICENSE"
+    ],
+    "repository": "git+https://github.com/toyobayashi/emnapi.git"
+  },
+  {
+    "name": "@fontsource-variable/inter",
+    "version": "5.3.0",
+    "license": "OFL-1.1",
+    "noticeFiles": [
+      "LICENSE"
+    ],
+    "repository": "git+https://github.com/fontsource/font-files.git"
+  },
+  {
+    "name": "@fontsource-variable/noto-sans-devanagari",
+    "version": "5.3.0",
+    "license": "OFL-1.1",
+    "noticeFiles": [
+      "LICENSE"
+    ],
+    "repository": "git+https://github.com/fontsource/font-files.git"
+  },
+  {
+    "name": "@fontsource-variable/nunito",
+    "version": "5.3.0",
+    "license": "OFL-1.1",
+    "noticeFiles": [
+      "LICENSE"
+    ],
+    "repository": "git+https://github.com/fontsource/font-files.git"
+  },
+  {
+    "name": "@fontsource/barlow-condensed",
+    "version": "5.3.0",
+    "license": "OFL-1.1",
+    "noticeFiles": [
+      "LICENSE"
+    ],
+    "repository": "git+https://github.com/fontsource/font-files.git"
+  },
+  {
+    "name": "@huggingface/jinja",
+    "version": "0.5.10",
+    "license": "MIT",
+    "noticeFiles": [
+      "LICENSE"
+    ],
+    "repository": "https://github.com/huggingface/huggingface.js.git"
+  },
+  {
+    "name": "@huggingface/tokenizers",
+    "version": "0.2.0",
+    "license": "Apache-2.0",
+    "noticeFiles": [
+      "LICENSE"
+    ],
+    "repository": "git+https://github.com/huggingface/tokenizers.js.git"
+  },
+  {
+    "name": "@huggingface/transformers",
+    "version": "3.8.1",
+    "license": "Apache-2.0",
+    "noticeFiles": [
+      "LICENSE"
+    ],
+    "repository": "git+https://github.com/huggingface/transformers.js.git"
+  },
+  {
+    "name": "onnxruntime-common",
+    "version": "1.22.0-dev.20250409-89f8206ba4",
+    "license": "MIT",
+    "noticeFiles": [],
+    "repository": "https://github.com/Microsoft/onnxruntime.git"
+  },
+  {
+    "name": "onnxruntime-web",
+    "version": "1.22.0-dev.20250409-89f8206ba4",
+    "license": "MIT",
+    "noticeFiles": [],
+    "repository": "https://github.com/Microsoft/onnxruntime.git"
+  },
+  {
+    "name": "@img/colour",
+    "version": "1.1.0",
+    "license": "MIT",
+    "noticeFiles": [
+      "LICENSE.md"
+    ],
+    "repository": "git+https://github.com/lovell/colour.git"
+  },
+  {
+    "name": "@img/sharp-libvips-linux-x64",
+    "version": "1.2.4",
+    "license": "LGPL-3.0-or-later",
+    "noticeFiles": [],
+    "repository": "git+https://github.com/lovell/sharp-libvips.git"
+  },
+  {
+    "name": "@img/sharp-linux-x64",
+    "version": "0.34.5",
+    "license": "Apache-2.0",
+    "noticeFiles": [
+      "LICENSE"
+    ],
+    "repository": "git+https://github.com/lovell/sharp.git"
+  },
+  {
+    "name": "@indic-transliteration/common_maps",
+    "version": "1.0.6",
+    "license": "MIT",
+    "noticeFiles": [
+      "LICENSE"
+    ],
+    "repository": "git+https://github.com/indic-transliteration/common_maps.git"
+  },
+  {
+    "name": "@indic-transliteration/sanscript",
+    "version": "1.3.3",
+    "license": "MIT",
+    "noticeFiles": [
+      "LICENSE"
+    ],
+    "repository": "git+https://github.com/indic-transliteration/sanscript.js.git"
+  },
+  {
+    "name": "@isaacs/fs-minipass",
+    "version": "4.0.1",
+    "license": "ISC",
+    "noticeFiles": [
+      "LICENSE"
+    ],
+    "repository": "https://github.com/npm/fs-minipass.git"
+  },
+  {
+    "name": "@protobufjs/aspromise",
+    "version": "1.1.2",
+    "license": "BSD-3-Clause",
+    "noticeFiles": [
+      "LICENSE"
+    ],
+    "repository": "https://github.com/dcodeIO/protobuf.js.git"
+  },
+  {
+    "name": "@protobufjs/base64",
+    "version": "1.1.2",
+    "license": "BSD-3-Clause",
+    "noticeFiles": [
+      "LICENSE"
+    ],
+    "repository": "https://github.com/dcodeIO/protobuf.js.git"
+  },
+  {
+    "name": "@protobufjs/codegen",
+    "version": "2.0.5",
+    "license": "BSD-3-Clause",
+    "noticeFiles": [
+      "LICENSE"
+    ],
+    "repository": "https://github.com/dcodeIO/protobuf.js.git"
+  },
+  {
+    "name": "@protobufjs/eventemitter",
+    "version": "1.1.1",
+    "license": "BSD-3-Clause",
+    "noticeFiles": [
+      "LICENSE"
+    ],
+    "repository": "https://github.com/dcodeIO/protobuf.js.git"
+  },
+  {
+    "name": "@protobufjs/fetch",
+    "version": "1.1.1",
+    "license": "BSD-3-Clause",
+    "noticeFiles": [
+      "LICENSE"
+    ],
+    "repository": "https://github.com/dcodeIO/protobuf.js.git"
+  },
+  {
+    "name": "@protobufjs/float",
+    "version": "1.0.2",
+    "license": "BSD-3-Clause",
+    "noticeFiles": [
+      "LICENSE"
+    ],
+    "repository": "https://github.com/dcodeIO/protobuf.js.git"
+  },
+  {
+    "name": "@protobufjs/path",
+    "version": "1.1.2",
+    "license": "BSD-3-Clause",
+    "noticeFiles": [
+      "LICENSE"
+    ],
+    "repository": "https://github.com/dcodeIO/protobuf.js.git"
+  },
+  {
+    "name": "@protobufjs/pool",
+    "version": "1.1.0",
+    "license": "BSD-3-Clause",
+    "noticeFiles": [
+      "LICENSE"
+    ],
+    "repository": "https://github.com/dcodeIO/protobuf.js.git"
+  },
+  {
+    "name": "@protobufjs/utf8",
+    "version": "1.1.2",
+    "license": "BSD-3-Clause",
+    "noticeFiles": [
+      "LICENSE"
+    ],
+    "repository": "https://github.com/protobufjs/protobuf.js.git"
+  },
+  {
+    "name": "@tscaps/engine",
+    "version": "0.7.0",
+    "license": "MIT",
+    "noticeFiles": [
+      "LICENSE"
+    ],
+    "repository": "git+https://github.com/francozanardi/tscaps.git"
+  },
+  {
+    "name": "@huggingface/transformers",
+    "version": "4.3.1",
+    "license": "Apache-2.0",
+    "noticeFiles": [
+      "LICENSE"
+    ],
+    "repository": "git+https://github.com/huggingface/transformers.js.git"
+  },
+  {
+    "name": "onnxruntime-common",
+    "version": "1.31.0-dev.20260911-2a43ec07e",
+    "license": "MIT",
+    "noticeFiles": [],
+    "repository": "https://github.com/Microsoft/onnxruntime.git"
+  },
+  {
+    "name": "onnxruntime-web",
+    "version": "1.31.0-dev.20260914-8d85527a0",
+    "license": "MIT",
+    "noticeFiles": [],
+    "repository": "https://github.com/Microsoft/onnxruntime.git"
+  },
+  {
+    "name": "@img/sharp-libvips-linux-x64",
+    "version": "1.3.4",
+    "license": "LGPL-3.0-or-later",
+    "noticeFiles": [],
+    "repository": "git+https://github.com/lovell/sharp-libvips.git"
+  },
+  {
+    "name": "@img/sharp-linux-x64",
+    "version": "0.35.5",
+    "license": "Apache-2.0",
+    "noticeFiles": [
+      "LICENSE"
+    ],
+    "repository": "git+https://github.com/lovell/sharp.git"
+  },
+  {
+    "name": "global-agent",
+    "version": "4.1.6",
+    "license": "BSD-3-Clause",
+    "noticeFiles": [
+      "LICENSE"
+    ],
+    "repository": "https://github.com/gajus/global-agent"
+  },
+  {
+    "name": "matcher",
+    "version": "4.0.0",
+    "license": "MIT",
+    "noticeFiles": [
+      "license"
+    ],
+    "repository": "sindresorhus/matcher"
+  },
+  {
+    "name": "onnxruntime-common",
+    "version": "1.30.0",
+    "license": "MIT",
+    "noticeFiles": [],
+    "repository": "https://github.com/Microsoft/onnxruntime.git"
+  },
+  {
+    "name": "onnxruntime-node",
+    "version": "1.30.0",
+    "license": "MIT",
+    "noticeFiles": [],
+    "repository": "https://github.com/Microsoft/onnxruntime.git"
+  },
+  {
+    "name": "semver",
+    "version": "7.8.5",
+    "license": "ISC",
+    "noticeFiles": [
+      "LICENSE"
+    ],
+    "repository": "git+https://github.com/npm/node-semver.git"
+  },
+  {
+    "name": "serialize-error",
+    "version": "8.1.0",
+    "license": "MIT",
+    "noticeFiles": [
+      "license"
+    ],
+    "repository": "sindresorhus/serialize-error"
+  },
+  {
+    "name": "sharp",
+    "version": "0.35.5",
+    "license": "Apache-2.0",
+    "noticeFiles": [
+      "LICENSE"
+    ],
+    "repository": "git+https://github.com/lovell/sharp.git"
+  },
+  {
+    "name": "type-fest",
+    "version": "0.20.2",
+    "license": "(MIT OR CC0-1.0)",
+    "noticeFiles": [
+      "license"
+    ],
+    "repository": "sindresorhus/type-fest"
+  },
+  {
+    "name": "@types/dom-mediacapture-transform",
+    "version": "0.1.12",
+    "license": "MIT",
+    "noticeFiles": [
+      "LICENSE"
+    ],
+    "repository": "https://github.com/DefinitelyTyped/DefinitelyTyped.git"
+  },
+  {
+    "name": "@types/dom-webcodecs",
+    "version": "0.1.13",
+    "license": "MIT",
+    "noticeFiles": [
+      "LICENSE"
+    ],
+    "repository": "https://github.com/DefinitelyTyped/DefinitelyTyped.git"
+  },
+  {
+    "name": "@types/node",
+    "version": "22.20.5",
+    "license": "MIT",
+    "noticeFiles": [
+      "LICENSE"
+    ],
+    "repository": "https://github.com/DefinitelyTyped/DefinitelyTyped.git"
+  },
+  {
+    "name": "adm-zip",
+    "version": "0.6.1",
+    "license": "MIT",
+    "noticeFiles": [
+      "LICENSE"
+    ],
+    "repository": "https://github.com/cthackers/adm-zip.git"
+  },
+  {
+    "name": "bidi-js",
+    "version": "1.1.0",
+    "license": "MIT",
+    "noticeFiles": [
+      "LICENSE.txt"
+    ],
+    "repository": "https://github.com/lojjic/bidi-js.git"
+  },
+  {
+    "name": "boolean",
+    "version": "3.2.0",
+    "license": "MIT",
+    "noticeFiles": [
+      "LICENSE.txt"
+    ],
+    "repository": "git://github.com/thenativeweb/boolean.git"
+  },
+  {
+    "name": "chownr",
+    "version": "3.0.0",
+    "license": "BlueOak-1.0.0",
+    "noticeFiles": [
+      "LICENSE.md"
+    ],
+    "repository": "git://github.com/isaacs/chownr.git"
+  },
+  {
+    "name": "define-data-property",
+    "version": "1.1.4",
+    "license": "MIT",
+    "noticeFiles": [
+      "LICENSE"
+    ],
+    "repository": "git+https://github.com/ljharb/define-data-property.git"
+  },
+  {
+    "name": "define-properties",
+    "version": "1.2.1",
+    "license": "MIT",
+    "noticeFiles": [
+      "LICENSE"
+    ],
+    "repository": "git://github.com/ljharb/define-properties.git"
+  },
+  {
+    "name": "detect-libc",
+    "version": "2.1.2",
+    "license": "Apache-2.0",
+    "noticeFiles": [
+      "LICENSE"
+    ],
+    "repository": "git://github.com/lovell/detect-libc.git"
+  },
+  {
+    "name": "detect-node",
+    "version": "2.1.0",
+    "license": "MIT",
+    "noticeFiles": [
+      "LICENSE"
+    ],
+    "repository": "https://github.com/iliakan/detect-node"
+  },
+  {
+    "name": "es-define-property",
+    "version": "1.0.1",
+    "license": "MIT",
+    "noticeFiles": [
+      "LICENSE"
+    ],
+    "repository": "git+https://github.com/ljharb/es-define-property.git"
+  },
+  {
+    "name": "es-errors",
+    "version": "1.3.0",
+    "license": "MIT",
+    "noticeFiles": [
+      "LICENSE"
+    ],
+    "repository": "git+https://github.com/ljharb/es-errors.git"
+  },
+  {
+    "name": "es6-error",
+    "version": "4.1.1",
+    "license": "MIT",
+    "noticeFiles": [
+      "LICENSE.md"
+    ],
+    "repository": "https://github.com/bjyoungblood/es6-error.git"
+  },
+  {
+    "name": "escape-string-regexp",
+    "version": "4.0.0",
+    "license": "MIT",
+    "noticeFiles": [
+      "license"
+    ],
+    "repository": "sindresorhus/escape-string-regexp"
+  },
+  {
+    "name": "flatbuffers",
+    "version": "25.9.23",
+    "license": "Apache-2.0",
+    "noticeFiles": [
+      "LICENSE"
+    ],
+    "repository": "git+https://github.com/google/flatbuffers.git"
+  },
+  {
+    "name": "global-agent",
+    "version": "3.0.0",
+    "license": "BSD-3-Clause",
+    "noticeFiles": [
+      "LICENSE"
+    ],
+    "repository": "https://github.com/gajus/global-agent"
+  },
+  {
+    "name": "semver",
+    "version": "7.8.5",
+    "license": "ISC",
+    "noticeFiles": [
+      "LICENSE"
+    ],
+    "repository": "git+https://github.com/npm/node-semver.git"
+  },
+  {
+    "name": "globalthis",
+    "version": "1.0.4",
+    "license": "MIT",
+    "noticeFiles": [
+      "LICENSE"
+    ],
+    "repository": "git://github.com/ljharb/System.global.git"
+  },
+  {
+    "name": "gopd",
+    "version": "1.2.0",
+    "license": "MIT",
+    "noticeFiles": [
+      "LICENSE"
+    ],
+    "repository": "git+https://github.com/ljharb/gopd.git"
+  },
+  {
+    "name": "guid-typescript",
+    "version": "1.0.9",
+    "license": "ISC",
+    "noticeFiles": [],
+    "repository": "https://github.com/NicolasDeveloper/guid-typescript"
+  },
+  {
+    "name": "has-property-descriptors",
+    "version": "1.0.2",
+    "license": "MIT",
+    "noticeFiles": [
+      "LICENSE"
+    ],
+    "repository": "git+https://github.com/inspect-js/has-property-descriptors.git"
+  },
+  {
+    "name": "json-stringify-safe",
+    "version": "5.0.1",
+    "license": "ISC",
+    "noticeFiles": [
+      "LICENSE"
+    ],
+    "repository": "git://github.com/isaacs/json-stringify-safe"
+  },
+  {
+    "name": "long",
+    "version": "5.3.2",
+    "license": "Apache-2.0",
+    "noticeFiles": [
+      "LICENSE"
+    ],
+    "repository": "https://github.com/dcodeIO/long.js.git"
+  },
+  {
+    "name": "lucide-react",
+    "version": "0.468.0",
+    "license": "ISC",
+    "noticeFiles": [
+      "LICENSE"
+    ],
+    "repository": "https://github.com/lucide-icons/lucide.git"
+  },
+  {
+    "name": "matcher",
+    "version": "3.0.0",
+    "license": "MIT",
+    "noticeFiles": [
+      "license"
+    ],
+    "repository": "sindresorhus/matcher"
+  },
+  {
+    "name": "mediabunny",
+    "version": "1.62.1",
+    "license": "MPL-2.0",
+    "noticeFiles": [
+      "LICENSE"
+    ],
+    "repository": "git+https://github.com/Vanilagy/mediabunny.git"
+  },
+  {
+    "name": "minipass",
+    "version": "7.1.3",
+    "license": "BlueOak-1.0.0",
+    "noticeFiles": [
+      "LICENSE.md"
+    ],
+    "repository": "https://github.com/isaacs/minipass"
+  },
+  {
+    "name": "minizlib",
+    "version": "3.1.0",
+    "license": "MIT",
+    "noticeFiles": [
+      "LICENSE"
+    ],
+    "repository": "git+https://github.com/isaacs/minizlib.git"
+  },
+  {
+    "name": "object-keys",
+    "version": "1.1.1",
+    "license": "MIT",
+    "noticeFiles": [
+      "LICENSE"
+    ],
+    "repository": "git://github.com/ljharb/object-keys.git"
+  },
+  {
+    "name": "onnxruntime-common",
+    "version": "1.21.0",
+    "license": "MIT",
+    "noticeFiles": [],
+    "repository": "https://github.com/Microsoft/onnxruntime.git"
+  },
+  {
+    "name": "onnxruntime-node",
+    "version": "1.21.0",
+    "license": "MIT",
+    "noticeFiles": [],
+    "repository": "https://github.com/Microsoft/onnxruntime.git"
+  },
+  {
+    "name": "onnxruntime-web",
+    "version": "1.30.0",
+    "license": "MIT",
+    "noticeFiles": [],
+    "repository": "https://github.com/Microsoft/onnxruntime.git"
+  },
+  {
+    "name": "onnxruntime-common",
+    "version": "1.30.0",
+    "license": "MIT",
+    "noticeFiles": [],
+    "repository": "https://github.com/Microsoft/onnxruntime.git"
+  },
+  {
+    "name": "platform",
+    "version": "1.3.6",
+    "license": "MIT",
+    "noticeFiles": [
+      "LICENSE"
+    ],
+    "repository": "bestiejs/platform.js"
+  },
+  {
+    "name": "protobufjs",
+    "version": "7.6.6",
+    "license": "BSD-3-Clause",
+    "noticeFiles": [
+      "LICENSE"
+    ],
+    "repository": "protobufjs/protobuf.js"
+  },
+  {
+    "name": "react",
+    "version": "19.3.1",
+    "license": "MIT",
+    "noticeFiles": [
+      "LICENSE"
+    ],
+    "repository": "https://github.com/react/react.git"
+  },
+  {
+    "name": "react-dom",
+    "version": "19.3.1",
+    "license": "MIT",
+    "noticeFiles": [
+      "LICENSE"
+    ],
+    "repository": "https://github.com/react/react.git"
+  },
+  {
+    "name": "require-from-string",
+    "version": "2.0.2",
+    "license": "MIT",
+    "noticeFiles": [
+      "license"
+    ],
+    "repository": "floatdrop/require-from-string"
+  },
+  {
+    "name": "roarr",
+    "version": "2.15.4",
+    "license": "BSD-3-Clause",
+    "noticeFiles": [
+      "LICENSE"
+    ],
+    "repository": "git@github.com:gajus/roarr.git"
+  },
+  {
+    "name": "scheduler",
+    "version": "0.28.0",
+    "license": "MIT",
+    "noticeFiles": [
+      "LICENSE"
+    ],
+    "repository": "https://github.com/react/react.git"
+  },
+  {
+    "name": "semver-compare",
+    "version": "1.0.0",
+    "license": "MIT",
+    "noticeFiles": [
+      "LICENSE"
+    ],
+    "repository": "git://github.com/substack/semver-compare.git"
+  },
+  {
+    "name": "serialize-error",
+    "version": "7.0.1",
+    "license": "MIT",
+    "noticeFiles": [
+      "license"
+    ],
+    "repository": "sindresorhus/serialize-error"
+  },
+  {
+    "name": "sharp",
+    "version": "0.34.5",
+    "license": "Apache-2.0",
+    "noticeFiles": [
+      "LICENSE"
+    ],
+    "repository": "git://github.com/lovell/sharp.git"
+  },
+  {
+    "name": "semver",
+    "version": "7.8.5",
+    "license": "ISC",
+    "noticeFiles": [
+      "LICENSE"
+    ],
+    "repository": "git+https://github.com/npm/node-semver.git"
+  },
+  {
+    "name": "sprintf-js",
+    "version": "1.1.3",
+    "license": "BSD-3-Clause",
+    "noticeFiles": [
+      "LICENSE"
+    ],
+    "repository": "https://github.com/alexei/sprintf.js.git"
+  },
+  {
+    "name": "tar",
+    "version": "7.5.22",
+    "license": "BlueOak-1.0.0",
+    "noticeFiles": [
+      "LICENSE.md"
+    ],
+    "repository": "https://github.com/isaacs/node-tar.git"
+  },
+  {
+    "name": "yallist",
+    "version": "5.0.0",
+    "license": "BlueOak-1.0.0",
+    "noticeFiles": [
+      "LICENSE.md"
+    ],
+    "repository": "git+https://github.com/isaacs/yallist.git"
+  },
+  {
+    "name": "toml",
+    "version": "2.3.6",
+    "license": "MIT",
+    "noticeFiles": [
+      "LICENSE"
+    ],
+    "repository": "git://github.com/BinaryMuse/toml-node.git"
+  },
+  {
+    "name": "tslib",
+    "version": "2.8.1",
+    "license": "0BSD",
+    "noticeFiles": [
+      "LICENSE.txt"
+    ],
+    "repository": "https://github.com/Microsoft/tslib.git"
+  },
+  {
+    "name": "type-fest",
+    "version": "0.13.1",
+    "license": "(MIT OR CC0-1.0)",
+    "noticeFiles": [
+      "license"
+    ],
+    "repository": "sindresorhus/type-fest"
+  },
+  {
+    "name": "undici-types",
+    "version": "6.21.0",
+    "license": "MIT",
+    "noticeFiles": [
+      "LICENSE"
+    ],
+    "repository": "git+https://github.com/nodejs/undici.git"
+  }
+]

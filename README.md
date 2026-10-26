@@ -1,0 +1,65 @@
+# Frame — on-device caption studio
+
+A complete static React/TypeScript application that imports local video, transcribes speech in a Web Worker, edits individual word timings, previews five original animated caption styles, and exports real H.264 MP4 or VP9 WebM on the user's device. No account, API key, analytics, media upload, server processing, or paid service.
+
+## Run and build
+
+Node 20.19+ / 22.12+ (tested with Node 24.19), npm:
+
+```sh
+npm ci --ignore-scripts
+npm run dev
+npm run test
+npm run licenses
+npm run build
+```
+
+`--ignore-scripts` avoids installing unused native ONNX GPU binaries. This app uses browser WASM. Vite/esbuild's platform package is included in the lockfile.
+
+Deploy the contents of `dist/` to Cloudflare Pages. Build command: `npm ci --ignore-scripts && npm run licenses && npm run build`; output directory: `dist`; Node version: `24`. No functions, bindings, secrets, database, or server are required. The included `_headers` configures cross-origin isolation. Serve through HTTPS (localhost works for development). Every deployed asset is below Cloudflare Pages' 25 MiB per-file limit.
+
+The `.openai/hosting.json` file is for the separate private Sites review deployment; it is not needed by Cloudflare Pages and does not add application login.
+
+## What works
+
+- Five original presets: Impact Pop, Power Highlight, Clean Cinematic, Bubble Bounce, Desi Punch.
+- Bundled Inter, Barlow Condensed, Nunito and Noto Sans Devanagari fonts; customizable color, accent, outline, shadow, placement, animation strength, uppercase and phrase grouping.
+- Local multilingual Whisper Tiny/Base inference with actual alignment-head word timestamps. Hindi, English and mixed speech; Roman text can be entered directly. Devanagari → ITRANS conversion is available, with manual natural Hinglish spelling correction.
+- Per-word start/end editing, emphasis, add/delete, seek, undo/redo, SRT/VTT import, SRT export, JSON project export/import and local edit persistence.
+- Frame-by-frame H.264 MP4 at 720p, plus 1080p on supported source/device combinations. Source aspect ratio is preserved; footage is never upscaled. A portrait 720p export is 720 × 1280.
+- VP9 WebM fallback; actual codec capability checks; sequential encoding with backpressure; one frame retained; source audio packet passthrough where compatible and local audio transcoding otherwise. The app fails visibly rather than silently dropping audio.
+- Worker cancellation, browser-video decoder fallback, explicit memory limits (3 minutes on ≤4 GB/unknown devices; 10 minutes on larger devices, max 500 MB source).
+
+## Architecture and reuse
+
+`@tscaps/engine@0.7.0` (MIT) owns demux/decode/encode/mux and audio handling. The app supplies its `FramePainter` with the same deterministic `drawCaptions()` function used by live preview. Caption lookup uses source presentation timestamps, not wall-clock animation time. `lookAhead() = 1` limits retained frames. Font loading is shared between main thread and render worker.
+
+The Whisper integration is original, informed by SeeB4's MIT worker architecture and Transformers.js APIs. No source from `tscaps/apps/studio`, Kalakar, or the unlicensed Whisper Web repository is included. See [research](docs/RESEARCH.md) and [dependency audit](docs/dependency-licenses.json).
+
+## Privacy, storage and limitations
+
+The first transcription downloads model files from Hugging Face; the browser Cache API caches them. The app and runtime assets must also be loaded/cached before use without a connection. No media or transcript is sent to Hugging Face. Clearing site data removes cached models and local edits.
+
+JSON projects store words and settings, not the video. Keep the original file and reconnect it after reload. Local storage is per browser/origin. There is no cloud project storage.
+
+Whisper Tiny is a practical starting point, not a guarantee of Hindi/Hinglish accuracy. Review mixed-language output and timings. SRT/VTT files generally provide phrase timings; imported word times are evenly estimated and explicitly labeled. Roman Hindi conversion uses ITRANS and needs spelling review.
+
+This release focuses on SDR video and the primary audio track. Multiple audio tracks, HDR color mastering, arbitrary long-form video, speaker diarization and music editing are outside its scope. Browser codec support varies by OS/device. Unsupported devices can still edit and download subtitles. Physical Android Chrome validation and exact matching to the supplied Instagram reel remain outstanding; see [validation](docs/VALIDATION.md).
+
+## Tests
+
+```sh
+npm run test
+npm run build
+npm run test:browser
+node tests/media.mjs
+node tests/transcription.mjs
+```
+
+Browser checks use the installed `/usr/bin/chromium`; media tests also use FFmpeg/ffprobe to validate exported artifacts. They never invoke FFmpeg as part of the application. `tests/transcription.mjs` uses a TLS-verifying curl transport for public model downloads because the managed proxy's CA is not trusted by the test Chromium profile; inference remains real WASM in the browser. It asserts that external requests are GETs only.
+
+The sample is original procedural mountain artwork with FFmpeg/libflite synthetic narration and reviewed word timings from the tested local Whisper model. The development-only generator is `scripts/create-demo.py`. No proprietary or uncertain-provenance sample clip is bundled.
+
+## Licenses
+
+Application code is MIT. Tscaps engine is MIT. Mediabunny is unmodified MPL-2.0 and retains its own license/source-availability obligations. Transformers.js is Apache-2.0; ONNX Runtime is MIT; fonts are SIL OFL-1.1. Native Sharp/libvips appears in the installed Transformers dependency tree, but is not shipped in the browser build. The browser distribution includes generated `THIRD_PARTY_NOTICES.txt`.
