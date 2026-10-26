@@ -1,0 +1,76 @@
+[
+  {
+    "motion": "no-preference",
+    "backgrounds": [
+      {
+        "name": "Reel Handwritten",
+        "color": "rgb(23, 23, 25)"
+      },
+      {
+        "name": "Impact Pop",
+        "color": "rgb(201, 31, 52)"
+      },
+      {
+        "name": "Power Highlight",
+        "color": "rgb(17, 17, 20)"
+      },
+      {
+        "name": "Clean Cinematic",
+        "color": "rgb(32, 36, 49)"
+      },
+      {
+        "name": "Bubble Bounce",
+        "color": "rgb(87, 50, 100)"
+      },
+      {
+        "name": "Desi Punch",
+        "color": "rgb(156, 38, 51)"
+      }
+    ],
+    "distinctFrames": [
+      2,
+      10,
+      3,
+      4,
+      11,
+      8
+    ]
+  },
+  {
+    "motion": "reduce",
+    "backgrounds": [
+      {
+        "name": "Reel Handwritten",
+        "color": "rgb(23, 23, 25)"
+      },
+      {
+        "name": "Impact Pop",
+        "color": "rgb(201, 31, 52)"
+      },
+      {
+        "name": "Power Highlight",
+        "color": "rgb(17, 17, 20)"
+      },
+      {
+        "name": "Clean Cinematic",
+        "color": "rgb(32, 36, 49)"
+      },
+      {
+        "name": "Bubble Bounce",
+        "color": "rgb(87, 50, 100)"
+      },
+      {
+        "name": "Desi Punch",
+        "color": "rgb(156, 38, 51)"
+      }
+    ],
+    "distinctFrames": [
+      1,
+      1,
+      1,
+      1,
+      1,
+      1
+    ]
+  }
+]

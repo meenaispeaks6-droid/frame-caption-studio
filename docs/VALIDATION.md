@@ -52,3 +52,9 @@ The editor now uses charcoal surfaces, lime primary actions, lavender controls, 
 The production build was checked at 1440 × 900, 1280 × 720, 1024 × 768, 768 × 1024, 390 × 844, and 360 × 780. All had no horizontal overflow and preserved the source aspect ratio. Portrait and landscape fitting, automatic-caption dialogs, and mobile style/adjust/return navigation passed. Short desktop windows use a scrollable minimum-height workspace to retain a usable preview. Measurements are in `validation-evidence/studio-ui.json`.
 
 The existing browser regression also passed all six preset selections, transcript editing, export controls, and a real 720 × 1280 MP4 with AAC audio (9 s, fully decoded by FFmpeg). Phone checks are browser emulation, not physical hardware.
+
+## Animated style cards
+
+All six cards use plain, solid backgrounds and animate their own captions automatically while visible. Their previews use the same caption renderer as the video. The handwritten card alternates complete phrases in the reference's style. Card animation pauses during processing, when offscreen or in a hidden tab, and honors reduced-motion preferences.
+
+Browser verification sampled each card over 3.6 seconds without hover: all six changed frames; with reduced motion, all six remained still. The verification also checked solid backgrounds and choosing a preset. Results are in `validation-evidence/card-previews.json`.
