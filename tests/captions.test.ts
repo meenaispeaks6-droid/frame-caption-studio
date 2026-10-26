@@ -9,4 +9,14 @@ describe('caption timing boundaries',()=>{
  it('splits long pauses even when the group is not full',()=>expect(groupWords([{...words[0],text:'a'},words[2]],8)).toHaveLength(2));
  it('normalizes model overlap and missing terminal timestamp without negative durations',()=>{const normalized=wordsFromChunks([{text:'a',timestamp:[.5,.9]},{text:'b',timestamp:[.8,null]}],1.2);expect(normalized[1].start).toBe(.9);expect(normalized[1].end).toBe(1.2);expect(()=>validateWords(normalized,1.2)).not.toThrow();});
  it('uses a deterministic spring with overshoot and decay',()=>{expect(spring(0)).toBe(0);expect(spring(.15)).toBeGreaterThan(1);expect(spring(2)).toBeCloseTo(1,5);});
+ it('keeps explicit phrase cuts through validation, grouping and subtitle export',()=>{
+  const edited=validateWords([{...words[0],text:'apni',breakAfter:true},{...words[1],text:'kahani'},words[2]],3);
+  const groups=groupWords(edited,8);expect(groups.map(g=>g.map(w=>w.text))).toEqual([['apni'],['kahani'],['नमस्ते']]);
+  expect(activeGroup(groups,.9)?.[0].text).toBe('kahani');
+  expect(toSrt(edited,8)).toContain('00:00:00,500 --> 00:00:00,900\napni');
+ });
+ it('retains adjacent imported cue boundaries without punctuation',()=>{
+  const imported=parseSrt('1\n00:00:00,000 --> 00:00:00,800\napni kahani\n\n2\n00:00:00,800 --> 00:00:01,500\nkhud likho',2);
+  expect(groupWords(imported,8).map(g=>g.map(w=>w.text).join(' '))).toEqual(['apni kahani','khud likho']);
+ });
 });

@@ -1,0 +1,25 @@
+{
+  "font": "Mynerve 5.3.0 / SIL OFL-1.1",
+  "samePhraseStable": true,
+  "cutChanges": true,
+  "silenceClear": true,
+  "bounds": {
+    "x0": 368,
+    "x1": 695,
+    "y0": 346,
+    "y1": 373
+  },
+  "previewExportMeanPixelDifference": 0.9477958510136728,
+  "landscapeMp4": {
+    "width": 1064,
+    "height": 720,
+    "codec": "h264",
+    "audio": "aac",
+    "fullyDecoded": true
+  },
+  "portraitMp4": {
+    "fullyDecoded": true
+  },
+  "phraseBreakPersistence": true,
+  "mobileEmulation": true
+}

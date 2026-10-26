@@ -1,6 +1,6 @@
 # Frame — on-device caption studio
 
-A complete static React/TypeScript application that imports local video, transcribes speech in a Web Worker, edits individual word timings, previews five original animated caption styles, and exports real H.264 MP4 or VP9 WebM on the user's device. No account, API key, analytics, media upload, server processing, or paid service.
+A complete static React/TypeScript application that imports local video, transcribes speech in a Web Worker, edits individual word timings, previews six animated caption styles, and exports real H.264 MP4 or VP9 WebM on the user's device. No account, API key, analytics, media upload, server processing, or paid service.
 
 ## Run and build
 
@@ -22,10 +22,10 @@ The `.openai/hosting.json` file is for the separate private Sites review deploym
 
 ## What works
 
-- Five original presets: Impact Pop, Power Highlight, Clean Cinematic, Bubble Bounce, Desi Punch.
-- Bundled Inter, Barlow Condensed, Nunito and Noto Sans Devanagari fonts; customizable color, accent, outline, shadow, placement, animation strength, uppercase and phrase grouping.
+- Six presets: Reel Handwritten, Impact Pop, Power Highlight, Clean Cinematic, Bubble Bounce, Desi Punch. Reel Handwritten follows the uploaded reference’s centered white lettering and phrase cuts.
+- Bundled Mynerve, Inter, Barlow Condensed, Nunito and Noto Sans Devanagari fonts; customizable color, accent, outline, shadow, placement, animation strength, uppercase and phrase grouping.
 - Local multilingual Whisper Tiny/Base inference with actual alignment-head word timestamps. Hindi, English and mixed speech; Roman text can be entered directly. Devanagari → ITRANS conversion is available, with manual natural Hinglish spelling correction.
-- Per-word start/end editing, emphasis, add/delete, seek, undo/redo, SRT/VTT import, SRT export, JSON project export/import and local edit persistence.
+- Per-word start/end editing, manual phrase endings (↵), emphasis, add/delete, seek, undo/redo, SRT/VTT import, SRT export, JSON project export/import and local edit persistence.
 - Frame-by-frame H.264 MP4 at 720p, plus 1080p on supported source/device combinations. Source aspect ratio is preserved; footage is never upscaled. A portrait 720p export is 720 × 1280.
 - VP9 WebM fallback; actual codec capability checks; sequential encoding with backpressure; one frame retained; source audio packet passthrough where compatible and local audio transcoding otherwise. The app fails visibly rather than silently dropping audio.
 - Worker cancellation, browser-video decoder fallback, explicit memory limits (3 minutes on ≤4 GB/unknown devices; 10 minutes on larger devices, max 500 MB source).
@@ -44,7 +44,7 @@ JSON projects store words and settings, not the video. Keep the original file an
 
 Whisper Tiny is a practical starting point, not a guarantee of Hindi/Hinglish accuracy. Review mixed-language output and timings. SRT/VTT files generally provide phrase timings; imported word times are evenly estimated and explicitly labeled. Roman Hindi conversion uses ITRANS and needs spelling review.
 
-This release focuses on SDR video and the primary audio track. Multiple audio tracks, HDR color mastering, arbitrary long-form video, speaker diarization and music editing are outside its scope. Browser codec support varies by OS/device. Unsupported devices can still edit and download subtitles. Physical Android Chrome validation and exact matching to the supplied Instagram reel remain outstanding; see [validation](docs/VALIDATION.md).
+This release focuses on SDR video and the primary audio track. Multiple audio tracks, HDR color mastering, arbitrary long-form video, speaker diarization and music editing are outside its scope. Browser codec support varies by OS/device. Unsupported devices can still edit and download subtitles. Physical Android Chrome validation remains outstanding. The uploaded reel has now been inspected and its caption treatment independently recreated; see [reference analysis](docs/REEL_REFERENCE.md) and [validation](docs/VALIDATION.md).
 
 ## Tests
 
@@ -52,6 +52,7 @@ This release focuses on SDR video and the primary audio track. Multiple audio tr
 npm run test
 npm run build
 npm run test:browser
+node tests/handwritten.mjs
 node tests/media.mjs
 node tests/transcription.mjs
 ```

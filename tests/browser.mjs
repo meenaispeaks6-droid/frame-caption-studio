@@ -16,7 +16,7 @@ try{
  console.log('CAPABILITIES',JSON.stringify(capabilities));writeFileSync(root+'test-results/capabilities.json',JSON.stringify(capabilities,null,2));
  await page.getByRole('slider',{name:'Seek video'}).fill('1.15');await page.waitForTimeout(200);await page.screenshot({path:root+'test-results/desktop.png',fullPage:true});
  assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth),false,'desktop horizontal overflow');
- for(const name of ['Power Highlight','Clean Cinematic','Bubble Bounce','Desi Punch','Impact Pop']){await page.getByRole('button',{name:new RegExp(name)}).first().click();await page.waitForTimeout(120);}
+ for(const name of ['Power Highlight','Clean Cinematic','Bubble Bounce','Desi Punch','Impact Pop','Reel Handwritten']){await page.getByRole('button',{name:new RegExp(name)}).first().click();await page.waitForTimeout(120);}
  await page.getByRole('button',{name:'Transcript',exact:true}).click();await page.getByRole('textbox',{name:'Word text',exact:true}).first().fill('Every');await page.getByRole('textbox',{name:'Word text',exact:true}).first().press('Tab');
  await page.getByRole('button',{name:'Export video',exact:true}).click();await page.waitForTimeout(800);
  if(capabilities.mp4){

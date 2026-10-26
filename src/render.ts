@@ -3,9 +3,36 @@ import { activeGroup } from './captions';
 type Context = CanvasRenderingContext2D | OffscreenCanvasRenderingContext2D;
 const clamp=(v:number)=>Math.max(0,Math.min(1,v));
 export function spring(t:number,frequency=17,damping=9){return 1-Math.exp(-Math.max(0,t)*damping)*Math.cos(Math.max(0,t)*frequency);}
+// The reference holds complete, handwritten phrases still, then replaces them.
+// Shape each line as one string so spacing/kerning never shifts between words.
+function drawHandwritten(ctx:Context,width:number,height:number,time:number,group:Word[],s:CaptionStyle){
+ const unit=Math.min(width,height)/720,strength=s.strength/100;
+ const texts=group.map(w=>s.uppercase?w.text.toLocaleUpperCase():w.text);
+ let fs=s.size*unit,lines:string[]=[];
+ for(let attempt=0;attempt<16;attempt++){
+  ctx.font=`400 ${fs}px "${s.font}", "Noto Sans Devanagari", sans-serif`;
+  lines=[''];
+  for(const text of texts){const last=lines.length-1,next=lines[last]?`${lines[last]} ${text}`:text;if(lines[last]&&ctx.measureText(next).width>width*.84)lines.push(text);else lines[last]=next;}
+  if(lines.length<=2&&lines.every(line=>ctx.measureText(line).width<=width*.84))break;
+  fs*=.88;
+ }
+ const age=time-group[0].start,remaining=group.at(-1)!.end-time;
+ const fade=.09*strength;
+ const enter=fade?clamp(age/fade):1,exit=fade?clamp(remaining/fade):1;
+ const eased=1-(1-enter)**3,lineHeight=fs*1.45;
+ const baseY=Math.min(height-30*unit-lineHeight*lines.length/2,Math.max(30*unit+lineHeight*lines.length/2,height*s.position/100));
+ ctx.globalAlpha=Math.min(enter,exit);ctx.textAlign='center';ctx.textBaseline='alphabetic';ctx.lineJoin='round';
+ ctx.shadowColor=`rgba(0,0,0,${s.shadow/100})`;ctx.shadowBlur=fs*.12;ctx.shadowOffsetY=fs*.035;
+ lines.forEach((line,i)=>{
+  const m=ctx.measureText(line),y=baseY+(i-(lines.length-1)/2)*lineHeight+(m.actualBoundingBoxAscent-m.actualBoundingBoxDescent)/2+(1-eased)*fs*.12*strength;
+  if(s.stroke>0){ctx.strokeStyle=s.strokeColor;ctx.lineWidth=s.stroke*unit*2;ctx.strokeText(line,width/2,y);}
+  ctx.fillStyle=s.color;ctx.fillText(line,width/2,y);
+ });
+}
 export function drawCaptions(ctx:Context,width:number,height:number,time:number,groups:Word[][],s:CaptionStyle){
  const group=activeGroup(groups,time);if(!group)return;
  ctx.save();
+ if(s.preset==='handwritten'){drawHandwritten(ctx,width,height,time,group,s);ctx.restore();return;}
  const unit=Math.min(width,height)/720, strength=s.strength/100;
  let fs=s.size*unit;
  const fontFamily=`"${s.font}", "Noto Sans Devanagari", sans-serif`;

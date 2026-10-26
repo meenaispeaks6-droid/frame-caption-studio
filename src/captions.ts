@@ -7,7 +7,7 @@ export function validateWords(value: unknown, duration=Infinity): Word[] {
   const w=v as Word;
   if(!w || typeof w.text!=='string'||!w.text.trim()||w.text.length>160||!Number.isFinite(w.start)||!Number.isFinite(w.end)||w.start<previous||w.start<0||w.end<=w.start||w.end>duration+.1) throw new Error(`Check word ${i+1}: use text and increasing times within the video.`);
   previous=w.end;
-  return {id:typeof w.id==='string'?w.id:uid(),text:w.text.trim(),start:w.start,end:w.end,emphasis:!!w.emphasis};
+  return {id:typeof w.id==='string'?w.id:uid(),text:w.text.trim(),start:w.start,end:w.end,emphasis:!!w.emphasis,breakAfter:!!w.breakAfter};
  });
 }
 export function groupWords(words:Word[],count:number):Word[][] {
@@ -15,7 +15,7 @@ export function groupWords(words:Word[],count:number):Word[][] {
  for(const word of words){
   if(current.length && (current.length>=count || word.start-current[current.length-1].end>.6)){groups.push(current);current=[];}
   current.push(word);
-  if(/[.!?।]$/.test(word.text)){groups.push(current);current=[];}
+  if(word.breakAfter || /[.!?।]$/.test(word.text)){groups.push(current);current=[];}
  }
  if(current.length)groups.push(current);
  return groups;
@@ -34,7 +34,7 @@ export function parseSrt(text:string,duration:number):Word[]{
  const parse=(v:string)=>{const p=v.replace(',','.').split(':').map(Number);return p.length===3?p[0]*3600+p[1]*60+p[2]:p[0]*60+p[1];};
  for(const block of blocks){const lines=block.split('\n'),i=lines.findIndex(x=>x.includes('-->'));if(i<0)continue;
   const [a,b]=lines[i].split('-->').map(x=>parse(x.trim().split(/\s/)[0]));const tokens=lines.slice(i+1).join(' ').replace(/<[^>]*>/g,'').trim().split(/\s+/).filter(Boolean);
-  const step=(b-a)/tokens.length;tokens.forEach((word,j)=>words.push({id:uid(),text:word,start:a+j*step,end:a+(j+1)*step}));
+  const step=(b-a)/tokens.length;tokens.forEach((word,j)=>words.push({id:uid(),text:word,start:a+j*step,end:a+(j+1)*step,breakAfter:j===tokens.length-1}));
  }
  if(!words.length)throw new Error('No subtitle cues found. Choose an SRT or VTT file.');
  return validateWords(words,duration);

@@ -5,14 +5,18 @@ Environment: Linux Chromium 154, Playwright, Node 24.19, FFmpeg/ffprobe. Results
 | Check | Result |
 | --- | --- |
 | TypeScript production build | Passed |
-| Unit timing / editing / Unicode SRT / spring checks | 6 passed |
+| Unit timing / editing / Unicode SRT / spring / phrase-break checks | 8 passed |
 | SeeB4 upstream logic tests | 68 passed in research checkout |
 | Desktop browser UI, all preset buttons, transcript editing, downloads | Passed |
 | Android-sized Pixel 7 browser emulation, controls, no horizontal overflow | Passed; not physical Android hardware |
 | Real 720p portrait MP4 | 720 × 1280, H.264 video + AAC audio, 9.000 s, 424,805 bytes; fully decoded by FFmpeg |
 | Original audio vs exported audio | 144,384 samples each at 16 kHz; cross-correlation lag 0 ms; mean absolute difference 0.0000015 |
 | Source with delayed audio | Original and export start at 0.286 s; 140,288 decoded samples each; timeline offset difference 0 ms; decoded audio lag 0 ms |
-| All five preset exports | Five separate 720p H.264 MP4 files fully decoded by FFmpeg |
+| Original five preset exports | Five separate 720p H.264 MP4 files fully decoded by FFmpeg |
+| Reel Handwritten exports | Real 1064 × 720 landscape and 720 × 1280 portrait H.264 MP4s with AAC audio; fully decoded |
+| Handwritten reference calibration | Mynerve Regular, 27 px, 50% position; held phrases are pixel-stable, phrase cuts and silence verified |
+| Preview / render-worker parity | Decoded caption area differs from preview by 0.95 / 255 average per color channel after H.264 encoding |
+| Manual phrase endings | Persist through reload, validation, SRT cue import, grouping and subtitle export; mobile controls checked |
 | Devanagari/Hinglish rendering | Desi Punch export with `अपनी कहानी बनाओ` and Roman Hindi; visually inspected decoded frame |
 | Real 1080p export | 1920 × 1080 source → H.264 MP4 with caption and AAC; fully decoded |
 | WebM fallback | VP9 WebM rendered and fully decoded |
@@ -36,7 +40,7 @@ The production build contains one ~20.6 MiB WASM asset, below Cloudflare Pages' 
 - Physical desktop Chrome across Windows/macOS and **physical Android Chrome** hardware, memory/thermal behavior and long-form stress tests. Mobile emulation establishes layout behavior only.
 - Hindi/Hinglish speech accuracy on representative real recordings; Devanagari rendering and Roman conversion are implemented, but no Hindi speech benchmark was run.
 - Whisper Base is wired to the same pipeline but only Tiny was executed during this session.
-- Exact visual match to the user's Instagram reel: no playable video was accessible. Independent styles are complete; reference-specific calibration needs the actual clip.
+- The uploaded reel was inspected after the initial release. Reel Handwritten recreates its caption treatment with independently licensed Mynerve; exact font provenance cannot be established from compressed footage alone. See [reference analysis](REEL_REFERENCE.md).
 - REA completed artifact inventory but failed full semantic analysis of Kalakar's large public bundle; no claim of complete proprietary reverse engineering is made.
 
 The files are real outputs and the processing paths are implemented. These scope limits are explicitly retained rather than being described as passed tests.
