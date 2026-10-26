@@ -1,0 +1,80 @@
+[
+  {
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "preview": {
+      "width": 194.625,
+      "height": 346,
+      "overflow": false
+    },
+    "autoCaptionsDialog": true,
+    "mobileNavigation": "not applicable"
+  },
+  {
+    "viewport": {
+      "width": 1280,
+      "height": 720
+    },
+    "preview": {
+      "width": 172.125,
+      "height": 306,
+      "overflow": false
+    },
+    "autoCaptionsDialog": true,
+    "mobileNavigation": "not applicable"
+  },
+  {
+    "viewport": {
+      "width": 1024,
+      "height": 768
+    },
+    "preview": {
+      "width": 172.125,
+      "height": 306,
+      "overflow": false
+    },
+    "autoCaptionsDialog": true,
+    "mobileNavigation": "not applicable"
+  },
+  {
+    "viewport": {
+      "width": 768,
+      "height": 1024
+    },
+    "preview": {
+      "width": 295.640625,
+      "height": 525.578125,
+      "overflow": false
+    },
+    "autoCaptionsDialog": true,
+    "mobileNavigation": "not applicable"
+  },
+  {
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "preview": {
+      "width": 178.875,
+      "height": 318,
+      "overflow": false
+    },
+    "autoCaptionsDialog": true,
+    "mobileNavigation": "passed"
+  },
+  {
+    "viewport": {
+      "width": 360,
+      "height": 780
+    },
+    "preview": {
+      "width": 178.875,
+      "height": 318,
+      "overflow": false
+    },
+    "autoCaptionsDialog": true,
+    "mobileNavigation": "passed"
+  }
+]

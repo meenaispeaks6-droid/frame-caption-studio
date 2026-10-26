@@ -44,3 +44,11 @@ The production build contains one ~20.6 MiB WASM asset, below Cloudflare Pages' 
 - REA completed artifact inventory but failed full semantic analysis of Kalakar's large public bundle; no claim of complete proprietary reverse engineering is made.
 
 The files are real outputs and the processing paths are implemented. These scope limits are explicitly retained rather than being described as passed tests.
+
+## Studio design refresh
+
+The editor now uses charcoal surfaces, lime primary actions, lavender controls, larger caption cards, a framed canvas and a distinct waveform/timeline. Automatic captions are available directly above the preview. Mobile panel navigation scrolls to the chosen tools and returns to preview after a style selection. Reduced-motion preferences suppress decorative card animation.
+
+The production build was checked at 1440 × 900, 1280 × 720, 1024 × 768, 768 × 1024, 390 × 844, and 360 × 780. All had no horizontal overflow and preserved the source aspect ratio. Portrait and landscape fitting, automatic-caption dialogs, and mobile style/adjust/return navigation passed. Short desktop windows use a scrollable minimum-height workspace to retain a usable preview. Measurements are in `validation-evidence/studio-ui.json`.
+
+The existing browser regression also passed all six preset selections, transcript editing, export controls, and a real 720 × 1280 MP4 with AAC audio (9 s, fully decoded by FFmpeg). Phone checks are browser emulation, not physical hardware.
