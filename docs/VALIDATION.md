@@ -35,11 +35,11 @@ An intermediate test-transport cache race was fixed by awaiting concurrent downl
 
 The production build contains one ~20.6 MiB WASM asset, below Cloudflare Pages' documented 25 MiB file limit. The unused optional engine runtime is excluded from the browser bundle.
 
-## Remaining verification
+## Remaining verification (initial release; updated speech results below)
 
 - Physical desktop Chrome across Windows/macOS and **physical Android Chrome** hardware, memory/thermal behavior and long-form stress tests. Mobile emulation establishes layout behavior only.
-- Hindi/Hinglish speech accuracy on representative real recordings; Devanagari rendering and Roman conversion are implemented, but no Hindi speech benchmark was run.
-- Whisper Base is wired to the same pipeline but only Tiny was executed during this session.
+- Representative Hindi/Hinglish speech accuracy remains outstanding. Current real-source timing and partial accuracy measurements are documented in [SPEECH_QUALITY.md](SPEECH_QUALITY.md).
+- Tiny, Base and Small have since been executed. Small q8 is now the default; larger/full-precision variants did not guarantee improved accuracy. See the current speech report.
 - The uploaded reel was inspected after the initial release. Reel Handwritten recreates its caption treatment with independently licensed Mynerve; exact font provenance cannot be established from compressed footage alone. See [reference analysis](REEL_REFERENCE.md).
 - REA completed artifact inventory but failed full semantic analysis of Kalakar's large public bundle; no claim of complete proprietary reverse engineering is made.
 
@@ -62,3 +62,7 @@ Browser verification sampled each card over 3.6 seconds without hover: all six c
 ## Language-selection release
 
 See [LANGUAGES.md](LANGUAGES.md) for implementation, actual tests and remaining limitations. 23 unit tests and all seven UI contract cases pass; the latter use a labeled ASR stub while rendering a real MP4. Actual M2M100 translation and actual English speech recognition were executed separately. Actual Hindi speech recognition on the supplied reel excerpt failed; this is not a passed Hindi acceptance test. Unusable alignment now causes a visible error and preserves existing captions.
+
+## Speech-processing correction
+
+The current release passes 33 unit tests. It fixes real Auto Detect, timestamp-constrained Hindi word alignment and AAC packet-gap extraction; adds real Silero speech detection and optional conservative DSP; and preserves recognized text through phrase timing or an editable draft on failure. The supplied 31.28-second excerpt produces 97 bounded word intervals, but Hindi substitutions remain. Added-noise recognition is a failed quality check, not a success. The real media regression, language UI contracts, recovery UI and decoded exports pass. See [SPEECH_QUALITY.md](SPEECH_QUALITY.md) for numerical evidence, licensing, limitations and reproduction.

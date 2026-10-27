@@ -10,3 +10,5 @@ export type { FramePainter } from '../node_modules/@tscaps/engine/dist/modules/v
 export type { CodecPolicy } from '../node_modules/@tscaps/engine/dist/modules/video/mediabunny/codec/CodecPolicy.js';
 export { MediaBunnyAudioDecoder } from '../node_modules/@tscaps/engine/dist/modules/transcription/MediaBunnyAudioDecoder.js';
 export { WebAudioAudioDecoder } from '../node_modules/@tscaps/engine/dist/modules/transcription/WebAudioAudioDecoder.js';
+
+export { BatchedMonoResampler } from '../node_modules/@tscaps/engine/dist/modules/transcription/BatchedMonoResampler.js';

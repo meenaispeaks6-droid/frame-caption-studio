@@ -4,7 +4,7 @@ import anyAscii from 'any-ascii';
 // These are spelling conventions for the same spoken words, not translations.
 // In particular, Hindi loan words keep their familiar English spelling.
 const HINDI_SPELLINGS:Record<string,string>={
- 'आज':'aaj','मैं':'main','में':'mein','हमें':'hume','हमे':'hume',
+ 'जाना':'jaana','जेमिनी':'Gemini','कोडेक्स':'Codex','कोडेक्‍स':'Codex','एपीआई':'API','एंड्रॉयड':'Android','एंड्राइड':'Android','एन्ड्रॉयड':'Android','आज':'aaj','मैं':'main','में':'mein','हमें':'hume','हमे':'hume',
  'हूँ':'hoon','हूं':'hoon','है':'hai','हैं':'hain','हाँ':'haan','हां':'haan','नहीं':'nahi','नही':'nahi',
  'यह':'yeh','ये':'ye','वह':'woh','वो':'woh','वे':'ve','इस':'is','उस':'us','इसे':'ise','उसे':'use',
  'मैंने':'maine','मुझे':'mujhe','मुझको':'mujhko','मेरी':'meri','मेरा':'mera','मेरे':'mere',

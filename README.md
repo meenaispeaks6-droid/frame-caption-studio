@@ -24,7 +24,8 @@ The `.openai/hosting.json` file is for the separate private Sites review deploym
 
 - Six presets: Reel Handwritten, Impact Pop, Power Highlight, Clean Cinematic, Bubble Bounce, Desi Punch. Reel Handwritten follows the uploaded reference’s centered white lettering and phrase cuts.
 - Bundled Mynerve, Inter, Barlow Condensed, Nunito and Noto Sans Devanagari fonts; customizable color, accent, outline, shadow, placement, animation strength, uppercase and phrase grouping.
-- Local multilingual Whisper Tiny/Base inference with actual alignment-head word timestamps. Hindi, English and mixed speech; captions are automatically romanized to Latin script after transcription, keeping the original word timings. Import opens spoken/caption language choices; Same as Spoken is the default. Explicit translation runs a separate local M2M100 model (~630 MB download, MIT base weights) and labels translated word timings as estimated. The translation model needs substantial memory; desktop is recommended. Telugu can be transcribed/romanized, but explicit translation is unavailable in the local translation model.
+- Local multilingual Whisper Small q8 inference (about 249 MB; Base and Tiny also available), real Auto Detect and timestamp-constrained alignment-head word timestamps. Hindi, English and mixed speech; captions are automatically romanized to Latin script after transcription, keeping the original word timings. Import opens spoken/caption language choices; Same as Spoken is the default. Explicit translation runs a separate local M2M100 model (~630 MB download, MIT base weights) and labels translated word timings as estimated. The translation model needs substantial memory; desktop is recommended. Telugu can be transcribed/romanized, but explicit translation is unavailable in the local translation model.
+- Original-audio analysis, local Silero speech detection, optional mild noise reduction and stereo center focus. Real phrase-timing recovery and an editable draft protect recognized text when word alignment fails; original audio is kept for export. See [speech-quality results and limitations](docs/SPEECH_QUALITY.md).
 - Per-word start/end editing, manual phrase endings (↵), emphasis, add/delete, seek, undo/redo, SRT/VTT import, SRT export, JSON project export/import and local edit persistence.
 - Frame-by-frame H.264 MP4 at 720p, plus 1080p on supported source/device combinations. Source aspect ratio is preserved; footage is never upscaled. A portrait 720p export is 720 × 1280.
 - VP9 WebM fallback; actual codec capability checks; sequential encoding with backpressure; one frame retained; source audio packet passthrough where compatible and local audio transcoding otherwise. The app fails visibly rather than silently dropping audio.
@@ -42,7 +43,7 @@ The first transcription downloads model files from Hugging Face; the browser Cac
 
 JSON projects store words and settings, not the video. Keep the original file and reconnect it after reload. Local storage is per browser/origin. There is no cloud project storage.
 
-Whisper Tiny is a practical starting point, not a guarantee of Hindi/Hinglish accuracy. Review mixed-language output and timings. SRT/VTT files generally provide phrase timings; imported word times are evenly estimated and explicitly labeled. Romanization changes writing script, not language. Hindi uses familiar Roman spellings; other scripts use generic phonetic mappings and need pronunciation review (especially unvowelled Arabic and Japanese kanji). Model recognition and translation are probabilistic and require review.
+Whisper Small is the default; Hindi/Hinglish output still contains recognition errors and needs manual review. Larger model and timestamp fixes do not guarantee word accuracy. Review mixed-language output and timings. SRT/VTT files generally provide phrase timings; imported word times are evenly estimated and explicitly labeled. Romanization changes writing script, not language. Hindi uses familiar Roman spellings; other scripts use generic phonetic mappings and need pronunciation review (especially unvowelled Arabic and Japanese kanji). Model recognition and translation are probabilistic and require review.
 
 This release focuses on SDR video and the primary audio track. Multiple audio tracks, HDR color mastering, arbitrary long-form video, speaker diarization and music editing are outside its scope. Browser codec support varies by OS/device. Unsupported devices can still edit and download subtitles. Physical Android Chrome validation remains outstanding. The uploaded reel has now been inspected and its caption treatment independently recreated; see [reference analysis](docs/REEL_REFERENCE.md) and [validation](docs/VALIDATION.md).
 
@@ -56,7 +57,10 @@ node tests/handwritten.mjs
 node tests/media.mjs
 node tests/transcription.mjs
 node tests/languages.mjs
-HINDI_TEST_FILE=/path/to/private-hindi-recording.mp4 node tests/language-inference.mjs
+node tests/speech-fallback-ui.mjs
+HINDI_TEST_FILE=/path/to/private-hindi-recording.mp4 node tests/audio-timeline.mjs
+HINDI_TEST_FILE=/path/to/private-hindi-recording.mp4 node tests/speech-quality.mjs
+SPEECH_CASES=original,auto,noisy,light,english,silent,long node tests/speech-worker.mjs
 ```
 
 Browser checks use the installed `/usr/bin/chromium`; media tests also use FFmpeg/ffprobe to validate exported artifacts. They never invoke FFmpeg as part of the application. `tests/transcription.mjs` uses a TLS-verifying curl transport for public model downloads because the managed proxy's CA is not trusted by the test Chromium profile; inference remains real WASM in the browser. It asserts that external requests are GETs only.
@@ -65,4 +69,4 @@ The sample is original procedural mountain artwork with FFmpeg/libflite syntheti
 
 ## Licenses
 
-Application code is MIT. Tscaps engine is MIT. Mediabunny is unmodified MPL-2.0 and retains its own license/source-availability obligations. Transformers.js is Apache-2.0; ONNX Runtime is MIT; fonts are SIL OFL-1.1. Native Sharp/libvips appears in the installed Transformers dependency tree, but is not shipped in the browser build. The browser distribution includes generated `THIRD_PARTY_NOTICES.txt`.
+Application code is MIT. Tscaps engine is MIT. Mediabunny is unmodified MPL-2.0 and retains its own license/source-availability obligations. Transformers.js is Apache-2.0; ONNX Runtime is MIT; fonts are SIL OFL-1.1. Silero VAD is MIT and its browser wrapper is ISC. Native Sharp/libvips appears in the installed Transformers dependency tree, but is not shipped in the browser build. The browser distribution includes generated `THIRD_PARTY_NOTICES.txt`.

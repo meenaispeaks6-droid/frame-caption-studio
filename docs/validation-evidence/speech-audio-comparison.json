@@ -1,0 +1,29 @@
+{
+  "browserSamples": 950741,
+  "ffmpegSamples": 950740,
+  "comparison": [
+    {
+      "atSeconds": 1,
+      "lagSamples": 0,
+      "correlation": 0.9991670434439995,
+      "lagMs": 0
+    },
+    {
+      "atSeconds": 20,
+      "lagSamples": 0,
+      "correlation": 0.974973460007499,
+      "lagMs": 0
+    },
+    {
+      "atSeconds": 50,
+      "lagSamples": 0,
+      "correlation": 0.9887149585933421,
+      "lagMs": 0
+    }
+  ],
+  "gapFixture": {
+    "duration": 4,
+    "silentGapRms": 0,
+    "sourceDurationRetained": true
+  }
+}

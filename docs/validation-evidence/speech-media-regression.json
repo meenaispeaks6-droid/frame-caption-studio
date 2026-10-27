@@ -1,0 +1,15 @@
+{
+  "scope": "Actual Chromium encoding and FFmpeg decoding; not ASR stubs",
+  "checks": [
+    "PRESET_DECODED impact",
+    "PRESET_DECODED power",
+    "PRESET_DECODED cinematic",
+    "PRESET_DECODED bubble",
+    "PRESET_DECODED desi",
+    "DELAYED_AUDIO_EXPORTED",
+    "REAL_1080P_DECODED",
+    "WEBM_FALLBACK_DECODED",
+    "UNSUPPORTED_CODEC_FALLBACK_PASS"
+  ],
+  "allPassed": true
+}

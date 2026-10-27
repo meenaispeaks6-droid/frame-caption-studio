@@ -1,0 +1,428 @@
+[
+  {
+    "variant": "auto",
+    "elapsedMs": 104986,
+    "result": {
+      "type": "done",
+      "words": [
+        {
+          "id": "2cf72753-6297-4609-8628-17e8761eeee3",
+          "text": "Dunyaa",
+          "start": 0,
+          "end": 0.32,
+          "emphasis": false,
+          "breakAfter": false,
+          "timing": "word"
+        },
+        {
+          "id": "18f5afff-1fba-440b-99bc-bf08aa790c4d",
+          "text": "kar",
+          "start": 0.32,
+          "end": 0.44,
+          "emphasis": false,
+          "breakAfter": false,
+          "timing": "word"
+        },
+        {
+          "id": "6f509a06-03ab-4653-abb3-033e34044e94",
+          "text": "sabte",
+          "start": 0.44,
+          "end": 0.78,
+          "emphasis": false,
+          "breakAfter": false,
+          "timing": "word"
+        },
+        {
+          "id": "db2cf2e6-efa9-4239-b2d4-106b7115bf52",
+          "text": "bada",
+          "start": 0.78,
+          "end": 1.08,
+          "emphasis": false,
+          "breakAfter": false,
+          "timing": "word"
+        },
+        {
+          "id": "904d5ca9-4b17-4cd7-8cd5-2f1fb67d21df",
+          "text": "skem",
+          "start": 1.08,
+          "end": 1.3,
+          "emphasis": false,
+          "breakAfter": false,
+          "timing": "word"
+        },
+        {
+          "id": "ffe7d740-d444-4b28-b8f2-4298d50593f8",
+          "text": "pate",
+          "start": 1.3,
+          "end": 1.54,
+          "emphasis": false,
+          "breakAfter": false,
+          "timing": "word"
+        },
+        {
+          "id": "cdcc7450-db34-4d34-a7bf-5ecd16542c29",
+          "text": "hai",
+          "start": 1.54,
+          "end": 1.58,
+          "emphasis": false,
+          "breakAfter": false,
+          "timing": "word"
+        },
+        {
+          "id": "247ce316-5c97-4888-ac7a-23944984cea5",
+          "text": "kya?",
+          "start": 1.58,
+          "end": 1.74,
+          "emphasis": false,
+          "breakAfter": false,
+          "timing": "word"
+        },
+        {
+          "id": "a7605ede-d680-454d-b87c-7ecd166e1be4",
+          "text": "Praphekshyan,",
+          "start": 2.06,
+          "end": 2.66,
+          "emphasis": false,
+          "breakAfter": false,
+          "timing": "word"
+        },
+        {
+          "id": "eec9a217-63a6-449a-bc8a-fef5cec5b173",
+          "text": "diyaan",
+          "start": 2.94,
+          "end": 3.18,
+          "emphasis": false,
+          "breakAfter": false,
+          "timing": "word"
+        },
+        {
+          "id": "7b4f7bd2-1fcf-4d13-961c-cca81b9de099",
+          "text": "se",
+          "start": 3.18,
+          "end": 3.3,
+          "emphasis": false,
+          "breakAfter": false,
+          "timing": "word"
+        },
+        {
+          "id": "70462fab-ce9c-4249-a82a-276f16d27df7",
+          "text": "suth",
+          "start": 3.3,
+          "end": 3.44,
+          "emphasis": false,
+          "breakAfter": false,
+          "timing": "word"
+        },
+        {
+          "id": "b44f340f-3ad0-4b9d-8d39-c56e8eca78b4",
+          "text": "ye",
+          "start": 3.58,
+          "end": 3.94,
+          "emphasis": false,
+          "breakAfter": false,
+          "timing": "word"
+        },
+        {
+          "id": "713bce88-bb21-4840-816e-afb125b5a626",
+          "text": "hoon",
+          "start": 3.94,
+          "end": 4.16,
+          "emphasis": false,
+          "breakAfter": false,
+          "timing": "word"
+        },
+        {
+          "id": "f7d53634-975c-475f-bb78-a22e7b4fe3bc",
+          "text": "main,",
+          "start": 4.16,
+          "end": 4.42,
+          "emphasis": false,
+          "breakAfter": false,
+          "timing": "word"
+        },
+        {
+          "id": "0bc46ece-1418-495f-8065-fbc3abf1091e",
+          "text": "aur",
+          "start": 4.54,
+          "end": 4.66,
+          "emphasis": false,
+          "breakAfter": false,
+          "timing": "word"
+        },
+        {
+          "id": "3f00d16e-05ec-46cf-899f-87ba4218fbea",
+          "text": "ye",
+          "start": 4.66,
+          "end": 4.86,
+          "emphasis": false,
+          "breakAfter": false,
+          "timing": "word"
+        },
+        {
+          "id": "e542d109-a126-42bd-bf97-79777e39f7eb",
+          "text": "baakilo,",
+          "start": 4.86,
+          "end": 5.5,
+          "emphasis": false,
+          "breakAfter": false,
+          "timing": "word"
+        },
+        {
+          "id": "bf824ea4-cd4c-4d4d-ad8f-324ae81d73c8",
+          "text": "baahi",
+          "start": 5.56,
+          "end": 5.78,
+          "emphasis": false,
+          "breakAfter": false,
+          "timing": "word"
+        },
+        {
+          "id": "1e393a7c-9f3b-48db-a46c-fc26012100b8",
+          "text": "saab",
+          "start": 5.78,
+          "end": 5.96,
+          "emphasis": false,
+          "breakAfter": false,
+          "timing": "word"
+        },
+        {
+          "id": "64ce49cb-97e1-444b-b35a-3973e6a52e43",
+          "text": "ye",
+          "start": 5.96,
+          "end": 6.02,
+          "emphasis": false,
+          "breakAfter": false,
+          "timing": "word"
+        },
+        {
+          "id": "20d40199-79e6-4686-adfb-1c81e0f066a1",
+          "text": "baakilogo",
+          "start": 6.02,
+          "end": 6.64,
+          "emphasis": false,
+          "breakAfter": false,
+          "timing": "word"
+        },
+        {
+          "id": "c61d0857-7728-4ad4-ba9e-42b74772eac5",
+          "text": "mein",
+          "start": 6.64,
+          "end": 6.82,
+          "emphasis": false,
+          "breakAfter": false,
+          "timing": "word"
+        }
+      ],
+      "translated": false,
+      "timingEstimated": false,
+      "detectedLanguage": "hi",
+      "usedPhraseTiming": false,
+      "audioReport": {
+        "duration": 7,
+        "rms": 0.1914464276651834,
+        "peak": 0.9097217321395874,
+        "clipping": 0,
+        "dc": -0.00012972507959963357,
+        "noiseFloor": 0.03181416438520624,
+        "dynamicRangeDb": 19.435551140224174,
+        "silent": false,
+        "background": "variable",
+        "musicDetection": "not-classified",
+        "processing": "original",
+        "voiceDetection": {
+          "model": "silero",
+          "regions": 1,
+          "uncertain": false,
+          "maxProbability": 0.999305248260498
+        }
+      },
+      "warnings": [],
+      "sourceResults": [
+        {
+          "text": " दून्या कर सबते बड़ा स्केम पते है क्या? प्रफेक्ष्यन, दियान से सुथ ये हूँ मैं, और ये बाकिलो, बाही साब ये बाकिलोगो में",
+          "chunks": [
+            {
+              "text": " दून्या",
+              "timestamp": [
+                0,
+                0.32
+              ]
+            },
+            {
+              "text": " कर",
+              "timestamp": [
+                0.32,
+                0.44
+              ]
+            },
+            {
+              "text": " सबते",
+              "timestamp": [
+                0.44,
+                0.78
+              ]
+            },
+            {
+              "text": " बड़ा",
+              "timestamp": [
+                0.78,
+                1.08
+              ]
+            },
+            {
+              "text": " स्केम",
+              "timestamp": [
+                1.08,
+                1.3
+              ]
+            },
+            {
+              "text": " पते",
+              "timestamp": [
+                1.3,
+                1.54
+              ]
+            },
+            {
+              "text": " है",
+              "timestamp": [
+                1.54,
+                1.58
+              ]
+            },
+            {
+              "text": " क्या?",
+              "timestamp": [
+                1.58,
+                1.74
+              ]
+            },
+            {
+              "text": " प्रफेक्ष्यन,",
+              "timestamp": [
+                2.06,
+                2.66
+              ]
+            },
+            {
+              "text": " दियान",
+              "timestamp": [
+                2.94,
+                3.18
+              ]
+            },
+            {
+              "text": " से",
+              "timestamp": [
+                3.18,
+                3.3
+              ]
+            },
+            {
+              "text": " सुथ",
+              "timestamp": [
+                3.3,
+                3.44
+              ]
+            },
+            {
+              "text": " ये",
+              "timestamp": [
+                3.58,
+                3.94
+              ]
+            },
+            {
+              "text": " हूँ",
+              "timestamp": [
+                3.94,
+                4.16
+              ]
+            },
+            {
+              "text": " मैं,",
+              "timestamp": [
+                4.16,
+                4.42
+              ]
+            },
+            {
+              "text": " और",
+              "timestamp": [
+                4.54,
+                4.66
+              ]
+            },
+            {
+              "text": " ये",
+              "timestamp": [
+                4.66,
+                4.86
+              ]
+            },
+            {
+              "text": " बाकिलो,",
+              "timestamp": [
+                4.86,
+                5.5
+              ]
+            },
+            {
+              "text": " बाही",
+              "timestamp": [
+                5.56,
+                5.78
+              ]
+            },
+            {
+              "text": " साब",
+              "timestamp": [
+                5.78,
+                5.96
+              ]
+            },
+            {
+              "text": " ये",
+              "timestamp": [
+                5.96,
+                6.02
+              ]
+            },
+            {
+              "text": " बाकिलोगो",
+              "timestamp": [
+                6.02,
+                6.64
+              ]
+            },
+            {
+              "text": " में",
+              "timestamp": [
+                6.64,
+                6.82
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "variant": "noisy",
+    "elapsedMs": 230125,
+    "result": {
+      "type": "error",
+      "message": "Speech was recognized, but reliable timing could not be recovered. The transcript is kept below for manual correction. Try another model or original audio.",
+      "draftTranscript": " तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो\n तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो"
+    }
+  },
+  {
+    "variant": "light",
+    "elapsedMs": 383680,
+    "result": {
+      "type": "error",
+      "message": "Speech was recognized, but reliable timing could not be recovered. The transcript is kept below for manual correction. Try another model or original audio.",
+      "draftTranscript": " तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो\n तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो"
+    }
+  }
+]

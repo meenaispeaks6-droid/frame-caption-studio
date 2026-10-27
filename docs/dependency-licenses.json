@@ -244,6 +244,12 @@
     "repository": "https://github.com/protobufjs/protobuf.js.git"
   },
   {
+    "name": "@ricky0123/vad-web",
+    "version": "0.0.31",
+    "license": "ISC",
+    "noticeFiles": []
+  },
+  {
     "name": "@tscaps/engine",
     "version": "0.7.0",
     "license": "MIT",

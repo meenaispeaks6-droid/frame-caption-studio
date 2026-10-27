@@ -9,7 +9,7 @@
       "request": {
         "language": "hindi",
         "captionLanguage": "same",
-        "model": "base",
+        "model": "small",
         "duration": 9
       },
       "words": 10
@@ -22,7 +22,7 @@
       "request": {
         "language": "hinglish",
         "captionLanguage": "same",
-        "model": "base",
+        "model": "small",
         "duration": 9
       },
       "words": 11
@@ -35,7 +35,7 @@
       "request": {
         "language": "english",
         "captionLanguage": "same",
-        "model": "base",
+        "model": "small",
         "duration": 9
       },
       "words": 6
@@ -48,7 +48,7 @@
       "request": {
         "language": "hindi",
         "captionLanguage": "english",
-        "model": "base",
+        "model": "small",
         "duration": 9
       },
       "words": 10
@@ -61,7 +61,7 @@
       "request": {
         "language": "english",
         "captionLanguage": "hindi",
-        "model": "base",
+        "model": "small",
         "duration": 9
       },
       "words": 7
@@ -74,7 +74,7 @@
       "request": {
         "language": "auto",
         "captionLanguage": "same",
-        "model": "base",
+        "model": "small",
         "duration": 9
       },
       "words": 10
@@ -87,7 +87,7 @@
       "request": {
         "language": "english",
         "captionLanguage": "hinglish",
-        "model": "base",
+        "model": "small",
         "duration": 9
       },
       "words": 7

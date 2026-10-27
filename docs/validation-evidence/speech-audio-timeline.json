@@ -1,0 +1,17 @@
+[
+  {
+    "name": "analysis-source.mp4",
+    "offset": 0,
+    "length": 950741,
+    "stereo": {
+      "length": 950741,
+      "offset": 0
+    }
+  },
+  {
+    "name": "audio-gap.m4a",
+    "offset": 0,
+    "length": 64000,
+    "stereo": null
+  }
+]

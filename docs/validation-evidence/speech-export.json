@@ -1,0 +1,14 @@
+{
+  "scope": "Actual saved Small q8 Hindi inference result; matching 0.2–7.2 second source excerpt; no ASR stubs; real render worker",
+  "preset": "desi",
+  "words": 23,
+  "fullyDecoded": true,
+  "width": 1064,
+  "height": 720,
+  "audio": {
+    "lagSamples": 0,
+    "correlation": 0.9999165957635102
+  },
+  "duration": 7.007014,
+  "recognitionErrorsRemain": true
+}

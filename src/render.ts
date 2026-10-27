@@ -30,7 +30,10 @@ function drawHandwritten(ctx:Context,width:number,height:number,time:number,grou
  });
 }
 export function drawCaptions(ctx:Context,width:number,height:number,time:number,groups:Word[][],s:CaptionStyle){
- const group=activeGroup(groups,time);if(!group)return;
+ const active=activeGroup(groups,time);if(!active)return;
+ // Wrap phrase fallback text naturally while retaining its one real time
+ // window. Every visual token enters together; no word times are invented.
+ const group=active.flatMap(word=>word.timing==='segment'?word.text.split(/\s+/).filter(Boolean).map(text=>({...word,text})): [word]);
  ctx.save();
  if(s.preset==='handwritten'){drawHandwritten(ctx,width,height,time,group,s);ctx.restore();return;}
  const unit=Math.min(width,height)/720, strength=s.strength/100;

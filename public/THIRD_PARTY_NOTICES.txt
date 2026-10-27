@@ -4,8 +4,31 @@ The application extends the unmodified MIT @tscaps/engine package; no code from 
 
 Mediabunny 1.62.1 is unmodified MPL-2.0 covered software. Its corresponding source is available at https://www.npmjs.com/package/mediabunny/v/1.62.1 and https://github.com/Vanilagy/mediabunny/tree/v1.62.1 . The MPL covers that library, not the independent application files.
 
-Fonts are bundled under the SIL Open Font License. Whisper model weights are downloaded on demand from Xenova/whisper-tiny or Xenova/whisper-base (Apache-2.0 model cards); OpenAI Whisper original code/weights use MIT. Explicit caption translation downloads Xenova/m2m100_418M, an ONNX conversion of facebook/m2m100_418M (MIT; https://huggingface.co/facebook/m2m100_418M). The model files are not included in this distribution.
+Fonts are bundled under the SIL Open Font License. Whisper model weights are downloaded on demand from Xenova/whisper-tiny, Xenova/whisper-base or Xenova/whisper-small (Apache-2.0 model cards); OpenAI Whisper original code/weights use MIT. Explicit caption translation downloads Xenova/m2m100_418M, an ONNX conversion of facebook/m2m100_418M (MIT; https://huggingface.co/facebook/m2m100_418M). The model files are not included in this distribution.
 
+
+Silero VAD model (MIT), from @ricky0123/vad-web@0.0.31. Source: https://github.com/snakers4/silero-vad
+MIT License
+
+Copyright (c) 2020-present Silero Team
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
 
 ========================================================================
 @emnapi/runtime@1.11.3
@@ -1843,6 +1866,10 @@ THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
 (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
+
+========================================================================
+@ricky0123/vad-web@0.0.31
+License: ISC
 
 ========================================================================
 @tscaps/engine@0.7.0

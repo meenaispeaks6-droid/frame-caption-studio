@@ -1,0 +1,30 @@
+{
+  "scope": "English is known synthetic narration; Hindi is ONLY a burned-caption reference proxy for the first 8 tokens. Not full-recording manually verified WER. No spelling normalization.",
+  "english": {
+    "referenceTokens": 13,
+    "editDistance": 0,
+    "wer": 0.0
+  },
+  "hindiCaptionProxy": {
+    "reference": "दुनिया का सबसे बड़ा स्कैम पता है क्या",
+    "hypothesis": "दून्या कर सबते बड़ा स्केम पते है क्या",
+    "referenceTokens": 8,
+    "editDistance": 5,
+    "wer": 0.625
+  },
+  "alignmentBefore": {
+    "validWords": false,
+    "maxEnd": 13.98
+  },
+  "alignmentAfter": {
+    "words": 23,
+    "maxEnd": 6.82,
+    "clipDuration": 7
+  },
+  "longExcerpt": {
+    "duration": 31.28,
+    "words": 97,
+    "lastWordEnd": 30.86,
+    "scope": "First 31.28 seconds of the supplied 59.51-second reel; not a separately supplied 31.28-second source"
+  }
+}

@@ -5,15 +5,15 @@ export function validateWords(value: unknown, duration=Infinity): Word[] {
  let previous=0;
  return value.map((v:unknown,i)=>{
   const w=v as Word;
-  if(!w || typeof w.text!=='string'||!w.text.trim()||w.text.length>160||!Number.isFinite(w.start)||!Number.isFinite(w.end)||w.start<previous||w.start<0||w.end<=w.start||w.end>duration+.1) throw new Error(`Check word ${i+1}: use text and increasing times within the video.`);
+  if(!w || typeof w.text!=='string'||!w.text.trim()||w.text.length>(w.timing==='segment'?4000:160)||!Number.isFinite(w.start)||!Number.isFinite(w.end)||w.start<previous||w.start<0||w.end<=w.start||w.end>duration+.1) throw new Error(`Check word ${i+1}: use text and increasing times within the video.`);
   previous=w.end;
-  return {id:typeof w.id==='string'?w.id:uid(),text:w.text.trim(),start:w.start,end:w.end,emphasis:!!w.emphasis,breakAfter:!!w.breakAfter};
+  return {id:typeof w.id==='string'?w.id:uid(),text:w.text.trim(),start:w.start,end:w.end,emphasis:!!w.emphasis,breakAfter:!!w.breakAfter,timing:['word','segment','estimated'].includes(w.timing??'')?w.timing:undefined};
  });
 }
 export function groupWords(words:Word[],count:number):Word[][] {
  const groups:Word[][]=[]; let current:Word[]=[];
  for(const word of words){
-  if(current.length && (current.length>=count || word.start-current[current.length-1].end>.6)){groups.push(current);current=[];}
+  if(current.length && (word.timing==='segment' || current.at(-1)?.timing==='segment' || current.length>=count || word.start-current[current.length-1].end>.6)){groups.push(current);current=[];}
   current.push(word);
   if(word.breakAfter || /[.!?।]$/.test(word.text)){groups.push(current);current=[];}
  }
