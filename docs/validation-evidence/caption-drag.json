@@ -1,0 +1,40 @@
+{
+  "mouse": true,
+  "touchEmulation": true,
+  "undoRedo": true,
+  "keyboard": true,
+  "reloadPersistence": true,
+  "presetPersistence": true,
+  "transcriptUnchanged": true,
+  "mp4FullyDecoded": true,
+  "desktopPosition": {
+    "preset": "handwritten",
+    "font": "Mynerve",
+    "size": 27,
+    "color": "#ffffff",
+    "accent": "#ffffff",
+    "strokeColor": "#191919",
+    "stroke": 0,
+    "shadow": 12,
+    "position": 32.062780269058294,
+    "strength": 0,
+    "grouping": 5,
+    "uppercase": false,
+    "positionX": 63.94494270054808
+  },
+  "mobilePosition": {
+    "preset": "handwritten",
+    "font": "Mynerve",
+    "size": 27,
+    "color": "#ffffff",
+    "accent": "#ffffff",
+    "strokeColor": "#191919",
+    "stroke": 0,
+    "shadow": 12,
+    "position": 32.704402515723274,
+    "strength": 0,
+    "grouping": 5,
+    "uppercase": false,
+    "positionX": 58.377009084556256
+  }
+}

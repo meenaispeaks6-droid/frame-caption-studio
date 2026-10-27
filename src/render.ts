@@ -20,14 +20,17 @@ function drawHandwritten(ctx:Context,width:number,height:number,time:number,grou
  const fade=.09*strength;
  const enter=fade?clamp(age/fade):1,exit=fade?clamp(remaining/fade):1;
  const eased=1-(1-enter)**3,lineHeight=fs*1.45;
+ const pad=Math.max(12*unit,fs*.25+s.stroke*unit),half=Math.max(...lines.map(line=>ctx.measureText(line).width))/2;
+ const baseX=Math.max(half+pad,Math.min(width-half-pad,width*(s.positionX??50)/100));
  const baseY=Math.min(height-30*unit-lineHeight*lines.length/2,Math.max(30*unit+lineHeight*lines.length/2,height*s.position/100));
  ctx.globalAlpha=Math.min(enter,exit);ctx.textAlign='center';ctx.textBaseline='alphabetic';ctx.lineJoin='round';
  ctx.shadowColor=`rgba(0,0,0,${s.shadow/100})`;ctx.shadowBlur=fs*.12;ctx.shadowOffsetY=fs*.035;
  lines.forEach((line,i)=>{
   const m=ctx.measureText(line),y=baseY+(i-(lines.length-1)/2)*lineHeight+(m.actualBoundingBoxAscent-m.actualBoundingBoxDescent)/2+(1-eased)*fs*.12*strength;
-  if(s.stroke>0){ctx.strokeStyle=s.strokeColor;ctx.lineWidth=s.stroke*unit*2;ctx.strokeText(line,width/2,y);}
-  ctx.fillStyle=s.color;ctx.fillText(line,width/2,y);
+  if(s.stroke>0){ctx.strokeStyle=s.strokeColor;ctx.lineWidth=s.stroke*unit*2;ctx.strokeText(line,baseX,y);}
+  ctx.fillStyle=s.color;ctx.fillText(line,baseX,y);
  });
+ return {x:baseX-half-pad,y:baseY-lineHeight*lines.length/2-pad,width:2*(half+pad),height:lineHeight*lines.length+2*pad};
 }
 export function drawCaptions(ctx:Context,width:number,height:number,time:number,groups:Word[][],s:CaptionStyle){
  const active=activeGroup(groups,time);if(!active)return;
@@ -35,7 +38,7 @@ export function drawCaptions(ctx:Context,width:number,height:number,time:number,
  // window. Every visual token enters together; no word times are invented.
  const group=active.flatMap(word=>word.timing==='segment'?word.text.split(/\s+/).filter(Boolean).map(text=>({...word,text})): [word]);
  ctx.save();
- if(s.preset==='handwritten'){drawHandwritten(ctx,width,height,time,group,s);ctx.restore();return;}
+ if(s.preset==='handwritten'){const bounds=drawHandwritten(ctx,width,height,time,group,s);ctx.restore();return bounds;}
  const unit=Math.min(width,height)/720, strength=s.strength/100;
  let fs=s.size*unit;
  const fontFamily=`"${s.font}", "Noto Sans Devanagari", sans-serif`;
@@ -55,10 +58,13 @@ export function drawCaptions(ctx:Context,width:number,height:number,time:number,
  const enter=cinematic?clamp(elapsed/.22):1;
  const exit=cinematic?clamp(remaining/.16):1;
  ctx.globalAlpha=Math.min(enter,exit);ctx.textBaseline='middle';ctx.textAlign='center';ctx.lineJoin='round';
+ const maxWidth=Math.max(...lines.map(line=>line.reduce((acc,i)=>acc+widths[i],0)+gap*(line.length-1)));
+ const pad=Math.max(14*unit,fs*.3+s.stroke*unit);
+ const baseX=Math.max(maxWidth/2+pad,Math.min(width-maxWidth/2-pad,width*(s.positionX??50)/100));
  const baseY=Math.min(height-lineHeight*lines.length/2-25*unit,Math.max(lineHeight*lines.length/2+25*unit,height*s.position/100));
  lines.forEach((line,li)=>{
   const lineWidth=line.reduce((acc,i)=>acc+widths[i],0)+gap*(line.length-1);
-  let x=(width-lineWidth)/2;
+  let x=baseX-lineWidth/2;
   const y=baseY+(li-(lines.length-1)/2)*lineHeight+(cinematic?(1-enter)*fs*.2*strength:0);
   line.forEach(i=>{
    const word=group[i],active=time>=word.start&&time<word.end,age=Math.max(0,time-word.start),future=time<word.start;
@@ -77,4 +83,5 @@ export function drawCaptions(ctx:Context,width:number,height:number,time:number,
   });
  });
  ctx.restore();
+ return {x:baseX-maxWidth/2-pad,y:baseY-lineHeight*lines.length/2-pad,width:maxWidth+2*pad,height:lineHeight*lines.length+2*pad};
 }

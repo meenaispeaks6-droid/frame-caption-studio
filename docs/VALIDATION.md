@@ -66,3 +66,9 @@ See [LANGUAGES.md](LANGUAGES.md) for implementation, actual tests and remaining 
 ## Speech-processing correction
 
 The current release passes 33 unit tests. It fixes real Auto Detect, timestamp-constrained Hindi word alignment and AAC packet-gap extraction; adds real Silero speech detection and optional conservative DSP; and preserves recognized text through phrase timing or an editable draft on failure. The supplied 31.28-second excerpt produces 97 bounded word intervals, but Hindi substitutions remain. Added-noise recognition is a failed quality check, not a success. The real media regression, language UI contracts, recovery UI and decoded exports pass. See [SPEECH_QUALITY.md](SPEECH_QUALITY.md) for numerical evidence, licensing, limitations and reproduction.
+
+## Direct caption placement
+
+Visible captions now expose a pointer-captured drag target on the video. Mouse and touch move both axes in video-relative coordinates; drag updates paint directly and commit once on release. Pointer cancellation restores the previous placement. Keyboard arrows adjust position, with Shift for larger steps. Renderer-derived hit bounds follow each phrase and support all six styles. Horizontal defaults preserve older projects; chosen placement persists through preset changes, project reload and export.
+
+Executed `tests/caption-drag.mjs`: desktop mouse drag, Pixel 7 touch events in Chromium emulation, one-step Undo/Redo, keyboard adjustment, unchanged transcript, preset/reload persistence and a real fully decoded 720p MP4. The exported frame was visually inspected and shows the moved caption. Physical phone hardware was not available. Numerical results are in `validation-evidence/caption-drag.json`.
