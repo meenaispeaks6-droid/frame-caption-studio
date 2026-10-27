@@ -1,0 +1,8 @@
+{
+  "scope": "Controlled speech worker; actual UI",
+  "playbackDuringRecognition": true,
+  "cancellation": true,
+  "repeatUsesCache": true,
+  "stylePreservesEdits": true,
+  "posts": 2
+}

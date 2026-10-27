@@ -15,7 +15,7 @@ env.useBrowserCache=true;
 // Original integration informed by SeeB4's MIT worker architecture.
 // Whisper Web has no explicit code license; none of its source is copied here.
 type Chunk={text:string;timestamp:[number|null,number|null]};
-type Tokenizer={decode:(tokens:number[],options:Record<string,unknown>)=>string};
+type Tokenizer={_decode_asr:(chunks:unknown[],options:Record<string,unknown>)=>[string,{chunks?:Chunk[]}];decode:(tokens:number[],options:Record<string,unknown>)=>string};
 type Asr = ((audio:Float32Array,options:Record<string,unknown>)=>Promise<{text:string;chunks:Chunk[]}>) & {dispose:()=>Promise<void>;tokenizer:Tokenizer;processor:(audio:Float32Array)=>Promise<{input_features:unknown}>;model:{generate:(options:Record<string,unknown>)=>Promise<unknown>}};
 const createAsr=pipeline as unknown as (task:string,name:string,options:Record<string,unknown>)=>Promise<Asr>;
 let modelName='';let transcriber:Asr|undefined;
@@ -40,8 +40,8 @@ self.onmessage=async({data})=>{
   if(!spans.length){self.postMessage({type:'done',words:[],translated:false,timingEstimated:false,audioReport:report});return;}
   const name=`Xenova/whisper-${settings.model}`;
   if(!transcriber||modelName!==name){
-   await transcriber?.dispose();modelName=name;
-   transcriber=await createAsr('automatic-speech-recognition',name,{device:'wasm',dtype:'q8',progress_callback:(p:Record<string,unknown>)=>self.postMessage({type:'download',stage:'speech',...p})});
+   await transcriber?.dispose();transcriber=undefined;modelName='';
+   transcriber=await createAsr('automatic-speech-recognition',name,{device:'wasm',dtype:'q8',progress_callback:(p:Record<string,unknown>)=>self.postMessage({type:'download',stage:'speech',...p})});modelName=name;
   }
   if(['auto','hinglish'].includes(settings.spoken)){
    self.postMessage({type:'stage',label:'Detecting spoken language from original speech'});
@@ -52,6 +52,10 @@ self.onmessage=async({data})=>{
    if(!detectedLanguage)throw Error('Language could not be detected reliably. Select the spoken language manually and retry.');
   }
   const generate=transcriber.model.generate,model=transcriber.model;
+  const tokenizer=transcriber.tokenizer,decode=tokenizer._decode_asr;let segmentResult:SpeechResult|undefined;
+  // Decode real timestamp tokens from the same generation, retaining chunk strides.
+  // This is text decoding only: it avoids a second acoustic inference for fallback.
+  tokenizer._decode_asr=(chunks,options)=>{if(options.return_timestamps==='word'){try{const [text,extra]=decode.call(tokenizer,chunks,{...options,return_timestamps:true});segmentResult={text,...extra};}catch{segmentResult=undefined;}}return decode.call(tokenizer,chunks,options);};
   // Keep Whisper's timestamp-token constraints while computing cross-attention
   // word alignment. The library's word pipeline otherwise disables them, which
   // produced repetitions and out-of-range word times on Hindi recordings.
@@ -59,20 +63,20 @@ self.onmessage=async({data})=>{
   try{
    for(let i=0;i<spans.length;i++){
     const span=spans[i],begin=Math.round(span.start*16000),finish=Math.round(span.end*16000),localDuration=(finish-begin)/16000;
-    const run=async(audio:Float32Array,timestamps:'word'|true)=>await transcriber!(audio.subarray(begin,finish),{return_timestamps:timestamps,chunk_length_s:30,stride_length_s:5,language:detectedLanguage??settings.spoken,task:'transcribe',force_full_sequences:false});
+    const run=async(audio:Float32Array,timestamps:'word'|true)=>{segmentResult=undefined;return await transcriber!(audio.subarray(begin,finish),{return_timestamps:timestamps,chunk_length_s:30,stride_length_s:5,language:detectedLanguage??settings.spoken,task:'transcribe',force_full_sequences:false});};
     self.postMessage({type:'stage',label:`Listening on your device · speech region ${i+1} of ${spans.length}`});
     let primary:SpeechResult;try{primary=await run(prepared,'word');}catch{primary={text:''};warnings.push('Word timing was unavailable; phrase timing was requested.');}rawResults.push(primary);recoveredText=rawResults.map(r=>r.text).filter(Boolean).join('\n');let aligned=!primary.text.trim()||repetitive(primary.text)?null:reliableWords(primary,localDuration);
     if(!aligned&&prepared!==original){self.postMessage({type:'stage',label:'Retrying original audio to protect speech clarity'});primary=await run(original,'word');rawResults.push(primary);aligned=!primary.text.trim()||repetitive(primary.text)?null:reliableWords(primary,localDuration);}
     if(!aligned){
      self.postMessage({type:'stage',label:'Recovering real phrase timestamps; preserving recognized text'});
-     const segmented=await run(original,true);rawResults.push(segmented);recoveredText=rawResults.map(r=>r.text).filter(Boolean).join('\n');aligned=phraseFallback(primary,segmented,localDuration);
-     if(!aligned){draftTranscript=[...words.map(w=>w.text),primary.text,segmented.text].filter(Boolean).join('\n');throw Error('Speech was recognized, but reliable timing could not be recovered. The transcript is kept below for manual correction. Try another model or original audio.');}
+     const segmented=segmentResult??await run(original,true);rawResults.push(segmented);recoveredText=rawResults.map(r=>r.text).filter(Boolean).join('\n');aligned=phraseFallback(primary,segmented,localDuration);
+     if(!aligned){draftTranscript=[...words.map(w=>w.text),primary.text.trim()&&!repetitive(primary.text)?primary.text:segmented.text].filter(Boolean).join('\n');throw Error('Speech was recognized, but reliable timing could not be recovered. The transcript is kept below for manual correction. Try another model or original audio.');}
      usedPhraseTiming=true;
     }
     words.push(...aligned.map(word=>({...word,start:word.start+begin/16000,end:word.end+begin/16000})));
    }
   }catch(e){self.postMessage({type:'error',message:(e as Error).message,draftTranscript:draftTranscript||rawResults.map(r=>r.text).filter(Boolean).join('\n')});return;}
-  finally{model.generate=generate;}
+  finally{model.generate=generate;tokenizer._decode_asr=decode;}
   if(settings.caption!=='same'&&words.length){
    self.postMessage({type:'stage',label:'Preparing your chosen caption language on this device'});
    await transcriber.dispose();transcriber=undefined;modelName='';

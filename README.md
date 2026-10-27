@@ -47,6 +47,8 @@ Whisper Small is the default; Hindi/Hinglish output still contains recognition e
 
 This release focuses on SDR video and the primary audio track. Multiple audio tracks, HDR color mastering, arbitrary long-form video, speaker diarization and music editing are outside its scope. Browser codec support varies by OS/device. Unsupported devices can still edit and download subtitles. Physical Android Chrome validation remains outstanding. The uploaded reel has now been inspected and its caption treatment independently recreated; see [reference analysis](docs/REEL_REFERENCE.md) and [validation](docs/VALIDATION.md).
 
+See [native generation fixes and measured performance](docs/NATIVE_GENERATION.md) for bounded caching, worker reuse, cancellation and remaining recognition limits.
+
 ## Tests
 
 ```sh

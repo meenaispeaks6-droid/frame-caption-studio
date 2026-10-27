@@ -1,0 +1,1895 @@
+[
+  {
+    "variant": "long",
+    "elapsedMs": 423306,
+    "result": {
+      "type": "done",
+      "words": [
+        {
+          "id": "b39d1db0-898d-42a3-b931-881eb3d13858",
+          "text": "Is",
+          "start": 0,
+          "end": 0.26,
+          "emphasis": false,
+          "breakAfter": false,
+          "timing": "word"
+        },
+        {
+          "id": "a493f01b-2769-43c1-90e9-926ecbec21c7",
+          "text": "dunyaa",
+          "start": 0.26,
+          "end": 0.54,
+          "emphasis": false,
+          "breakAfter": false,
+          "timing": "word"
+        },
+        {
+          "id": "b46dfa9d-77ea-47ff-bfb6-9c8afa9840e9",
+          "text": "kar",
+          "start": 0.54,
+          "end": 0.64,
+          "emphasis": false,
+          "breakAfter": false,
+          "timing": "word"
+        },
+        {
+          "id": "7cd86ea0-b3c9-4b5a-9387-074d57bfee7a",
+          "text": "sabte",
+          "start": 0.64,
+          "end": 0.98,
+          "emphasis": false,
+          "breakAfter": false,
+          "timing": "word"
+        },
+        {
+          "id": "6ab09f28-98e8-4a0d-9920-357a4afc8fbd",
+          "text": "badaas",
+          "start": 0.98,
+          "end": 1.36,
+          "emphasis": false,
+          "breakAfter": false,
+          "timing": "word"
+        },
+        {
+          "id": "19132685-3a02-4a2d-abe9-e0b8d45d211b",
+          "text": "kain",
+          "start": 1.36,
+          "end": 1.5,
+          "emphasis": false,
+          "breakAfter": false,
+          "timing": "word"
+        },
+        {
+          "id": "9f75eddb-12e5-4ae6-aca8-ab70dce31a53",
+          "text": "pate",
+          "start": 1.5,
+          "end": 1.74,
+          "emphasis": false,
+          "breakAfter": false,
+          "timing": "word"
+        },
+        {
+          "id": "e59070e2-f7e2-407f-baa3-1cfe1da6cd80",
+          "text": "hai",
+          "start": 1.74,
+          "end": 1.76,
+          "emphasis": false,
+          "breakAfter": false,
+          "timing": "word"
+        },
+        {
+          "id": "50004c90-04cc-431d-b379-b46b8a8e4fe1",
+          "text": "kai?",
+          "start": 1.76,
+          "end": 1.92,
+          "emphasis": false,
+          "breakAfter": false,
+          "timing": "word"
+        },
+        {
+          "id": "0fcd5e54-9274-4582-a287-8f2e71c09e64",
+          "text": "Praphekshyan,",
+          "start": 2.16,
+          "end": 2.86,
+          "emphasis": false,
+          "breakAfter": false,
+          "timing": "word"
+        },
+        {
+          "id": "1f2e579f-2cd2-45b5-ad1d-b8b8485c43b4",
+          "text": "deyaan",
+          "start": 3.1,
+          "end": 3.38,
+          "emphasis": false,
+          "breakAfter": false,
+          "timing": "word"
+        },
+        {
+          "id": "135b754f-7a78-4976-b712-066c1462dd6e",
+          "text": "se",
+          "start": 3.38,
+          "end": 3.48,
+          "emphasis": false,
+          "breakAfter": false,
+          "timing": "word"
+        },
+        {
+          "id": "028839e6-6eee-450f-bece-3fd9544a2107",
+          "text": "sup",
+          "start": 3.48,
+          "end": 3.66,
+          "emphasis": false,
+          "breakAfter": false,
+          "timing": "word"
+        },
+        {
+          "id": "1c9eab41-8395-4256-9c06-95db168a9c04",
+          "text": "ye",
+          "start": 3.8,
+          "end": 4.16,
+          "emphasis": false,
+          "breakAfter": false,
+          "timing": "word"
+        },
+        {
+          "id": "d25afb91-be33-4a83-a9e2-3b71f2bfba7d",
+          "text": "hoon",
+          "start": 4.16,
+          "end": 4.36,
+          "emphasis": false,
+          "breakAfter": false,
+          "timing": "word"
+        },
+        {
+          "id": "deffbf61-958e-4c37-b1d4-60da9f83a300",
+          "text": "main,",
+          "start": 4.36,
+          "end": 4.6,
+          "emphasis": false,
+          "breakAfter": false,
+          "timing": "word"
+        },
+        {
+          "id": "50487992-8060-4e39-add7-8ef55dcb9e6a",
+          "text": "aur",
+          "start": 4.74,
+          "end": 4.86,
+          "emphasis": false,
+          "breakAfter": false,
+          "timing": "word"
+        },
+        {
+          "id": "2b081891-e6fa-4965-99f4-c594a4c10b52",
+          "text": "ye",
+          "start": 4.86,
+          "end": 5.06,
+          "emphasis": false,
+          "breakAfter": false,
+          "timing": "word"
+        },
+        {
+          "id": "28822ea9-0f20-42ca-90a7-145480876cf3",
+          "text": "baakilo",
+          "start": 5.06,
+          "end": 5.7,
+          "emphasis": false,
+          "breakAfter": false,
+          "timing": "word"
+        },
+        {
+          "id": "995eb59a-6a5f-43a8-8e57-9e343e797dcf",
+          "text": "baakhilogo",
+          "start": 5.76,
+          "end": 6.86,
+          "emphasis": false,
+          "breakAfter": false,
+          "timing": "word"
+        },
+        {
+          "id": "0c253e92-0063-4c1d-a0a4-c0e9462ad255",
+          "text": "mein",
+          "start": 6.86,
+          "end": 7.02,
+          "emphasis": false,
+          "breakAfter": false,
+          "timing": "word"
+        },
+        {
+          "id": "34316855-fcac-400e-9cd6-58830698a242",
+          "text": "mujhe",
+          "start": 7.02,
+          "end": 7.34,
+          "emphasis": false,
+          "breakAfter": false,
+          "timing": "word"
+        },
+        {
+          "id": "bae4f9f1-0d4c-4e0d-89f3-1bdc2ce51885",
+          "text": "jaadaa",
+          "start": 7.34,
+          "end": 7.86,
+          "emphasis": false,
+          "breakAfter": false,
+          "timing": "word"
+        },
+        {
+          "id": "69ffe297-66c5-4ec9-88b8-42964086b577",
+          "text": "talent",
+          "start": 7.86,
+          "end": 8.26,
+          "emphasis": false,
+          "breakAfter": false,
+          "timing": "word"
+        },
+        {
+          "id": "8066d712-459b-49c0-8e4d-e8de3c781722",
+          "text": "mujhe",
+          "start": 8.38,
+          "end": 8.68,
+          "emphasis": false,
+          "breakAfter": false,
+          "timing": "word"
+        },
+        {
+          "id": "ac92caf6-ef67-47d1-a3a0-a23e460491d8",
+          "text": "jaadaa",
+          "start": 8.68,
+          "end": 9,
+          "emphasis": false,
+          "breakAfter": false,
+          "timing": "word"
+        },
+        {
+          "id": "9c1264f0-dd0b-470d-ac90-a880eeea76c0",
+          "text": "risorse,",
+          "start": 9,
+          "end": 9.44,
+          "emphasis": false,
+          "breakAfter": false,
+          "timing": "word"
+        },
+        {
+          "id": "10a08b33-9b62-4b8c-8207-a20de93ec161",
+          "text": "mujhe",
+          "start": 9.5,
+          "end": 9.76,
+          "emphasis": false,
+          "breakAfter": false,
+          "timing": "word"
+        },
+        {
+          "id": "5e2e01ee-d805-4821-bca5-b56a2b5293f3",
+          "text": "jaadaa",
+          "start": 9.76,
+          "end": 10.02,
+          "emphasis": false,
+          "breakAfter": false,
+          "timing": "word"
+        },
+        {
+          "id": "c34cbef7-0757-4515-89f7-ab4e2f40e235",
+          "text": "paisaa",
+          "start": 10.02,
+          "end": 10.34,
+          "emphasis": false,
+          "breakAfter": false,
+          "timing": "word"
+        },
+        {
+          "id": "f2fc07e0-b8aa-49ea-991b-bda7acbb772a",
+          "text": "bhi",
+          "start": 10.34,
+          "end": 10.46,
+          "emphasis": false,
+          "breakAfter": false,
+          "timing": "word"
+        },
+        {
+          "id": "edc3f1ab-72a1-4979-9468-38067b975d81",
+          "text": "ho",
+          "start": 10.46,
+          "end": 10.58,
+          "emphasis": false,
+          "breakAfter": false,
+          "timing": "word"
+        },
+        {
+          "id": "64caddf7-0ea7-46f1-8d18-8a6a7817772f",
+          "text": "bar",
+          "start": 10.68,
+          "end": 10.82,
+          "emphasis": false,
+          "breakAfter": false,
+          "timing": "word"
+        },
+        {
+          "id": "5717271c-fda5-4a87-8c4d-8ff49a4fdb6b",
+          "text": "bhaai",
+          "start": 10.82,
+          "end": 11,
+          "emphasis": false,
+          "breakAfter": false,
+          "timing": "word"
+        },
+        {
+          "id": "4d426d3b-03ac-4bdf-bf25-f188fb6519ed",
+          "text": "mere",
+          "start": 11,
+          "end": 11.3,
+          "emphasis": false,
+          "breakAfter": false,
+          "timing": "word"
+        },
+        {
+          "id": "b301ed96-6989-438f-b9b3-120ae702d109",
+          "text": "andar",
+          "start": 11.3,
+          "end": 11.58,
+          "emphasis": false,
+          "breakAfter": false,
+          "timing": "word"
+        },
+        {
+          "id": "f2e96258-1261-4981-8abd-bef88df6dde9",
+          "text": "ek",
+          "start": 11.58,
+          "end": 11.7,
+          "emphasis": false,
+          "breakAfter": false,
+          "timing": "word"
+        },
+        {
+          "id": "a860da21-ca86-430e-91c9-b5f7b3ab6a7a",
+          "text": "aansaa",
+          "start": 11.7,
+          "end": 11.96,
+          "emphasis": false,
+          "breakAfter": false,
+          "timing": "word"
+        },
+        {
+          "id": "1c893de6-4586-47aa-b37a-75ea2ede680d",
+          "text": "skil",
+          "start": 11.96,
+          "end": 12.26,
+          "emphasis": false,
+          "breakAfter": false,
+          "timing": "word"
+        },
+        {
+          "id": "a30fdbaf-fee7-4f41-8946-b01441bd5de9",
+          "text": "hai,",
+          "start": 12.26,
+          "end": 12.4,
+          "emphasis": false,
+          "breakAfter": false,
+          "timing": "word"
+        },
+        {
+          "id": "86ef55b7-f856-4385-a600-cac61cb36bc2",
+          "text": "jo",
+          "start": 12.48,
+          "end": 12.58,
+          "emphasis": false,
+          "breakAfter": false,
+          "timing": "word"
+        },
+        {
+          "id": "e4b6da5e-f8ae-479a-9267-4fb4cf92c535",
+          "text": "ye",
+          "start": 12.58,
+          "end": 12.7,
+          "emphasis": false,
+          "breakAfter": false,
+          "timing": "word"
+        },
+        {
+          "id": "df589784-5175-4a38-b18f-103e4244759d",
+          "text": "baaki",
+          "start": 12.7,
+          "end": 13.18,
+          "emphasis": false,
+          "breakAfter": false,
+          "timing": "word"
+        },
+        {
+          "id": "4fc11f94-c489-42df-930d-60adf4797593",
+          "text": "chijo",
+          "start": 13.18,
+          "end": 13.48,
+          "emphasis": false,
+          "breakAfter": false,
+          "timing": "word"
+        },
+        {
+          "id": "7dcd20f0-3c0d-45d3-bce4-99792691dc79",
+          "text": "se",
+          "start": 13.48,
+          "end": 13.7,
+          "emphasis": false,
+          "breakAfter": false,
+          "timing": "word"
+        },
+        {
+          "id": "7c861b2c-1107-4881-88f4-e152daaf2058",
+          "text": "bahut",
+          "start": 13.7,
+          "end": 14.14,
+          "emphasis": false,
+          "breakAfter": false,
+          "timing": "word"
+        },
+        {
+          "id": "2f69258c-d92e-4de2-9310-07aa0b44a917",
+          "text": "upar",
+          "start": 14.14,
+          "end": 14.4,
+          "emphasis": false,
+          "breakAfter": false,
+          "timing": "word"
+        },
+        {
+          "id": "904e6fe6-a7bd-426a-ab26-22d6433b32e2",
+          "text": "bakchodi",
+          "start": 14.6,
+          "end": 16.62,
+          "emphasis": false,
+          "breakAfter": false,
+          "timing": "word"
+        },
+        {
+          "id": "ef6fa7d8-c0c7-4d03-8532-41452aa89ae4",
+          "text": "bar",
+          "start": 17.48,
+          "end": 17.66,
+          "emphasis": false,
+          "breakAfter": false,
+          "timing": "word"
+        },
+        {
+          "id": "620c8e05-9f43-4016-b68c-ccb2122ec925",
+          "text": "paarido",
+          "start": 17.66,
+          "end": 17.96,
+          "emphasis": false,
+          "breakAfter": false,
+          "timing": "word"
+        },
+        {
+          "id": "e74dc677-1086-4634-bd4c-71298959b625",
+          "text": "yahaan",
+          "start": 17.96,
+          "end": 18.26,
+          "emphasis": false,
+          "breakAfter": false,
+          "timing": "word"
+        },
+        {
+          "id": "2b193a74-1b63-4494-8cdc-863915a2301a",
+          "text": "bakchodi",
+          "start": 18.26,
+          "end": 18.7,
+          "emphasis": false,
+          "breakAfter": false,
+          "timing": "word"
+        },
+        {
+          "id": "4fc8361c-90b4-4b49-8ab2-43ce0764b8a6",
+          "text": "ka",
+          "start": 18.7,
+          "end": 18.86,
+          "emphasis": false,
+          "breakAfter": false,
+          "timing": "word"
+        },
+        {
+          "id": "4da907a5-ea31-4a38-9ef7-28919c0240ab",
+          "text": "kya",
+          "start": 18.86,
+          "end": 19.02,
+          "emphasis": false,
+          "breakAfter": false,
+          "timing": "word"
+        },
+        {
+          "id": "6c3928ee-b575-4aad-b9f7-f6baf7e02879",
+          "text": "matnaa",
+          "start": 19.02,
+          "end": 19.32,
+          "emphasis": false,
+          "breakAfter": false,
+          "timing": "word"
+        },
+        {
+          "id": "d77bc7fb-2ead-4ab7-bab2-771e564b6223",
+          "text": "bataap",
+          "start": 19.54,
+          "end": 19.94,
+          "emphasis": false,
+          "breakAfter": false,
+          "timing": "word"
+        },
+        {
+          "id": "53f32e3b-2332-4194-9566-d90db540da3b",
+          "text": "ek",
+          "start": 19.94,
+          "end": 20.08,
+          "emphasis": false,
+          "breakAfter": false,
+          "timing": "word"
+        },
+        {
+          "id": "9fcf8cba-58b5-4800-8b83-d49d935f0127",
+          "text": "samjho",
+          "start": 20.08,
+          "end": 20.76,
+          "emphasis": false,
+          "breakAfter": false,
+          "timing": "word"
+        },
+        {
+          "id": "64b755a2-d9d9-434d-866b-572cf9939f98",
+          "text": "ki",
+          "start": 20.76,
+          "end": 20.9,
+          "emphasis": false,
+          "breakAfter": false,
+          "timing": "word"
+        },
+        {
+          "id": "26685d1f-ed39-4369-a635-9b6a9dcfc501",
+          "text": "en",
+          "start": 20.9,
+          "end": 20.98,
+          "emphasis": false,
+          "breakAfter": false,
+          "timing": "word"
+        },
+        {
+          "id": "632af199-cbd6-49ed-a88e-75b4a9fa12f4",
+          "text": "donaa",
+          "start": 20.98,
+          "end": 21.3,
+          "emphasis": false,
+          "breakAfter": false,
+          "timing": "word"
+        },
+        {
+          "id": "8a452c53-64a5-4b6f-a76f-7868b3ef61a3",
+          "text": "paarti",
+          "start": 21.3,
+          "end": 21.58,
+          "emphasis": false,
+          "breakAfter": false,
+          "timing": "word"
+        },
+        {
+          "id": "77154bdb-0b3e-47b8-99bd-8a3b9dee1dc5",
+          "text": "ko",
+          "start": 21.58,
+          "end": 21.74,
+          "emphasis": false,
+          "breakAfter": false,
+          "timing": "word"
+        },
+        {
+          "id": "5ee7370c-701b-4184-bf7c-b91741d8aff3",
+          "text": "ek",
+          "start": 21.74,
+          "end": 21.94,
+          "emphasis": false,
+          "breakAfter": false,
+          "timing": "word"
+        },
+        {
+          "id": "afd679e0-6649-4c4d-8f9f-2c8eb3f02ba7",
+          "text": "bisans",
+          "start": 21.94,
+          "end": 22.36,
+          "emphasis": false,
+          "breakAfter": false,
+          "timing": "word"
+        },
+        {
+          "id": "f3094f00-5896-4c5d-b910-13a354442a3c",
+          "text": "aaityaa",
+          "start": 22.36,
+          "end": 22.68,
+          "emphasis": false,
+          "breakAfter": false,
+          "timing": "word"
+        },
+        {
+          "id": "1a7345f8-f6ad-4a0f-af13-65cea739e880",
+          "text": "ap",
+          "start": 22.78,
+          "end": 22.94,
+          "emphasis": false,
+          "breakAfter": false,
+          "timing": "word"
+        },
+        {
+          "id": "5130c350-429e-47df-89bc-e81f4530d0c6",
+          "text": "ye",
+          "start": 22.94,
+          "end": 23.22,
+          "emphasis": false,
+          "breakAfter": false,
+          "timing": "word"
+        },
+        {
+          "id": "86471f6d-8270-4d13-931b-4a0d13de7017",
+          "text": "log",
+          "start": 23.22,
+          "end": 23.52,
+          "emphasis": false,
+          "breakAfter": false,
+          "timing": "word"
+        },
+        {
+          "id": "1e5184b4-76dd-4d59-bd4d-94f542771e3d",
+          "text": "is",
+          "start": 23.52,
+          "end": 23.64,
+          "emphasis": false,
+          "breakAfter": false,
+          "timing": "word"
+        },
+        {
+          "id": "fba7801f-0746-48cb-93e5-b770e6b750e1",
+          "text": "aaityaa",
+          "start": 23.64,
+          "end": 23.9,
+          "emphasis": false,
+          "breakAfter": false,
+          "timing": "word"
+        },
+        {
+          "id": "b7e42f66-035a-4acd-8369-e40669d134f5",
+          "text": "ko",
+          "start": 23.9,
+          "end": 24.08,
+          "emphasis": false,
+          "breakAfter": false,
+          "timing": "word"
+        },
+        {
+          "id": "3d939f50-1d19-41c4-8bea-26867279d33c",
+          "text": "praper",
+          "start": 24.08,
+          "end": 24.5,
+          "emphasis": false,
+          "breakAfter": false,
+          "timing": "word"
+        },
+        {
+          "id": "86f1673b-7a76-4614-bf71-b4d171a737ba",
+          "text": "karne",
+          "start": 24.5,
+          "end": 24.8,
+          "emphasis": false,
+          "breakAfter": false,
+          "timing": "word"
+        },
+        {
+          "id": "53658c23-6a66-4ea8-986e-5b4c48f32b8b",
+          "text": "mein",
+          "start": 24.8,
+          "end": 24.9,
+          "emphasis": false,
+          "breakAfter": false,
+          "timing": "word"
+        },
+        {
+          "id": "9f6c0952-0f82-45a2-8a77-e49be81dbc82",
+          "text": "jaae",
+          "start": 24.9,
+          "end": 25.18,
+          "emphasis": false,
+          "breakAfter": false,
+          "timing": "word"
+        },
+        {
+          "id": "49032bfa-f9c8-48c9-a8f8-f38613434095",
+          "text": "ip",
+          "start": 25.24,
+          "end": 25.4,
+          "emphasis": false,
+          "breakAfter": false,
+          "timing": "word"
+        },
+        {
+          "id": "8507f6df-9ba7-41ef-bb90-ce0ff013199f",
+          "text": "phal",
+          "start": 25.4,
+          "end": 25.54,
+          "emphasis": false,
+          "breakAfter": false,
+          "timing": "word"
+        },
+        {
+          "id": "6ccc63e3-82ed-43cd-a298-b3b4216b6533",
+          "text": "tayaar",
+          "start": 25.54,
+          "end": 25.88,
+          "emphasis": false,
+          "breakAfter": false,
+          "timing": "word"
+        },
+        {
+          "id": "0fa01a45-0af9-4bef-bdef-d35f4aa25506",
+          "text": "prenstod",
+          "start": 25.88,
+          "end": 26.42,
+          "emphasis": false,
+          "breakAfter": false,
+          "timing": "word"
+        },
+        {
+          "id": "979a02c2-3a45-4376-8dac-78800e7f575a",
+          "text": "mein",
+          "start": 26.42,
+          "end": 26.58,
+          "emphasis": false,
+          "breakAfter": false,
+          "timing": "word"
+        },
+        {
+          "id": "63529117-4f0f-4ab9-9568-d83d07d139fb",
+          "text": "to",
+          "start": 26.58,
+          "end": 26.74,
+          "emphasis": false,
+          "breakAfter": false,
+          "timing": "word"
+        },
+        {
+          "id": "e0ae6942-98bc-4cd7-9163-b7d9ea528512",
+          "text": "dul",
+          "start": 26.74,
+          "end": 26.98,
+          "emphasis": false,
+          "breakAfter": false,
+          "timing": "word"
+        },
+        {
+          "id": "bfeb482b-9742-4e12-982c-74a88e41677e",
+          "text": "lis,",
+          "start": 26.98,
+          "end": 27.14,
+          "emphasis": false,
+          "breakAfter": false,
+          "timing": "word"
+        },
+        {
+          "id": "e66e07b9-e025-4295-b741-5e37976dc198",
+          "text": "bhaang",
+          "start": 27.26,
+          "end": 27.48,
+          "emphasis": false,
+          "breakAfter": false,
+          "timing": "word"
+        },
+        {
+          "id": "56cf6e7b-8b2c-4884-9a83-66ebc11d3d9a",
+          "text": "bhum,",
+          "start": 27.48,
+          "end": 27.66,
+          "emphasis": false,
+          "breakAfter": false,
+          "timing": "word"
+        },
+        {
+          "id": "f5486eb7-b663-47f3-aaf9-2e72eb17cd3a",
+          "text": "daraam",
+          "start": 27.72,
+          "end": 27.98,
+          "emphasis": false,
+          "breakAfter": false,
+          "timing": "word"
+        },
+        {
+          "id": "204ebdc5-2224-4923-9ea5-714d91d61820",
+          "text": "ky",
+          "start": 27.98,
+          "end": 28.22,
+          "emphasis": false,
+          "breakAfter": false,
+          "timing": "word"
+        },
+        {
+          "id": "fc959e12-2cbd-46a5-93c0-f87e5ecc9274",
+          "text": ".",
+          "start": 28.22,
+          "end": 28.26,
+          "emphasis": false,
+          "breakAfter": false,
+          "timing": "word"
+        },
+        {
+          "id": "48589705-e807-4ffc-9ac0-872f89580a78",
+          "text": "ilaalaa",
+          "start": 28.44,
+          "end": 28.86,
+          "emphasis": false,
+          "breakAfter": false,
+          "timing": "word"
+        },
+        {
+          "id": "c736dcc7-9ccb-43a7-b4d1-8234483ee3d6",
+          "text": "engo",
+          "start": 28.86,
+          "end": 29.2,
+          "emphasis": false,
+          "breakAfter": false,
+          "timing": "word"
+        },
+        {
+          "id": "22fa3116-1044-4816-a918-f18cd5411ee8",
+          "text": "chaahie",
+          "start": 29.2,
+          "end": 29.46,
+          "emphasis": false,
+          "breakAfter": false,
+          "timing": "word"
+        },
+        {
+          "id": "286bb103-e4bc-46e6-99c2-19d48c1ba407",
+          "text": "praphekshyan",
+          "start": 29.46,
+          "end": 30,
+          "emphasis": false,
+          "breakAfter": false,
+          "timing": "word"
+        },
+        {
+          "id": "52c31f4c-2c40-4cc7-a683-1cac73637130",
+          "text": "aur",
+          "start": 30,
+          "end": 30.2,
+          "emphasis": false,
+          "breakAfter": false,
+          "timing": "word"
+        },
+        {
+          "id": "379bab94-5c42-4d96-a019-f13bc7dcf929",
+          "text": "phir",
+          "start": 30.2,
+          "end": 30.46,
+          "emphasis": false,
+          "breakAfter": false,
+          "timing": "word"
+        },
+        {
+          "id": "6af8eeb4-d11f-4080-ae5a-5c90c7b7b115",
+          "text": "aataa",
+          "start": 30.46,
+          "end": 30.72,
+          "emphasis": false,
+          "breakAfter": false,
+          "timing": "word"
+        },
+        {
+          "id": "170bb30a-4ff3-40aa-a0fe-cf64abc91c38",
+          "text": "hon",
+          "start": 30.72,
+          "end": 30.86,
+          "emphasis": false,
+          "breakAfter": false,
+          "timing": "word"
+        }
+      ],
+      "translated": false,
+      "timingEstimated": false,
+      "usedPhraseTiming": false,
+      "audioReport": {
+        "duration": 31.28,
+        "rms": 0.1454911764587461,
+        "peak": 0.7954288125038147,
+        "clipping": 0,
+        "dc": -0.00005071419834921942,
+        "noiseFloor": 0.03855912165001395,
+        "dynamicRangeDb": 14.882591440493398,
+        "silent": false,
+        "background": "variable",
+        "musicDetection": "not-classified",
+        "processing": "original",
+        "voiceDetection": {
+          "model": "silero",
+          "regions": 1,
+          "uncertain": false,
+          "maxProbability": 0.9996598362922668
+        }
+      },
+      "warnings": [],
+      "sourceResults": [
+        {
+          "text": " इस दून्या कर सबते बड़ास कैं पते है कै? प्रफेक्ष्यन, देयान से सुप ये हूँ मैं, और ये बाकिलो बाखिलोगो में मुझे जादा टलेंट मुझे जादा रीसोर्से, मुझे जादा पैसा भी हो बर भाई मेरे अंदर एक आँसा स्किल है, जो ये बाकि चीजो से बहुत उपर बक्चोदी बर पारिदो यहां बक्चोदी का क्या मतना बताप एक समझो कि एं दोना पार्टी को एक बिसन्स आईट्या अप ये लोग इस आईट्या को प्रपेर करने में जाए इप फल तयार प्रेंस्टोड में तो दूल लिस, भांग भूम, दराम क्य। इलाला एनगो चाहीे प्रफेक्ष्यन और फिर आता हों",
+          "chunks": [
+            {
+              "text": " इस",
+              "timestamp": [
+                0,
+                0.26
+              ]
+            },
+            {
+              "text": " दून्या",
+              "timestamp": [
+                0.26,
+                0.54
+              ]
+            },
+            {
+              "text": " कर",
+              "timestamp": [
+                0.54,
+                0.64
+              ]
+            },
+            {
+              "text": " सबते",
+              "timestamp": [
+                0.64,
+                0.98
+              ]
+            },
+            {
+              "text": " बड़ास",
+              "timestamp": [
+                0.98,
+                1.36
+              ]
+            },
+            {
+              "text": " कैं",
+              "timestamp": [
+                1.36,
+                1.5
+              ]
+            },
+            {
+              "text": " पते",
+              "timestamp": [
+                1.5,
+                1.74
+              ]
+            },
+            {
+              "text": " है",
+              "timestamp": [
+                1.74,
+                1.76
+              ]
+            },
+            {
+              "text": " कै?",
+              "timestamp": [
+                1.76,
+                1.92
+              ]
+            },
+            {
+              "text": " प्रफेक्ष्यन,",
+              "timestamp": [
+                2.16,
+                2.86
+              ]
+            },
+            {
+              "text": " देयान",
+              "timestamp": [
+                3.1,
+                3.38
+              ]
+            },
+            {
+              "text": " से",
+              "timestamp": [
+                3.38,
+                3.48
+              ]
+            },
+            {
+              "text": " सुप",
+              "timestamp": [
+                3.48,
+                3.66
+              ]
+            },
+            {
+              "text": " ये",
+              "timestamp": [
+                3.8,
+                4.16
+              ]
+            },
+            {
+              "text": " हूँ",
+              "timestamp": [
+                4.16,
+                4.36
+              ]
+            },
+            {
+              "text": " मैं,",
+              "timestamp": [
+                4.36,
+                4.6
+              ]
+            },
+            {
+              "text": " और",
+              "timestamp": [
+                4.74,
+                4.86
+              ]
+            },
+            {
+              "text": " ये",
+              "timestamp": [
+                4.86,
+                5.06
+              ]
+            },
+            {
+              "text": " बाकिलो",
+              "timestamp": [
+                5.06,
+                5.7
+              ]
+            },
+            {
+              "text": " बाखिलोगो",
+              "timestamp": [
+                5.76,
+                6.86
+              ]
+            },
+            {
+              "text": " में",
+              "timestamp": [
+                6.86,
+                7.02
+              ]
+            },
+            {
+              "text": " मुझे",
+              "timestamp": [
+                7.02,
+                7.34
+              ]
+            },
+            {
+              "text": " जादा",
+              "timestamp": [
+                7.34,
+                7.86
+              ]
+            },
+            {
+              "text": " टलेंट",
+              "timestamp": [
+                7.86,
+                8.26
+              ]
+            },
+            {
+              "text": " मुझे",
+              "timestamp": [
+                8.38,
+                8.68
+              ]
+            },
+            {
+              "text": " जादा",
+              "timestamp": [
+                8.68,
+                9
+              ]
+            },
+            {
+              "text": " रीसोर्से,",
+              "timestamp": [
+                9,
+                9.44
+              ]
+            },
+            {
+              "text": " मुझे",
+              "timestamp": [
+                9.5,
+                9.76
+              ]
+            },
+            {
+              "text": " जादा",
+              "timestamp": [
+                9.76,
+                10.02
+              ]
+            },
+            {
+              "text": " पैसा",
+              "timestamp": [
+                10.02,
+                10.34
+              ]
+            },
+            {
+              "text": " भी",
+              "timestamp": [
+                10.34,
+                10.46
+              ]
+            },
+            {
+              "text": " हो",
+              "timestamp": [
+                10.46,
+                10.58
+              ]
+            },
+            {
+              "text": " बर",
+              "timestamp": [
+                10.68,
+                10.82
+              ]
+            },
+            {
+              "text": " भाई",
+              "timestamp": [
+                10.82,
+                11
+              ]
+            },
+            {
+              "text": " मेरे",
+              "timestamp": [
+                11,
+                11.3
+              ]
+            },
+            {
+              "text": " अंदर",
+              "timestamp": [
+                11.3,
+                11.58
+              ]
+            },
+            {
+              "text": " एक",
+              "timestamp": [
+                11.58,
+                11.7
+              ]
+            },
+            {
+              "text": " आँसा",
+              "timestamp": [
+                11.7,
+                11.96
+              ]
+            },
+            {
+              "text": " स्किल",
+              "timestamp": [
+                11.96,
+                12.26
+              ]
+            },
+            {
+              "text": " है,",
+              "timestamp": [
+                12.26,
+                12.4
+              ]
+            },
+            {
+              "text": " जो",
+              "timestamp": [
+                12.48,
+                12.58
+              ]
+            },
+            {
+              "text": " ये",
+              "timestamp": [
+                12.58,
+                12.7
+              ]
+            },
+            {
+              "text": " बाकि",
+              "timestamp": [
+                12.7,
+                13.18
+              ]
+            },
+            {
+              "text": " चीजो",
+              "timestamp": [
+                13.18,
+                13.48
+              ]
+            },
+            {
+              "text": " से",
+              "timestamp": [
+                13.48,
+                13.7
+              ]
+            },
+            {
+              "text": " बहुत",
+              "timestamp": [
+                13.7,
+                14.14
+              ]
+            },
+            {
+              "text": " उपर",
+              "timestamp": [
+                14.14,
+                14.4
+              ]
+            },
+            {
+              "text": " बक्चोदी",
+              "timestamp": [
+                14.6,
+                16.62
+              ]
+            },
+            {
+              "text": " बर",
+              "timestamp": [
+                17.48,
+                17.66
+              ]
+            },
+            {
+              "text": " पारिदो",
+              "timestamp": [
+                17.66,
+                17.96
+              ]
+            },
+            {
+              "text": " यहां",
+              "timestamp": [
+                17.96,
+                18.26
+              ]
+            },
+            {
+              "text": " बक्चोदी",
+              "timestamp": [
+                18.26,
+                18.7
+              ]
+            },
+            {
+              "text": " का",
+              "timestamp": [
+                18.7,
+                18.86
+              ]
+            },
+            {
+              "text": " क्या",
+              "timestamp": [
+                18.86,
+                19.02
+              ]
+            },
+            {
+              "text": " मतना",
+              "timestamp": [
+                19.02,
+                19.32
+              ]
+            },
+            {
+              "text": " बताप",
+              "timestamp": [
+                19.54,
+                19.94
+              ]
+            },
+            {
+              "text": " एक",
+              "timestamp": [
+                19.94,
+                20.08
+              ]
+            },
+            {
+              "text": " समझो",
+              "timestamp": [
+                20.08,
+                20.76
+              ]
+            },
+            {
+              "text": " कि",
+              "timestamp": [
+                20.76,
+                20.9
+              ]
+            },
+            {
+              "text": " एं",
+              "timestamp": [
+                20.9,
+                20.98
+              ]
+            },
+            {
+              "text": " दोना",
+              "timestamp": [
+                20.98,
+                21.3
+              ]
+            },
+            {
+              "text": " पार्टी",
+              "timestamp": [
+                21.3,
+                21.58
+              ]
+            },
+            {
+              "text": " को",
+              "timestamp": [
+                21.58,
+                21.74
+              ]
+            },
+            {
+              "text": " एक",
+              "timestamp": [
+                21.74,
+                21.94
+              ]
+            },
+            {
+              "text": " बिसन्स",
+              "timestamp": [
+                21.94,
+                22.36
+              ]
+            },
+            {
+              "text": " आईट्या",
+              "timestamp": [
+                22.36,
+                22.68
+              ]
+            },
+            {
+              "text": " अप",
+              "timestamp": [
+                22.78,
+                22.94
+              ]
+            },
+            {
+              "text": " ये",
+              "timestamp": [
+                22.94,
+                23.22
+              ]
+            },
+            {
+              "text": " लोग",
+              "timestamp": [
+                23.22,
+                23.52
+              ]
+            },
+            {
+              "text": " इस",
+              "timestamp": [
+                23.52,
+                23.64
+              ]
+            },
+            {
+              "text": " आईट्या",
+              "timestamp": [
+                23.64,
+                23.9
+              ]
+            },
+            {
+              "text": " को",
+              "timestamp": [
+                23.9,
+                24.08
+              ]
+            },
+            {
+              "text": " प्रपेर",
+              "timestamp": [
+                24.08,
+                24.5
+              ]
+            },
+            {
+              "text": " करने",
+              "timestamp": [
+                24.5,
+                24.8
+              ]
+            },
+            {
+              "text": " में",
+              "timestamp": [
+                24.8,
+                24.9
+              ]
+            },
+            {
+              "text": " जाए",
+              "timestamp": [
+                24.9,
+                25.18
+              ]
+            },
+            {
+              "text": " इप",
+              "timestamp": [
+                25.24,
+                25.4
+              ]
+            },
+            {
+              "text": " फल",
+              "timestamp": [
+                25.4,
+                25.54
+              ]
+            },
+            {
+              "text": " तयार",
+              "timestamp": [
+                25.54,
+                25.88
+              ]
+            },
+            {
+              "text": " प्रेंस्टोड",
+              "timestamp": [
+                25.88,
+                26.42
+              ]
+            },
+            {
+              "text": " में",
+              "timestamp": [
+                26.42,
+                26.58
+              ]
+            },
+            {
+              "text": " तो",
+              "timestamp": [
+                26.58,
+                26.74
+              ]
+            },
+            {
+              "text": " दूल",
+              "timestamp": [
+                26.74,
+                26.98
+              ]
+            },
+            {
+              "text": " लिस,",
+              "timestamp": [
+                26.98,
+                27.14
+              ]
+            },
+            {
+              "text": " भांग",
+              "timestamp": [
+                27.26,
+                27.48
+              ]
+            },
+            {
+              "text": " भूम,",
+              "timestamp": [
+                27.48,
+                27.66
+              ]
+            },
+            {
+              "text": " दराम",
+              "timestamp": [
+                27.72,
+                27.98
+              ]
+            },
+            {
+              "text": " क्य",
+              "timestamp": [
+                27.98,
+                28.22
+              ]
+            },
+            {
+              "text": "।",
+              "timestamp": [
+                28.22,
+                28.26
+              ]
+            },
+            {
+              "text": " इलाला",
+              "timestamp": [
+                28.44,
+                28.86
+              ]
+            },
+            {
+              "text": " एनगो",
+              "timestamp": [
+                28.86,
+                29.2
+              ]
+            },
+            {
+              "text": " चाहीे",
+              "timestamp": [
+                29.2,
+                29.46
+              ]
+            },
+            {
+              "text": " प्रफेक्ष्यन",
+              "timestamp": [
+                29.46,
+                30
+              ]
+            },
+            {
+              "text": " और",
+              "timestamp": [
+                30,
+                30.2
+              ]
+            },
+            {
+              "text": " फिर",
+              "timestamp": [
+                30.2,
+                30.46
+              ]
+            },
+            {
+              "text": " आता",
+              "timestamp": [
+                30.46,
+                30.72
+              ]
+            },
+            {
+              "text": " हों",
+              "timestamp": [
+                30.72,
+                30.86
+              ]
+            }
+          ]
+        }
+      ],
+      "cacheHit": true,
+      "benchmark": {
+        "firstMs": 422793.4000000004,
+        "repeatMs": 0.8000000007450581,
+        "prepareCalls": 1
+      }
+    }
+  },
+  {
+    "variant": "english",
+    "elapsedMs": 50555,
+    "result": {
+      "type": "done",
+      "words": [
+        {
+          "id": "70e41032-0079-4f03-813c-f24248706543",
+          "text": "Every",
+          "start": 0,
+          "end": 0.5,
+          "emphasis": false,
+          "breakAfter": false,
+          "timing": "word"
+        },
+        {
+          "id": "714c4f32-7d45-4bce-9835-0f90ed2697d4",
+          "text": "great",
+          "start": 0.5,
+          "end": 0.8,
+          "emphasis": false,
+          "breakAfter": false,
+          "timing": "word"
+        },
+        {
+          "id": "141b1d1a-79d9-496e-ba68-b6bf918cfc1d",
+          "text": "story",
+          "start": 0.8,
+          "end": 1.2,
+          "emphasis": false,
+          "breakAfter": false,
+          "timing": "word"
+        },
+        {
+          "id": "d524c585-b044-4ea0-8631-f3303402cab1",
+          "text": "starts",
+          "start": 1.2,
+          "end": 1.54,
+          "emphasis": false,
+          "breakAfter": false,
+          "timing": "word"
+        },
+        {
+          "id": "3aa9ce05-7151-4929-a9e7-b092dbfeaa4d",
+          "text": "with",
+          "start": 1.54,
+          "end": 1.76,
+          "emphasis": false,
+          "breakAfter": false,
+          "timing": "word"
+        },
+        {
+          "id": "38478773-58d5-491d-ab81-850f12059a8d",
+          "text": "a",
+          "start": 1.76,
+          "end": 1.86,
+          "emphasis": false,
+          "breakAfter": false,
+          "timing": "word"
+        },
+        {
+          "id": "1b87c5f4-0f84-4405-ab6e-8513982dd9f1",
+          "text": "single",
+          "start": 1.86,
+          "end": 2.06,
+          "emphasis": false,
+          "breakAfter": false,
+          "timing": "word"
+        },
+        {
+          "id": "a98d8636-b524-45eb-8950-471c09536f7f",
+          "text": "word",
+          "start": 2.06,
+          "end": 2.36,
+          "emphasis": false,
+          "breakAfter": false,
+          "timing": "word"
+        },
+        {
+          "id": "552319bd-6471-439e-b2d2-4917d3a5921d",
+          "text": "make",
+          "start": 2.36,
+          "end": 2.72,
+          "emphasis": false,
+          "breakAfter": false,
+          "timing": "word"
+        },
+        {
+          "id": "327c5505-b6de-437d-b2d6-8986098791c7",
+          "text": "yours",
+          "start": 2.72,
+          "end": 3.02,
+          "emphasis": false,
+          "breakAfter": false,
+          "timing": "word"
+        },
+        {
+          "id": "d584895d-3e7f-44a8-bef4-84927ba377b1",
+          "text": "impossible",
+          "start": 3.02,
+          "end": 3.56,
+          "emphasis": false,
+          "breakAfter": false,
+          "timing": "word"
+        },
+        {
+          "id": "9f0ab2d3-d181-4f06-b822-84f28e3d3562",
+          "text": "to",
+          "start": 3.56,
+          "end": 3.98,
+          "emphasis": false,
+          "breakAfter": false,
+          "timing": "word"
+        },
+        {
+          "id": "b888a214-b645-476f-8bf4-43f4c8fe88fe",
+          "text": "ignore",
+          "start": 3.98,
+          "end": 4.22,
+          "emphasis": false,
+          "breakAfter": false,
+          "timing": "word"
+        }
+      ],
+      "translated": false,
+      "timingEstimated": false,
+      "usedPhraseTiming": false,
+      "audioReport": {
+        "duration": 6,
+        "rms": 0.13403094703553226,
+        "peak": 0.6665031313896179,
+        "clipping": 0,
+        "dc": 0.0007127175357817776,
+        "noiseFloor": 0,
+        "dynamicRangeDb": 147.05377389339492,
+        "silent": false,
+        "background": "quiet",
+        "musicDetection": "not-classified",
+        "processing": "original",
+        "voiceDetection": {
+          "model": "silero",
+          "regions": 1,
+          "uncertain": false,
+          "maxProbability": 0.9995830655097961
+        }
+      },
+      "warnings": [],
+      "sourceResults": [
+        {
+          "text": " Every great story starts with a single word make yours impossible to ignore",
+          "chunks": [
+            {
+              "text": " Every",
+              "timestamp": [
+                0,
+                0.5
+              ]
+            },
+            {
+              "text": " great",
+              "timestamp": [
+                0.5,
+                0.8
+              ]
+            },
+            {
+              "text": " story",
+              "timestamp": [
+                0.8,
+                1.2
+              ]
+            },
+            {
+              "text": " starts",
+              "timestamp": [
+                1.2,
+                1.54
+              ]
+            },
+            {
+              "text": " with",
+              "timestamp": [
+                1.54,
+                1.76
+              ]
+            },
+            {
+              "text": " a",
+              "timestamp": [
+                1.76,
+                1.86
+              ]
+            },
+            {
+              "text": " single",
+              "timestamp": [
+                1.86,
+                2.06
+              ]
+            },
+            {
+              "text": " word",
+              "timestamp": [
+                2.06,
+                2.36
+              ]
+            },
+            {
+              "text": " make",
+              "timestamp": [
+                2.36,
+                2.72
+              ]
+            },
+            {
+              "text": " yours",
+              "timestamp": [
+                2.72,
+                3.02
+              ]
+            },
+            {
+              "text": " impossible",
+              "timestamp": [
+                3.02,
+                3.56
+              ]
+            },
+            {
+              "text": " to",
+              "timestamp": [
+                3.56,
+                3.98
+              ]
+            },
+            {
+              "text": " ignore",
+              "timestamp": [
+                3.98,
+                4.22
+              ]
+            }
+          ]
+        }
+      ],
+      "cacheHit": true,
+      "benchmark": {
+        "firstMs": 50437.29999999888,
+        "repeatMs": 0.2000000011175871,
+        "prepareCalls": 1
+      }
+    }
+  },
+  {
+    "variant": "noisy",
+    "elapsedMs": 155258,
+    "result": {
+      "type": "error",
+      "message": "Speech was recognized, but reliable timing could not be recovered. The transcript is kept below for manual correction. Try another model or original audio.",
+      "draftTranscript": " तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो तो",
+      "benchmark": {
+        "firstMs": 155060.6000000015,
+        "repeatMs": null,
+        "prepareCalls": 1
+      }
+    }
+  },
+  {
+    "variant": "silent",
+    "elapsedMs": 542,
+    "result": {
+      "type": "done",
+      "words": [],
+      "translated": false,
+      "timingEstimated": false,
+      "audioReport": {
+        "duration": 3,
+        "rms": 0,
+        "peak": 0,
+        "clipping": 0,
+        "dc": 0,
+        "noiseFloor": 0,
+        "dynamicRangeDb": 0,
+        "silent": true,
+        "background": "quiet",
+        "musicDetection": "not-classified",
+        "processing": "original"
+      },
+      "cacheHit": true,
+      "benchmark": {
+        "firstMs": 509.2999999988824,
+        "repeatMs": 0.10000000149011612,
+        "prepareCalls": 1
+      }
+    }
+  }
+]

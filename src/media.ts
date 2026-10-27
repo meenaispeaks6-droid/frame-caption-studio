@@ -50,7 +50,8 @@ async function decodeTimeline(file:File,stereo:boolean,onProgress:(p:number)=>vo
      if(count>0){
       if(Math.abs(actualTime-next)>.002){await flush();segmentStart=Math.max(0,Math.round((actualTime-offset)*16000));resamplers=targets.map(target=>new BatchedMonoResampler(target.subarray(Math.min(target.length,segmentStart)),16000));}
       const channels=Array.from({length:sample.numberOfChannels},(_,channel)=>{const pcm=new Float32Array(count);sample.copyTo(pcm,{planeIndex:channel,format:'f32-planar',frameOffset:frameOffset+trim,frameCount:count});return pcm;});
-      const selected=stereo?channels:[Float32Array.from(channels[0],(_,i)=>channels.reduce((sum,channel)=>sum+channel[i],0)/channels.length)];
+      let selected=channels;
+      if(!stereo&&channels.length>1){const mono=new Float32Array(count);for(let i=0;i<count;i++){let sum=0;for(const channel of channels)sum+=channel[i];mono[i]=sum/channels.length;}selected=[mono];}
       for(let channel=0;channel<selected.length;channel++){const mono=new AudioSample({data:selected[channel],format:'f32-planar',numberOfChannels:1,sampleRate:sample.sampleRate,timestamp:actualTime});try{await resamplers[channel].append(mono);}finally{mono.close();}}
       next=actualTime+count/sample.sampleRate;
      }
@@ -62,8 +63,17 @@ async function decodeTimeline(file:File,stereo:boolean,onProgress:(p:number)=>vo
   await flush();onProgress(1);return {channels:targets.map(target=>target.slice(0,written)),offset};
  }finally{input.dispose();}
 }
-export async function extractAudio(file:File,onProgress:(p:number)=>void){
+async function decodeAudio(file:File,onProgress:(p:number)=>void){
  try{const {channels,offset}=await decodeTimeline(file,false,onProgress);if(!channels[0].length)throw Error('No audio samples were decoded.');return {audio:channels[0],offset};}
  catch(e){if((e as Error).name!=='NotSupportedError')throw e;const audio=await new WebAudioAudioDecoder().decode(file,16000,onProgress);if(!audio.length)throw Error('No audio samples were decoded.');return {audio,offset:0};}
 }
 export async function extractStereoAudio(file:File,onProgress:(p:number)=>void){const result=await decodeTimeline(file,true,onProgress);return {stereo:result.channels as [Float32Array,Float32Array],offset:result.offset};}
+
+// Waveform and generation share one decode, including an in-flight import.
+let decoded:{file:File;promise:Promise<{audio:Float32Array;offset:number}>}|undefined;
+export function extractAudio(file:File,onProgress:(p:number)=>void){
+ if(decoded?.file===file)return decoded.promise.then(result=>{onProgress(1);return result;});
+ const promise=decodeAudio(file,onProgress);decoded={file,promise};
+ void promise.catch(()=>{if(decoded?.promise===promise)decoded=undefined;});
+ return promise;
+}
