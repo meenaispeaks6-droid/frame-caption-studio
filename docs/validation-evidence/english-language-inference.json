@@ -1,0 +1,248 @@
+{
+  "scope": "Real Whisper Base, browser WASM, original English sample. Model GETs use TLS-valid curl test transport; no uploads.",
+  "results": [
+    {
+      "name": "English same",
+      "file": "english",
+      "language": "english",
+      "captionLanguage": "same",
+      "result": {
+        "type": "done",
+        "words": [
+          {
+            "id": "a576b919-bddb-4748-bc37-f168048595a0",
+            "text": "Every",
+            "start": 0.14,
+            "end": 0.5,
+            "emphasis": false,
+            "breakAfter": false
+          },
+          {
+            "id": "c0d9988b-85d5-4ce1-98c9-3ca41bc55a1e",
+            "text": "great",
+            "start": 0.5,
+            "end": 0.82,
+            "emphasis": false,
+            "breakAfter": false
+          },
+          {
+            "id": "db1adb82-0ed9-4022-a3ff-70cfdcdd8fe9",
+            "text": "story",
+            "start": 0.82,
+            "end": 1.2,
+            "emphasis": false,
+            "breakAfter": false
+          },
+          {
+            "id": "a434a002-f0d7-40ed-bf32-995137803199",
+            "text": "starts",
+            "start": 1.2,
+            "end": 1.56,
+            "emphasis": false,
+            "breakAfter": false
+          },
+          {
+            "id": "0deb1071-abe6-44c7-aefd-91908e9ac50b",
+            "text": "with",
+            "start": 1.56,
+            "end": 1.74,
+            "emphasis": false,
+            "breakAfter": false
+          },
+          {
+            "id": "4f960972-b8c6-4131-a3dd-098fc68d1f77",
+            "text": "a",
+            "start": 1.74,
+            "end": 1.86,
+            "emphasis": false,
+            "breakAfter": false
+          },
+          {
+            "id": "c7dda647-61ab-4209-8b2a-7176791e60c3",
+            "text": "single",
+            "start": 1.86,
+            "end": 2.08,
+            "emphasis": false,
+            "breakAfter": false
+          },
+          {
+            "id": "115714c2-9d19-4356-bc3f-9cc04a3c45f8",
+            "text": "word,",
+            "start": 2.08,
+            "end": 2.36,
+            "emphasis": false,
+            "breakAfter": false
+          },
+          {
+            "id": "ced3ff0a-aef3-4114-8781-2f4489920d9b",
+            "text": "make",
+            "start": 2.58,
+            "end": 2.7,
+            "emphasis": false,
+            "breakAfter": false
+          },
+          {
+            "id": "dca7c34d-853f-459a-ac97-d3ec1d2d1e7d",
+            "text": "yours",
+            "start": 2.7,
+            "end": 2.98,
+            "emphasis": false,
+            "breakAfter": false
+          },
+          {
+            "id": "fd1f0645-7d96-4f10-9a83-037891844d00",
+            "text": "impossible",
+            "start": 2.98,
+            "end": 3.66,
+            "emphasis": false,
+            "breakAfter": false
+          },
+          {
+            "id": "578f9f1e-5442-481d-a26e-892db8cae117",
+            "text": "to",
+            "start": 3.66,
+            "end": 3.98,
+            "emphasis": false,
+            "breakAfter": false
+          },
+          {
+            "id": "82abca87-7a73-4005-a9eb-c261833f6a6f",
+            "text": "ignore.",
+            "start": 3.98,
+            "end": 4.34,
+            "emphasis": false,
+            "breakAfter": false
+          }
+        ],
+        "translated": false,
+        "timingEstimated": false,
+        "detectedLanguage": "en",
+        "sourceText": " Every great story starts with a single word, make yours impossible to ignore.",
+        "sourceChunks": [
+          {
+            "text": " Every",
+            "timestamp": [
+              0.14,
+              0.5
+            ]
+          },
+          {
+            "text": " great",
+            "timestamp": [
+              0.5,
+              0.82
+            ]
+          },
+          {
+            "text": " story",
+            "timestamp": [
+              0.82,
+              1.2
+            ]
+          },
+          {
+            "text": " starts",
+            "timestamp": [
+              1.2,
+              1.56
+            ]
+          },
+          {
+            "text": " with",
+            "timestamp": [
+              1.56,
+              1.74
+            ]
+          },
+          {
+            "text": " a",
+            "timestamp": [
+              1.74,
+              1.86
+            ]
+          },
+          {
+            "text": " single",
+            "timestamp": [
+              1.86,
+              2.08
+            ]
+          },
+          {
+            "text": " word,",
+            "timestamp": [
+              2.08,
+              2.36
+            ]
+          },
+          {
+            "text": " make",
+            "timestamp": [
+              2.58,
+              2.7
+            ]
+          },
+          {
+            "text": " yours",
+            "timestamp": [
+              2.7,
+              2.98
+            ]
+          },
+          {
+            "text": " impossible",
+            "timestamp": [
+              2.98,
+              3.66
+            ]
+          },
+          {
+            "text": " to",
+            "timestamp": [
+              3.66,
+              3.98
+            ]
+          },
+          {
+            "text": " ignore.",
+            "timestamp": [
+              3.98,
+              4.34
+            ]
+          }
+        ]
+      },
+      "elapsedMs": 37097
+    }
+  ],
+  "requests": [
+    {
+      "url": "https://huggingface.co/Xenova/whisper-base/resolve/main/tokenizer.json",
+      "method": "GET"
+    },
+    {
+      "url": "https://huggingface.co/Xenova/whisper-base/resolve/main/tokenizer_config.json",
+      "method": "GET"
+    },
+    {
+      "url": "https://huggingface.co/Xenova/whisper-base/resolve/main/config.json",
+      "method": "GET"
+    },
+    {
+      "url": "https://huggingface.co/Xenova/whisper-base/resolve/main/preprocessor_config.json",
+      "method": "GET"
+    },
+    {
+      "url": "https://huggingface.co/Xenova/whisper-base/resolve/main/onnx/encoder_model_quantized.onnx",
+      "method": "GET"
+    },
+    {
+      "url": "https://huggingface.co/Xenova/whisper-base/resolve/main/onnx/decoder_model_merged_quantized.onnx",
+      "method": "GET"
+    },
+    {
+      "url": "https://huggingface.co/Xenova/whisper-base/resolve/main/generation_config.json",
+      "method": "GET"
+    }
+  ]
+}

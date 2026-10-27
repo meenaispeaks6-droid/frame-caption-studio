@@ -5,3 +5,5 @@ export interface CaptionStyle { preset: PresetId; font: FontId; size: number; co
 export interface MediaInfo { width: number; height: number; duration: number; hasAudio: boolean; name: string; }
 export interface Job { kind: 'transcribe' | 'export'; label: string; progress: number | null; }
 export interface ExportOptions { resolution: 720 | 1080; format: 'mp4' | 'webm'; }
+export type CaptionLanguage = 'same' | 'english' | 'hindi' | 'hinglish';
+export interface LanguageSettings { spoken: string; caption: CaptionLanguage; model: 'tiny' | 'base' }

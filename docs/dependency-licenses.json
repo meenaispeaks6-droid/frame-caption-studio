@@ -412,6 +412,15 @@
     "repository": "https://github.com/cthackers/adm-zip.git"
   },
   {
+    "name": "any-ascii",
+    "version": "0.3.3",
+    "license": "ISC",
+    "noticeFiles": [
+      "LICENSE"
+    ],
+    "repository": "git+https://github.com/anyascii/anyascii.git"
+  },
+  {
     "name": "bidi-js",
     "version": "1.1.0",
     "license": "MIT",

@@ -1,0 +1,374 @@
+{
+  "results": [
+    {
+      "input": {
+        "text": "आज मैं तुम्हें एक कमाल की ट्रिक बताने वाला हूँ।",
+        "source": "hindi",
+        "target": "english"
+      },
+      "text": "Today I will tell you a great trick.",
+      "words": [
+        {
+          "id": "b6060be5-b213-408c-8dfa-4f369009a6d3",
+          "text": "Today",
+          "start": 0,
+          "end": 0.7142857142857143,
+          "breakAfter": false
+        },
+        {
+          "id": "bc7d6cbb-af8e-4cb7-84c8-7cc00259da91",
+          "text": "I",
+          "start": 0.7142857142857143,
+          "end": 0.8571428571428571,
+          "breakAfter": false
+        },
+        {
+          "id": "a96e8a9a-da39-43af-9577-aa449c651030",
+          "text": "will",
+          "start": 0.8571428571428571,
+          "end": 1.4285714285714286,
+          "breakAfter": false
+        },
+        {
+          "id": "635ba272-336e-4ff2-97df-3cef1661c346",
+          "text": "tell",
+          "start": 1.4285714285714286,
+          "end": 2,
+          "breakAfter": false
+        },
+        {
+          "id": "4693d902-c6e6-48f1-811b-14a091694712",
+          "text": "you",
+          "start": 2,
+          "end": 2.4285714285714284,
+          "breakAfter": false
+        },
+        {
+          "id": "1b05f7a1-06d4-4f60-aea5-d90d5e04439a",
+          "text": "a",
+          "start": 2.4285714285714284,
+          "end": 2.5714285714285716,
+          "breakAfter": false
+        },
+        {
+          "id": "3abc48f8-b228-4f24-9332-b4df24b7a3c3",
+          "text": "great",
+          "start": 2.5714285714285716,
+          "end": 3.2857142857142856,
+          "breakAfter": false
+        },
+        {
+          "id": "4becce86-e932-494d-a78d-d574be694be6",
+          "text": "trick.",
+          "start": 3.2857142857142856,
+          "end": 4,
+          "breakAfter": true
+        }
+      ],
+      "translated": true,
+      "timingEstimated": true,
+      "models": [
+        "Xenova/m2m100_418M"
+      ]
+    },
+    {
+      "input": {
+        "text": "मुझे आज एक नया AI tool मिला है।",
+        "source": "hindi",
+        "target": "english"
+      },
+      "text": "I got a new AI tool today.",
+      "words": [
+        {
+          "id": "f5afbbe0-df00-497a-a726-3a4156bc6e67",
+          "text": "I",
+          "start": 0,
+          "end": 0.16842105263157894,
+          "breakAfter": false
+        },
+        {
+          "id": "353fee2e-c590-49b1-be1c-cac28b928706",
+          "text": "got",
+          "start": 0.16842105263157894,
+          "end": 0.6736842105263158,
+          "breakAfter": false
+        },
+        {
+          "id": "e5b753d6-372d-4e67-acc2-e8e16b02fd9a",
+          "text": "a",
+          "start": 0.6736842105263158,
+          "end": 0.8421052631578947,
+          "breakAfter": false
+        },
+        {
+          "id": "fa9b9a07-e79a-4501-8f29-faf758987dcf",
+          "text": "new",
+          "start": 0.8421052631578947,
+          "end": 1.3473684210526315,
+          "breakAfter": false
+        },
+        {
+          "id": "33f790ab-3990-473f-8e9c-f5fc21c07139",
+          "text": "AI",
+          "start": 1.3473684210526315,
+          "end": 1.6842105263157894,
+          "breakAfter": false
+        },
+        {
+          "id": "94b430df-da08-462b-8c0e-ecc755e445d3",
+          "text": "tool",
+          "start": 1.6842105263157894,
+          "end": 2.3578947368421055,
+          "breakAfter": false
+        },
+        {
+          "id": "a002a32b-9f23-42c4-bb07-e26e1552d5f1",
+          "text": "today.",
+          "start": 2.3578947368421055,
+          "end": 3.2,
+          "breakAfter": true
+        }
+      ],
+      "translated": true,
+      "timingEstimated": true,
+      "models": [
+        "Xenova/m2m100_418M"
+      ]
+    },
+    {
+      "input": {
+        "text": "Guys आज मैं तुम्हें एक amazing AI tool दिखाने वाला हूँ।",
+        "source": "hinglish",
+        "target": "english"
+      },
+      "text": "Today I’m going to show you a amazing AI tool.",
+      "words": [
+        {
+          "id": "da720913-0fc1-4728-a9a6-d73bad4f6d3a",
+          "text": "Today",
+          "start": 0,
+          "end": 0.6285714285714286,
+          "breakAfter": false
+        },
+        {
+          "id": "c0e02928-1bb7-459b-b8e7-572b2df3c6a2",
+          "text": "I’m",
+          "start": 0.6285714285714286,
+          "end": 0.8800000000000001,
+          "breakAfter": false
+        },
+        {
+          "id": "c1c49c6f-28a2-4084-bd6e-abfebf0c5fce",
+          "text": "going",
+          "start": 0.8800000000000001,
+          "end": 1.5085714285714287,
+          "breakAfter": false
+        },
+        {
+          "id": "f88bb02f-a32d-4e98-ae13-2b6eb53689cf",
+          "text": "to",
+          "start": 1.5085714285714287,
+          "end": 1.7600000000000002,
+          "breakAfter": false
+        },
+        {
+          "id": "83327f01-c504-46cb-9b4e-a3e410f7d5d4",
+          "text": "show",
+          "start": 1.7600000000000002,
+          "end": 2.262857142857143,
+          "breakAfter": false
+        },
+        {
+          "id": "a04c6641-f372-40f6-9f99-fabfa70074c4",
+          "text": "you",
+          "start": 2.262857142857143,
+          "end": 2.64,
+          "breakAfter": false
+        },
+        {
+          "id": "763bb56e-715e-4aad-a8dc-58923fe15360",
+          "text": "a",
+          "start": 2.64,
+          "end": 2.765714285714286,
+          "breakAfter": false
+        },
+        {
+          "id": "57c00fea-6958-467c-986c-b84ca73d044e",
+          "text": "amazing",
+          "start": 2.765714285714286,
+          "end": 3.645714285714286,
+          "breakAfter": false
+        },
+        {
+          "id": "cb8513da-757a-4db0-bea1-213b806dd907",
+          "text": "AI",
+          "start": 3.645714285714286,
+          "end": 3.8971428571428572,
+          "breakAfter": false
+        },
+        {
+          "id": "0eb95f9d-ac14-4167-87fe-acdda6c0ba64",
+          "text": "tool.",
+          "start": 3.8971428571428572,
+          "end": 4.4,
+          "breakAfter": true
+        }
+      ],
+      "translated": true,
+      "timingEstimated": true,
+      "models": [
+        "Xenova/m2m100_418M"
+      ]
+    },
+    {
+      "input": {
+        "text": "This AI tool is absolutely crazy.",
+        "source": "english",
+        "target": "hindi"
+      },
+      "text": "Yeh AI upkaran bilkul paagal hai.",
+      "words": [
+        {
+          "id": "ea13675c-82f3-479b-ba21-ac04236d69a9",
+          "text": "Yeh",
+          "start": 0,
+          "end": 0.28235294117647064,
+          "breakAfter": false
+        },
+        {
+          "id": "358651a4-bc97-45d1-a29d-c47cfddc0001",
+          "text": "AI",
+          "start": 0.28235294117647064,
+          "end": 0.5647058823529413,
+          "breakAfter": false
+        },
+        {
+          "id": "2ff42028-c9ec-4125-9bcc-6b6918eecb7c",
+          "text": "upkaran",
+          "start": 0.5647058823529413,
+          "end": 1.2705882352941178,
+          "breakAfter": false
+        },
+        {
+          "id": "8ad1a0f0-603a-4dce-9714-986e1170c8eb",
+          "text": "bilkul",
+          "start": 1.2705882352941178,
+          "end": 1.835294117647059,
+          "breakAfter": false
+        },
+        {
+          "id": "88b15eaf-ef7e-4a51-9237-f9f64fb00902",
+          "text": "paagal",
+          "start": 1.835294117647059,
+          "end": 2.258823529411765,
+          "breakAfter": false
+        },
+        {
+          "id": "bfe31a8e-a435-4655-9b58-25ff1cc48891",
+          "text": "hai.",
+          "start": 2.258823529411765,
+          "end": 2.4000000000000004,
+          "breakAfter": true
+        }
+      ],
+      "translated": true,
+      "timingEstimated": true,
+      "models": [
+        "Xenova/m2m100_418M"
+      ]
+    },
+    {
+      "input": {
+        "text": "Guys आज मैं तुम्हें एक amazing AI tool दिखाने वाला हूँ।",
+        "source": "hinglish",
+        "target": "hindi"
+      },
+      "text": "Aaj main aapko ek adbhut AI upkaran dikhane jaa rahaa hoon.",
+      "words": [
+        {
+          "id": "954f5cd6-8727-4ed1-8481-8e3a25c49000",
+          "text": "Aaj",
+          "start": 0,
+          "end": 0.3384615384615385,
+          "breakAfter": false
+        },
+        {
+          "id": "83ed9e35-5f5c-44e9-8d8f-6d570e9a60a9",
+          "text": "main",
+          "start": 0.3384615384615385,
+          "end": 0.5076923076923078,
+          "breakAfter": false
+        },
+        {
+          "id": "9ea67d1e-2f07-4cd9-a10f-bd2c15df178e",
+          "text": "aapko",
+          "start": 0.5076923076923078,
+          "end": 1.0153846153846156,
+          "breakAfter": false
+        },
+        {
+          "id": "920ed8b5-4aac-4ea4-8c72-77d662aaaa0d",
+          "text": "ek",
+          "start": 1.0153846153846156,
+          "end": 1.353846153846154,
+          "breakAfter": false
+        },
+        {
+          "id": "aef606b2-4e7f-456a-97b2-1847657fda81",
+          "text": "adbhut",
+          "start": 1.353846153846154,
+          "end": 2.030769230769231,
+          "breakAfter": false
+        },
+        {
+          "id": "dfaa62cc-4573-4dc9-a52d-7876a68577a4",
+          "text": "AI",
+          "start": 2.030769230769231,
+          "end": 2.3692307692307697,
+          "breakAfter": false
+        },
+        {
+          "id": "7bc36b1d-717e-48ac-a7f9-1ba86d2c7c34",
+          "text": "upkaran",
+          "start": 2.3692307692307697,
+          "end": 3.2153846153846155,
+          "breakAfter": false
+        },
+        {
+          "id": "c4e0bf94-b46d-4cbd-956b-1480b21a9662",
+          "text": "dikhane",
+          "start": 3.2153846153846155,
+          "end": 3.7230769230769236,
+          "breakAfter": false
+        },
+        {
+          "id": "154759ee-0eee-4dc3-9a48-380cf302ab7c",
+          "text": "jaa",
+          "start": 3.7230769230769236,
+          "end": 3.8923076923076922,
+          "breakAfter": false
+        },
+        {
+          "id": "501b5d16-bb70-4417-84ca-4ce9dd85cd7b",
+          "text": "rahaa",
+          "start": 3.8923076923076922,
+          "end": 4.230769230769232,
+          "breakAfter": false
+        },
+        {
+          "id": "9029a442-6f39-4e11-a167-40d5100de46d",
+          "text": "hoon.",
+          "start": 4.230769230769232,
+          "end": 4.4,
+          "breakAfter": true
+        }
+      ],
+      "translated": true,
+      "timingEstimated": true,
+      "models": [
+        "Xenova/m2m100_418M"
+      ]
+    }
+  ],
+  "requests": []
+}

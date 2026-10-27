@@ -4,7 +4,7 @@ The application extends the unmodified MIT @tscaps/engine package; no code from 
 
 Mediabunny 1.62.1 is unmodified MPL-2.0 covered software. Its corresponding source is available at https://www.npmjs.com/package/mediabunny/v/1.62.1 and https://github.com/Vanilagy/mediabunny/tree/v1.62.1 . The MPL covers that library, not the independent application files.
 
-Fonts are bundled under the SIL Open Font License. Whisper model weights are downloaded on demand from Xenova/whisper-tiny or Xenova/whisper-base (Apache-2.0 model cards); OpenAI Whisper original code/weights use MIT. Model files are not included in this distribution.
+Fonts are bundled under the SIL Open Font License. Whisper model weights are downloaded on demand from Xenova/whisper-tiny or Xenova/whisper-base (Apache-2.0 model cards); OpenAI Whisper original code/weights use MIT. Explicit caption translation downloads Xenova/m2m100_418M, an ONNX conversion of facebook/m2m100_418M (MIT; https://huggingface.co/facebook/m2m100_418M). The model files are not included in this distribution.
 
 
 ========================================================================
@@ -2910,6 +2910,28 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
+
+
+========================================================================
+any-ascii@0.3.3
+License: ISC
+
+LICENSE
+ISC License
+
+Copyright (c) 2020-2025, Hunter WB <hunterwb.com>
+
+Permission to use, copy, modify, and/or distribute this software for any
+purpose with or without fee is hereby granted, provided that the above
+copyright notice and this permission notice appear in all copies.
+
+THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES
+WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF
+MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR
+ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES
+WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN
+ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
+OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 
 
 ========================================================================

@@ -58,3 +58,7 @@ The existing browser regression also passed all six preset selections, transcrip
 All six cards use plain, solid backgrounds and animate their own captions automatically while visible. Their previews use the same caption renderer as the video. The handwritten card alternates complete phrases in the reference's style. Card animation pauses during processing, when offscreen or in a hidden tab, and honors reduced-motion preferences.
 
 Browser verification sampled each card over 3.6 seconds without hover: all six changed frames; with reduced motion, all six remained still. The verification also checked solid backgrounds and choosing a preset. Results are in `validation-evidence/card-previews.json`.
+
+## Language-selection release
+
+See [LANGUAGES.md](LANGUAGES.md) for implementation, actual tests and remaining limitations. 23 unit tests and all seven UI contract cases pass; the latter use a labeled ASR stub while rendering a real MP4. Actual M2M100 translation and actual English speech recognition were executed separately. Actual Hindi speech recognition on the supplied reel excerpt failed; this is not a passed Hindi acceptance test. Unusable alignment now causes a visible error and preserves existing captions.

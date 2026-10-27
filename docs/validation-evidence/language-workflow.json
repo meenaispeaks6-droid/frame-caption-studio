@@ -1,0 +1,108 @@
+{
+  "scope": "UI language workflow uses ASR stub; MP4 is real; model inference tested separately",
+  "outcomes": [
+    {
+      "name": "Hindi → Same",
+      "spoken": "hindi",
+      "caption": "same",
+      "expected": "Aaj main tumhe ek kamaal ki trick batane wala hoon.",
+      "request": {
+        "language": "hindi",
+        "captionLanguage": "same",
+        "model": "base",
+        "duration": 9
+      },
+      "words": 10
+    },
+    {
+      "name": "Hinglish → Same",
+      "spoken": "hinglish",
+      "caption": "same",
+      "expected": "Guys aaj main tumhe ek amazing AI tool dikhane wala hoon.",
+      "request": {
+        "language": "hinglish",
+        "captionLanguage": "same",
+        "model": "base",
+        "duration": 9
+      },
+      "words": 11
+    },
+    {
+      "name": "English → Same",
+      "spoken": "english",
+      "caption": "same",
+      "expected": "This AI tool is absolutely crazy.",
+      "request": {
+        "language": "english",
+        "captionLanguage": "same",
+        "model": "base",
+        "duration": 9
+      },
+      "words": 6
+    },
+    {
+      "name": "Hindi → English",
+      "spoken": "hindi",
+      "caption": "english",
+      "expected": "Today I am going to show you an amazing trick.",
+      "request": {
+        "language": "hindi",
+        "captionLanguage": "english",
+        "model": "base",
+        "duration": 9
+      },
+      "words": 10
+    },
+    {
+      "name": "English → Hindi",
+      "spoken": "english",
+      "caption": "hindi",
+      "expected": "Yeh AI tool bilkul kamaal ka hai.",
+      "request": {
+        "language": "english",
+        "captionLanguage": "hindi",
+        "model": "base",
+        "duration": 9
+      },
+      "words": 7
+    },
+    {
+      "name": "Auto → Same (Hindi fixture)",
+      "spoken": "auto",
+      "caption": "same",
+      "expected": "Aaj main tumhe ek kamaal ki trick batane wala hoon.",
+      "request": {
+        "language": "auto",
+        "captionLanguage": "same",
+        "model": "base",
+        "duration": 9
+      },
+      "words": 10
+    },
+    {
+      "name": "Regenerate with new selections",
+      "spoken": "english",
+      "caption": "hinglish",
+      "expected": "Yeh AI tool bilkul kamaal ka hai.",
+      "request": {
+        "language": "english",
+        "captionLanguage": "hinglish",
+        "model": "base",
+        "duration": 9
+      },
+      "words": 7
+    }
+  ],
+  "allSixPresetsPreserveLatinText": true,
+  "subtitleLatin": true,
+  "jsonImportExport": true,
+  "languagePersistence": true,
+  "mobileDialog": true,
+  "mp4": {
+    "tested": true,
+    "realRenderWorker": true,
+    "fullyDecoded": true,
+    "width": 720,
+    "height": 1280
+  }
+}
