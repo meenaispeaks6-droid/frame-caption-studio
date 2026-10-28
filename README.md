@@ -73,3 +73,25 @@ The sample is original procedural mountain artwork with FFmpeg/libflite syntheti
 ## Licenses
 
 Application code is MIT. Tscaps engine is MIT. Mediabunny is unmodified MPL-2.0 and retains its own license/source-availability obligations. Transformers.js is Apache-2.0; ONNX Runtime is MIT; fonts are SIL OFL-1.1. Silero VAD is MIT and its browser wrapper is ISC. Native Sharp/libvips appears in the installed Transformers dependency tree, but is not shipped in the browser build. The browser distribution includes generated `THIRD_PARTY_NOTICES.txt`.
+
+## Optional Shruti browser ASR (experimental)
+
+The original Whisper Tiny/Base/Small engines remain unchanged, and Whisper Small remains the default.
+Under **Generate captions → Speech model**, choose **Shruti Hindi/Hinglish** to test Udgam Labs'
+29.5 MB offline ASR on the same video. Return to Whisper at any time. The Transcript panel
+retains the latest text and measured end-to-end time for each model during this browser session
+so that you can compare errors manually; it does **not** claim an automatic accuracy score.
+
+The model downloads from Hugging Face on first use, is SHA-256-verified and cached in the
+browser. The official Cactus needle JavaScript/WebAssembly engine is vendored under
+`public/shruti/needle/`. All audio and inference stay on-device. Shruti handles original
+16 kHz mono audio in 28-second windows; it requests model-emitted word timestamps,
+preserves the transcript on invalid timing, and makes no guess at precise word boundaries.
+It does not provide translation or the optional Whisper filtering. English words in mixed
+speech are preserved; Hindi is romanized only for display. Errors at chunk boundaries,
+names, music and mixed speech still require manual review.
+
+Shruti/needle source and engine are Apache-2.0; upstream notices are bundled at
+`public/shruti/NOTICE.txt` and `public/shruti/needle/{LICENSE.txt,NOTICE.txt}`.
+Upstream: https://github.com/udgamlabs/shruti
+Model: https://huggingface.co/udgamlabs/Shruti
