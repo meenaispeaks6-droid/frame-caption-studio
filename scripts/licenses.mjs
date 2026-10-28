@@ -4,6 +4,8 @@ const lock=JSON.parse(fs.readFileSync('package-lock.json','utf8'));
 const rows=[];let output='FRAME CAPTION STUDIO — THIRD-PARTY NOTICES\n\n';
 output+='The application extends the unmodified MIT @tscaps/engine package; no code from Tscaps apps/studio, Kalakar, or whisper-web is distributed.\n\nMediabunny 1.62.1 is unmodified MPL-2.0 covered software. Its corresponding source is available at https://www.npmjs.com/package/mediabunny/v/1.62.1 and https://github.com/Vanilagy/mediabunny/tree/v1.62.1 . The MPL covers that library, not the independent application files.\n\nFonts are bundled under the SIL Open Font License. Whisper model weights are downloaded on demand from Xenova/whisper-tiny, Xenova/whisper-base or Xenova/whisper-small (Apache-2.0 model cards); OpenAI Whisper original code/weights use MIT. Explicit caption translation downloads Xenova/m2m100_418M, an ONNX conversion of facebook/m2m100_418M (MIT; https://huggingface.co/facebook/m2m100_418M). The model files are not included in this distribution.\n\n';
 output+='\nSilero VAD model (MIT), from @ricky0123/vad-web@0.0.31. Source: https://github.com/snakers4/silero-vad\n'+fs.readFileSync('third_party/SILERO_LICENSE.txt','utf8')+'\n';
+output+='\nShruti local speech model, Udgam Labs (Apache-2.0). Pinned revision ebf52e614065ce20e56affdab641f749a04511a5; model downloaded on demand, not bundled. https://huggingface.co/udgamlabs/Shruti\n';
+output+=fs.readFileSync('src/vendor/needle/NOTICE.txt','utf8')+'\n'+fs.readFileSync('src/vendor/needle/LICENSE.txt','utf8')+'\n';
 for(const [dir,meta] of Object.entries(lock.packages)){
  if(!dir||meta.dev||!dir.includes('node_modules/'))continue;
  const pkgPath=path.join(dir,'package.json');if(!fs.existsSync(pkgPath))continue;

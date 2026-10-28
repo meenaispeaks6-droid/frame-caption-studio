@@ -4,7 +4,7 @@ import anyAscii from 'any-ascii';
 // These are spelling conventions for the same spoken words, not translations.
 // In particular, Hindi loan words keep their familiar English spelling.
 const HINDI_SPELLINGS:Record<string,string>={
- 'जाना':'jaana','जेमिनी':'Gemini','कोडेक्स':'Codex','कोडेक्‍स':'Codex','एपीआई':'API','एंड्रॉयड':'Android','एंड्राइड':'Android','एन्ड्रॉयड':'Android','आज':'aaj','मैं':'main','में':'mein','हमें':'hume','हमे':'hume',
+ 'भाई':'bhai','जाना':'jaana','जेमिनी':'Gemini','कोडेक्स':'Codex','कोडेक्‍स':'Codex','एपीआई':'API','एंड्रॉयड':'Android','एंड्राइड':'Android','एन्ड्रॉयड':'Android','आज':'aaj','मैं':'main','में':'mein','हमें':'hume','हमे':'hume',
  'हूँ':'hoon','हूं':'hoon','है':'hai','हैं':'hain','हाँ':'haan','हां':'haan','नहीं':'nahi','नही':'nahi',
  'यह':'yeh','ये':'ye','वह':'woh','वो':'woh','वे':'ve','इस':'is','उस':'us','इसे':'ise','उसे':'use',
  'मैंने':'maine','मुझे':'mujhe','मुझको':'mujhko','मेरी':'meri','मेरा':'mera','मेरे':'mere',
@@ -46,7 +46,9 @@ const medialSchwa=new RegExp(`([aAiIuUeo]${C})a(?=${C}[aAiIuUeo])`,'g');
 
 function hindiToLatin(source:string):string{
  const token=normalizeHindi(source),known=hindiSpellings.get(token);if(known)return known;
- let out=Sanscript.t(token,'devanagari','itrans');
+ // Sanscript's Sanskrit ITRANS table leaves Hindi candra vowels unmapped.
+ // Resolve only those vowel signs; retain word order and English spans.
+ let out=Sanscript.t(token,'devanagari','itrans').replace(/aॉ/g,'o').replace(/ऑ/g,'o').replace(/aॅ/g,'ae').replace(/ऍ/g,'ae');
  // The final implicit schwa is normally silent in Hindi; explicit vowel marks
  // remain intact. Medial deletion is restricted to a single consonant on
  // either side so a valid cluster such as "samarthan" is not over-shortened.

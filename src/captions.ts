@@ -7,7 +7,7 @@ export function validateWords(value: unknown, duration=Infinity): Word[] {
   const w=v as Word;
   if(!w || typeof w.text!=='string'||!w.text.trim()||w.text.length>(w.timing==='segment'?4000:160)||!Number.isFinite(w.start)||!Number.isFinite(w.end)||w.start<previous||w.start<0||w.end<=w.start||w.end>duration+.1) throw new Error(`Check word ${i+1}: use text and increasing times within the video.`);
   previous=w.end;
-  return {id:typeof w.id==='string'?w.id:uid(),text:w.text.trim(),start:w.start,end:w.end,emphasis:!!w.emphasis,breakAfter:!!w.breakAfter,timing:['word','segment','estimated'].includes(w.timing??'')?w.timing:undefined};
+  return {id:typeof w.id==='string'?w.id:uid(),text:w.text.trim(),start:w.start,end:w.end,emphasis:!!w.emphasis,breakAfter:!!w.breakAfter,timing:['word','segment','estimated'].includes(w.timing??'')?w.timing:undefined,...(typeof w.confidence==='number'&&Number.isFinite(w.confidence)&&w.confidence>=0&&w.confidence<=1?{confidence:w.confidence}:{}),...(['recognition','alignment'].includes(w.review??'')?{review:w.review,reviewed:!!w.reviewed}:{})};
  });
 }
 export function groupWords(words:Word[],count:number):Word[][] {
