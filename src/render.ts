@@ -2,6 +2,7 @@ import type { CaptionStyle, Word } from './types';
 import { activeGroup } from './captions';
 type Context = CanvasRenderingContext2D | OffscreenCanvasRenderingContext2D;
 const clamp=(v:number)=>Math.max(0,Math.min(1,v));
+function hexToRgba(hex:string,alpha:number){const m=/^#([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);if(!m)return hex;return `rgba(${parseInt(m[1],16)},${parseInt(m[2],16)},${parseInt(m[3],16)},${alpha})`;}
 export function spring(t:number,frequency=17,damping=9){return 1-Math.exp(-Math.max(0,t)*damping)*Math.cos(Math.max(0,t)*frequency);}
 // The reference holds complete, handwritten phrases still, then replaces them.
 // Shape each line as one string so spacing/kerning never shifts between words.
@@ -58,6 +59,7 @@ export function drawCaptions(ctx:Context,width:number,height:number,time:number,
  const enter=cinematic?clamp(elapsed/.22):1;
  const exit=cinematic?clamp(remaining/.16):1;
  ctx.globalAlpha=Math.min(enter,exit);ctx.textBaseline='middle';ctx.textAlign='center';ctx.lineJoin='round';
+ if(s.letterSpacing)(ctx as unknown as {letterSpacing:string}).letterSpacing=`${s.letterSpacing}px`;
  const maxWidth=Math.max(...lines.map(line=>line.reduce((acc,i)=>acc+widths[i],0)+gap*(line.length-1)));
  const pad=Math.max(14*unit,fs*.3+s.stroke*unit);
  const baseX=Math.max(maxWidth/2+pad,Math.min(width-maxWidth/2-pad,width*(s.positionX??50)/100));
@@ -66,20 +68,50 @@ export function drawCaptions(ctx:Context,width:number,height:number,time:number,
   const lineWidth=line.reduce((acc,i)=>acc+widths[i],0)+gap*(line.length-1);
   let x=baseX-lineWidth/2;
   const y=baseY+(li-(lines.length-1)/2)*lineHeight+(cinematic?(1-enter)*fs*.2*strength:0);
+  if(s.box==='line-pill'&&s.boxColor){ctx.save();ctx.fillStyle=s.boxColor;ctx.beginPath();ctx.roundRect(baseX-lineWidth/2-fs*.35,y-fs*.68,lineWidth+fs*.7,fs*1.36,fs*.34);ctx.fill();ctx.restore();}
   line.forEach(i=>{
    const word=group[i],active=time>=word.start&&time<word.end,age=Math.max(0,time-word.start),future=time<word.start;
    let scale=1,dy=0,angle=0;
    if(!future && s.preset==='impact'){scale=1+(spring(age,22,11)-1)*.35*strength; if(active)scale+=.04*strength;}
    if(!future && s.preset==='bubble'){scale=1+(spring(age,18,7)-1)*.25*strength;dy=-Math.sin(age*17)*Math.exp(-age*7)*fs*.2*strength;}
    if(!future && s.preset==='desi'){scale=1+(spring(age,30,16)-1)*.16*strength;dy=(1-clamp(age/.12))*fs*.15*strength;angle=word.emphasis?Math.sin(age*22)*Math.exp(-age*14)*.06*strength:0;}
+   if(!future && s.preset==='sticker'){scale=1+(spring(age,18,8)-1)*.22*strength;dy=-Math.sin(time*3+i*.7)*fs*.07*strength;angle=((s.rotate??0)*Math.PI)/180;}
+   if(!future && s.preset==='blast'&&(active||word.emphasis))scale*=(s.emphasisScale??1.35);
+   if(!future && s.preset==='neon'){scale=1+(spring(age,20,10)-1)*.2*strength;}
+   if(!future && s.preset==='glass'){scale=1+(spring(age,18,9)-1)*.18*strength;}
    const emphasized=active||word.emphasis;
    ctx.save();ctx.translate(x+widths[i]/2,y+dy);ctx.rotate(angle);ctx.scale(scale,scale);
    ctx.shadowColor=`rgba(0,0,0,${s.shadow/100})`;ctx.shadowBlur=s.shadow/100*fs*.24;ctx.shadowOffsetY=s.shadow/100*fs*.08;
+   if(s.glow){ctx.shadowColor=s.accent;ctx.shadowBlur=s.glow/100*fs*.6;ctx.shadowOffsetY=0;}
    if(s.preset==='power'&&emphasized){ctx.fillStyle=s.accent;ctx.beginPath();ctx.roundRect(-widths[i]/2-fs*.12,-fs*.65,widths[i]+fs*.24,fs*1.3,fs*.1);ctx.fill();ctx.shadowColor='transparent';}
-   if(s.stroke>0){ctx.strokeStyle=s.strokeColor;ctx.lineWidth=s.stroke*unit*2;ctx.strokeText(texts[i],0,0);}
-   ctx.fillStyle=s.preset==='power'&&emphasized?'#15151c':emphasized&&!cinematic?s.accent:s.color;
+   if(s.box==='word-pill'&&s.boxColor&&(!s.charReveal||!future)){ctx.fillStyle=s.boxColor;ctx.beginPath();ctx.roundRect(-widths[i]/2-fs*.22,-fs*.68,widths[i]+fs*.44,fs*1.36,fs*.3);ctx.fill();}
+   if(s.box==='glass'&&s.boxColor){ctx.fillStyle=hexToRgba(s.boxColor,.22);ctx.beginPath();ctx.roundRect(-widths[i]/2-fs*.22,-fs*.68,widths[i]+fs*.44,fs*1.36,fs*.34);ctx.fill();}
+   if(s.preset==='boxkaraoke'&&active){ctx.fillStyle=s.accent;ctx.beginPath();ctx.roundRect(-widths[i]/2-fs*.14,-fs*.65,widths[i]+fs*.28,fs*1.3,fs*.12);ctx.fill();ctx.shadowColor='transparent';}
+   if(s.stroke>0){ctx.strokeStyle=s.strokeColor;ctx.lineWidth=s.stroke*unit*2;if(!s.charReveal)ctx.strokeText(texts[i],0,0);}
+   ctx.fillStyle=s.preset==='power'&&emphasized?'#15151c':s.preset==='boxkaraoke'&&active?s.color:emphasized&&!cinematic?s.accent:s.color;
    if(future&&(s.preset==='impact'||s.preset==='desi'))ctx.globalAlpha*=.86;
-   ctx.fillText(texts[i],0,0);ctx.restore();x+=widths[i]+gap;
+   if(s.preset==='wide'){ctx.globalAlpha*=future?0:clamp(age/.4);}
+   if(s.charReveal){
+    const chars=[...texts[i]],charWidths=chars.map(c=>ctx.measureText(c).width),charTotal=charWidths.reduce((a,b)=>a+b,0);
+    let cx=-charTotal/2;
+    chars.forEach((c,ci)=>{
+     const charAge=age-ci*.07;
+     if(charAge>=0){
+      const cs=1+(spring(charAge,22,11)-1)*.3*strength;
+      ctx.save();ctx.translate(cx+charWidths[ci]/2,0);ctx.scale(cs,cs);
+      if(s.stroke>0){ctx.strokeStyle=s.strokeColor;ctx.lineWidth=s.stroke*unit*2;ctx.strokeText(c,0,0);}
+      ctx.fillStyle=s.color;ctx.fillText(c,0,0);ctx.restore();
+     }
+     cx+=charWidths[ci];
+    });
+   } else ctx.fillText(texts[i],0,0);
+   if(s.scribble&&emphasized){
+    ctx.strokeStyle=s.accent;ctx.lineWidth=Math.max(2,fs*.07);ctx.lineCap='round';ctx.beginPath();
+    const w=widths[i]/2,y2=fs*.62;ctx.moveTo(-w,y2);
+    for(let px=-w;px<=w;px+=Math.max(2,w/6))ctx.lineTo(px,y2+Math.sin(px*.3)*fs*.06);
+    ctx.stroke();
+   }
+   ctx.restore();x+=widths[i]+gap;
   });
  });
  ctx.restore();
