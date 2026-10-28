@@ -10,11 +10,12 @@ export const SPOKEN_LANGUAGES = [
  ['spanish','Spanish'],['swedish','Swedish'],['tamil','Tamil'],['telugu','Telugu'],['thai','Thai'],
  ['turkish','Turkish'],['ukrainian','Ukrainian'],['urdu','Urdu'],['vietnamese','Vietnamese'],
 ] as const;
-export const DEFAULT_LANGUAGES:LanguageSettings={spoken:'auto',caption:'same',model:'small'};
+export const DEFAULT_LANGUAGES:LanguageSettings={spoken:'auto',caption:'same',script:'roman',model:'small'};
 export function readLanguageSettings(value:unknown):LanguageSettings{
  if(value===undefined||value===null)return {...DEFAULT_LANGUAGES};
  const v=value as LanguageSettings;
  if(!SPOKEN_LANGUAGES.some(([id])=>id===v.spoken)||!['same','english','hindi','hinglish'].includes(v.caption)||!['tiny','base','small','shruti'].includes(v.model))throw new Error('Invalid language settings in this project.');
+ if(v.script!==undefined&&!['native','roman'].includes(v.script))throw new Error('Invalid writing script.');
  if(v.audioMode&&!['original','light','center'].includes(v.audioMode))throw new Error('Invalid speech audio option.');
- return {spoken:v.spoken,caption:v.caption,model:v.model,audioMode:v.audioMode??'original'};
+ return {spoken:v.spoken,caption:v.caption,script:v.script??'roman',model:v.model,audioMode:v.audioMode??'original'};
 }
