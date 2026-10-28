@@ -1,6 +1,6 @@
 import { env, pipeline } from '@huggingface/transformers';
 import { validateWords } from './captions';
-import { romanizeWords } from './romanize';
+import { formatWords } from './writing-script';
 import { readLanguageSettings } from './languages';
 import { analyzeAudio, enhanceSpeech, speechSpans } from './audio-processing';
 import { reliableWords, phraseFallback, repetitive, type SpeechResult } from './recognition';
@@ -23,7 +23,8 @@ let busy=false;
 self.onmessage=async({data})=>{
  if(data.type!=='transcribe'||busy)return;busy=true;let recoveredText='';
  try{
-  const settings=readLanguageSettings({spoken:data.language??'auto',caption:data.captionLanguage??'same',model:data.model??'small',audioMode:data.audioMode??'original'});
+  const settings=readLanguageSettings({spoken:data.language??'auto',caption:data.captionLanguage??'same',script:data.writingScript??'roman',model:data.model??'small',audioMode:data.audioMode??'original'});
+  if(settings.script==='native'&&settings.caption!=='same')throw new Error('Native writing script requires same-as-spoken captions. Choose Roman for translation.');
   self.postMessage({type:'stage',label:'Analyzing original audio and quiet intervals'});
   const original=data.audio as Float32Array,duration=original.length/16000;
   const report=analyzeAudio(original);self.postMessage({type:'analysis',report});
@@ -84,8 +85,8 @@ self.onmessage=async({data})=>{
    const translation=await translateWords(words,settings.spoken==='auto'?detectedLanguage??'auto':settings.spoken,settings.caption,p=>self.postMessage({type:'download',stage:'translation',...p}));
    words=translation.words;translated=translation.translated;timingEstimated=translation.timingEstimated;usedPhraseTiming=usedPhraseTiming&&!translated;
   }
-  self.postMessage({type:'stage',label:'Writing captions in Latin script'});
-  words=validateWords(romanizeWords(words),duration);
+  self.postMessage({type:'stage',label:settings.script==='native'?'Keeping original writing script':'Writing captions in Roman letters'});
+  words=validateWords(formatWords(words,settings.script),duration);
   self.postMessage({type:'done',words,translated,timingEstimated,detectedLanguage,usedPhraseTiming,audioReport:report,warnings,...(data.diagnostics?{sourceResults:rawResults}: {})});
  }catch(e){self.postMessage({type:'error',message:(e as Error).message,draftTranscript:recoveredText||undefined});}
  finally{busy=false;}
