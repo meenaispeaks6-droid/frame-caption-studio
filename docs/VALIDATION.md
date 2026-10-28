@@ -80,3 +80,13 @@ Added light/dark mode with pre-paint system preference, persisted manual choice,
 Production-build browser checks passed at 360, 390, 720, 768, 1024 and 1440px: no horizontal overflow, theme toggle accessible, refresh persistence, blocked-storage fallback, and reduced-motion animation suppression. Controlled worker events verified indeterminate status, a real 42% progress-bar width and cancellation (not speech recognition accuracy). Native job lifecycle regression passed; all 37 unit tests and the production build passed. Evidence: `validation-evidence/ui-polish.json`. Mobile checks use Chromium emulation, not physical Android hardware.
 
 The existing caption-drag browser regression also passed after the UI changes: mouse and emulated touch placement, keyboard adjustment, undo/redo, saved placement, and an actual 720p MP4 export fully decoded by FFmpeg.
+
+## Live word editing and grouped Undo
+
+Reproduced on the previous implementation: typing “Bhai” while the word field retained focus left the timeline and preview unchanged (browser regression timed out after five seconds). Text was submitted only by onBlur, and unchanged timing-field blur could add a history step through normalized optional flags.
+
+Word text now updates on each input event; preview and timeline use the current text while the same DOM input retains focus/caret. Composition is not interrupted by Enter/undo handlers. One uninterrupted word-field edit has one history entry; no-op text/timing blur adds none. Ctrl/Cmd+Z and Shift+Z work in caption text fields; other text controls retain their own editing shortcuts. Empty in-progress text is previewed but never overwrites the last valid persisted word; blur restores it with a notice. Romanization/whitespace finalization occurs when leaving the field. Focusing a word pauses and seeks to its timing when needed so its caption is visible.
+
+Undo/Redo controls are exposed with 44px touch targets in the mobile transcript toolbar. Live editing does not request speech recognition. Manual timestamp validation and PR #1's display precision remain intact.
+
+`node tests/live-word-editing.mjs` passes for desktop and Pixel 7 Chromium emulation: changed canvas pixels and timeline before blur, focused typing, middle-word caret insertion, focused keyboard Undo/Redo, touch toolbar Undo/Redo, no-op blur, empty-field recovery, panel switching, reload persistence, no horizontal overflow, and no transcription worker requests. Physical Android keyboard/IME interaction is not verified. 41 Vitest tests and the production build pass.
