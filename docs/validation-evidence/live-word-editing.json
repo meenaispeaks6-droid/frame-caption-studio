@@ -1,0 +1,8 @@
+{
+  "baseline": "Timeline did not update within 5 seconds of typing while focused",
+  "desktop": "passed",
+  "mobile": "Pixel 7 Chromium emulation passed; physical hardware untested",
+  "checks": ["canvas pixels update before blur", "timeline updates before blur", "focus retained", "middle insertion caret retained", "grouped keyboard undo and redo", "touch toolbar undo and redo", "no-op blur", "empty text recovery", "panel persistence", "reload persistence", "no transcription restarts", "no horizontal overflow"],
+  "unitTestsPassed": 41,
+  "productionBuild": "passed"
+}
