@@ -14,7 +14,7 @@ export const DEFAULT_LANGUAGES:LanguageSettings={spoken:'auto',caption:'same',mo
 export function readLanguageSettings(value:unknown):LanguageSettings{
  if(value===undefined||value===null)return {...DEFAULT_LANGUAGES};
  const v=value as LanguageSettings;
- if(!SPOKEN_LANGUAGES.some(([id])=>id===v.spoken)||!['same','english','hindi','hinglish'].includes(v.caption)||!['tiny','base','small'].includes(v.model))throw new Error('Invalid language settings in this project.');
+ if(!SPOKEN_LANGUAGES.some(([id])=>id===v.spoken)||!['same','english','hindi','hinglish'].includes(v.caption)||!['tiny','base','small','shruti'].includes(v.model))throw new Error('Invalid language settings in this project.');
  if(v.audioMode&&!['original','light','center'].includes(v.audioMode))throw new Error('Invalid speech audio option.');
  return {spoken:v.spoken,caption:v.caption,model:v.model,audioMode:v.audioMode??'original'};
 }
