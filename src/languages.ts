@@ -11,7 +11,7 @@ export const SPOKEN_LANGUAGES = [
  ['spanish','Spanish'],['swedish','Swedish'],['tamil','Tamil'],['telugu','Telugu'],['thai','Thai'],
  ['turkish','Turkish'],['ukrainian','Ukrainian'],['urdu','Urdu'],['vietnamese','Vietnamese'],
 ] as const;
-export const DEFAULT_LANGUAGES:LanguageSettings={spoken:'auto',caption:'same',model:typeof navigator==='undefined'?'small':processingProfile().model,modelPreference:'auto',processingMode:'auto',speechEngine:'auto',accuracyMode:'fast'};
+export const DEFAULT_LANGUAGES:LanguageSettings={spoken:'auto',caption:'same',model:typeof navigator==='undefined'?'small':processingProfile().model,modelPreference:'auto',processingMode:'auto',speechEngine:'shruti',accuracyMode:'fast'};
 export function readLanguageSettings(value:unknown):LanguageSettings{
  if(value===undefined||value===null)return {...DEFAULT_LANGUAGES};
  const v=value as LanguageSettings;
@@ -20,5 +20,5 @@ export function readLanguageSettings(value:unknown):LanguageSettings{
  if(v.processingMode&&!['auto','mobile','standard'].includes(v.processingMode))throw Error('Invalid processing mode.');
  if(v.speechEngine&&!['auto','shruti','whisper'].includes(v.speechEngine))throw Error('Invalid speech engine.');
  if(v.accuracyMode&&!['fast','accuracy'].includes(v.accuracyMode))throw Error('Invalid speech accuracy mode.');
- return {speechEngine:v.speechEngine??(v.modelPreference==='auto'?'auto':'whisper'),accuracyMode:v.accuracyMode??'fast',processingMode:v.processingMode??'auto',modelPreference:v.modelPreference??'explicit',spoken:v.spoken,caption:v.caption,model:v.model,audioMode:v.audioMode??'original'};
+ return {speechEngine:v.speechEngine??(v.modelPreference==='auto'?'shruti':'whisper'),accuracyMode:v.accuracyMode??'fast',processingMode:v.processingMode??'auto',modelPreference:v.modelPreference??'explicit',spoken:v.spoken,caption:v.caption,model:v.model,audioMode:v.audioMode??'original'};
 }
