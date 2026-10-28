@@ -29,16 +29,18 @@ function fft(re:Float64Array,im:Float64Array,inverse=false){
  * Attenuation is capped at 4 dB to protect quiet phonemes. Original is default. */
 export function enhanceSpeech(audio:Float32Array,mode:Exclude<AudioMode,'original'>,stereo?:[Float32Array,Float32Array]){
  if(mode==='center'&&(!stereo||stereo.some(c=>c.length!==audio.length)))throw Error('Stereo center focus is unavailable for this audio. Using the original.');
- const n=512,hop=256,out=new Float64Array(audio.length),norm=new Float64Array(audio.length),noise=new Float64Array(n);
+ const n=512,hop=256,out=new Float64Array(n),norm=new Float64Array(n),noise=new Float64Array(n);
  const window=Float64Array.from({length:n},(_,i)=>Math.sin(Math.PI*(i+.5)/n));
  const report=analyzeAudio(audio);if(mode==='light'&&report.dynamicRangeDb<8)throw Error('No reliable quiet interval was found for noise estimation; using original audio.');const quiet=Math.max(.00001,report.noiseFloor*1.2);let noiseFrames=0;
  if(mode==='light')for(let pos=0;pos<audio.length;pos+=hop){const chunk=audio.subarray(pos,pos+n);if(rms(chunk)>quiet)continue;const re=new Float64Array(n),im=new Float64Array(n);for(let j=0;j<n;j++)re[j]=(chunk[j]??0)*window[j];fft(re,im);for(let k=0;k<n;k++)noise[k]+=re[k]**2+im[k]**2;noiseFrames++;}
  if(noiseFrames)for(let k=0;k<n;k++)noise[k]/=noiseFrames;
- for(let pos=-hop;pos<audio.length;pos+=hop){const re=new Float64Array(n),im=new Float64Array(n),sr=new Float64Array(n),si=new Float64Array(n);
+ const result=new Float32Array(audio.length),re=new Float64Array(n),im=new Float64Array(n),sr=new Float64Array(n),si=new Float64Array(n);
+ for(let pos=-hop;pos<audio.length;pos+=hop){re.fill(0);im.fill(0);sr.fill(0);si.fill(0);
   for(let j=0;j<n;j++){const p=pos+j;if(p<0||p>=audio.length)continue;re[j]=audio[p]*window[j];if(mode==='center')sr[j]=(stereo![0][p]-stereo![1][p])*.5*window[j];}
   fft(re,im);if(mode==='center')fft(sr,si);
   for(let k=0;k<n;k++){const power=re[k]**2+im[k]**2;let gain=mode==='center'?Math.max(.2,Math.sqrt(Math.max(0,1-(sr[k]**2+si[k]**2)/(power+1e-12)))):Math.max(.63,Math.sqrt(Math.max(0,1-noise[k]/(power+1e-12))));const freq=Math.min(k,n-k)*SPEECH_RATE/n;if(mode==='light'&&freq<60)gain*=.8;re[k]*=gain;im[k]*=gain;}
-  fft(re,im,true);for(let j=0;j<n;j++){const p=pos+j;if(p>=0&&p<audio.length){out[p]+=re[j]*window[j];norm[p]+=window[j]**2;}}
+  fft(re,im,true);for(let j=0;j<n;j++){const p=pos+j;if(p>=0&&p<audio.length){out[p%n]+=re[j]*window[j];norm[p%n]+=window[j]**2;}}
+  for(let p=Math.max(0,pos);p<Math.min(audio.length,pos+hop);p++){result[p]=out[p%n]/Math.max(norm[p%n],1e-8);out[p%n]=0;norm[p%n]=0;}
  }
- const result=Float32Array.from(out,(x,i)=>x/Math.max(norm[i],1e-8));if(result.some(x=>!Number.isFinite(x)))throw Error('Speech filtering failed. Using original audio.');return result;
+ if(result.some(x=>!Number.isFinite(x)))throw Error('Speech filtering failed. Using original audio.');return result;
 }

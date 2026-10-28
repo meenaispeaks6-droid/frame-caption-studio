@@ -1,0 +1,2 @@
+import {it,expect} from 'vitest';import {processingProfile} from '../src/processing';
+it('adapts to mobile memory without changing explicit standard mode',()=>{for(const memory of [2,4,undefined])expect(processingProfile('auto',memory,true)).toMatchObject({constrained:true,model:'tiny',preview:480});expect(processingProfile('auto',8,true).model).toBe('base');expect(processingProfile('auto',8,false).model).toBe('small');expect(processingProfile('standard',2,true).constrained).toBe(false);});

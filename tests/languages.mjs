@@ -49,7 +49,7 @@ const installAsrStub=async context=>context.addInitScript(({fixtures})=>{
 const stored=page=>page.evaluate(()=>JSON.parse(localStorage.getItem('frame-caption-project-v1')));
 const textWords=page=>page.getByRole('textbox',{name:'Word text',exact:true}).evaluateAll(nodes=>nodes.map(node=>node.value));
 const assertLatin=words=>assert.ok(words.every(word=>!Array.from(word).some(char=>/[\p{L}\p{M}]/u.test(char)&&!/[A-Za-z]/.test(char))),'caption words must contain Latin letters only');
-const dialogFor=page=>page.getByRole('dialog',{name:'Let your voice lead.',exact:true});
+const dialogFor=page=>page.getByRole('dialog',{name:'Generate captions',exact:true});
 async function openLanguageDialog(page){if(!await dialogFor(page).count())await page.getByRole('button',{name:'Auto captions',exact:true}).click();await dialogFor(page).waitFor();return dialogFor(page);}
 
 try{

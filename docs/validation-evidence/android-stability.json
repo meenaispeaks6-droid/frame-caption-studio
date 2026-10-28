@@ -1,0 +1,92 @@
+{
+  "audio": {
+    "cancelled": true,
+    "cancelMs": 24.900000002235174,
+    "noProgressAfterDisposal": true,
+    "detached": true,
+    "pcmBytes": 11520000
+  },
+  "exports": [
+    {
+      "duration": 30,
+      "bytes": 581664,
+      "diskBacked": true,
+      "decoded": true
+    },
+    {
+      "duration": 60,
+      "bytes": 1128719,
+      "diskBacked": true,
+      "decoded": true
+    },
+    {
+      "duration": 180,
+      "bytes": 3319915,
+      "diskBacked": true,
+      "decoded": true
+    }
+  ],
+  "mobile": "emulated; controlled worker",
+  "pageErrors": [],
+  "resourceCleanup": {
+    "projectReadsDuringPlayback": 0,
+    "pcmCollectedAfterDispose": true,
+    "diskBackedExport": true,
+    "inMemoryFallback": true,
+    "disposedInputs": 5,
+    "cancelledExportRemoved": true
+  },
+  "filterComparison": "Byte-identical Float32 PCM to original implementation for a 17031-sample stereo fixture.",
+  "realInference": [
+    {
+      "case": "english",
+      "status": "done",
+      "words": 13,
+      "benchmark": {
+        "firstMs": 241135,
+        "repeatMs": 0,
+        "prepareCalls": 1
+      }
+    },
+    {
+      "case": "original",
+      "status": "done",
+      "words": 23,
+      "benchmark": {
+        "firstMs": 181250.6000000015,
+        "repeatMs": 0.19999999925494194,
+        "prepareCalls": 1
+      }
+    }
+  ],
+  "detailed30": {
+    "audio": {
+      "cancelled": true,
+      "cancelMs": 1.4750000014901161,
+      "noProgressAfterDisposal": true,
+      "detached": true,
+      "pcmBytes": 11520000
+    },
+    "exports": [
+      {
+        "duration": 30,
+        "bytes": 16167866,
+        "diskBacked": true,
+        "decoded": true
+      }
+    ],
+    "mobile": "emulated; controlled worker",
+    "pageErrors": []
+  },
+  "unitTests": 41,
+  "checks": [
+    "production build",
+    "browser MP4 decode and mobile layout",
+    "caption drag",
+    "native jobs",
+    "phrase recovery",
+    "language contracts",
+    "media 1080p and WebM",
+    "audio timeline"
+  ]
+}

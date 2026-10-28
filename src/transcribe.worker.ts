@@ -78,11 +78,7 @@ self.onmessage=async({data})=>{
   }catch(e){self.postMessage({type:'error',message:(e as Error).message,draftTranscript:draftTranscript||rawResults.map(r=>r.text).filter(Boolean).join('\n')});return;}
   finally{model.generate=generate;tokenizer._decode_asr=decode;}
   if(settings.caption!=='same'&&words.length){
-   self.postMessage({type:'stage',label:'Preparing your chosen caption language on this device'});
-   await transcriber.dispose();transcriber=undefined;modelName='';
-   const {translateWords}=await import('./translate');
-   const translation=await translateWords(words,settings.spoken==='auto'?detectedLanguage??'auto':settings.spoken,settings.caption,p=>self.postMessage({type:'download',stage:'translation',...p}));
-   words=translation.words;translated=translation.translated;timingEstimated=translation.timingEstimated;usedPhraseTiming=usedPhraseTiming&&!translated;
+   self.postMessage({type:'recognized',words,sourceLanguage:settings.spoken==='auto'?detectedLanguage??'auto':settings.spoken,targetLanguage:settings.caption,translated,timingEstimated,detectedLanguage,usedPhraseTiming,audioReport:report,warnings});return;
   }
   self.postMessage({type:'stage',label:'Writing captions in Latin script'});
   words=validateWords(romanizeWords(words),duration);
