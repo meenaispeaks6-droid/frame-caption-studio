@@ -1,7 +1,7 @@
 import { describe, it, expect, vi } from 'vitest';
 vi.mock('@huggingface/transformers',()=>({env:{backends:{onnx:{wasm:{}}}},pipeline:vi.fn()}));
 import { pipeline } from '@huggingface/transformers';
-import { estimateTranslatedWords, restoreTechnicalTerms, translateWords } from '../src/translate';
+import { estimateTranslatedWords, restoreTechnicalTerms, translateWords, disposeTranslator } from '../src/translate';
 
 const source=[{id:'a',text:'यह',start:1.25,end:1.7},{id:'b',text:'AI',start:1.7,end:2},{id:'c',text:'है।',start:2.1,end:2.8}];
 describe('explicit local translation',()=>{
@@ -22,5 +22,19 @@ describe('explicit local translation',()=>{
  });
  it('fails clearly before model loading when a language has no local translation model',async()=>{
   await expect(translateWords(source,'telugu','english')).rejects.toThrow('Same as Spoken Language');
+ });
+
+ it('translates Hindi and Hinglish to English only when explicitly requested',async()=>{
+  const translator=Object.assign(vi.fn(async()=>[{translation_text:'This is an AI tool.'}]),{dispose:vi.fn(async()=>{})});
+  vi.mocked(pipeline).mockResolvedValueOnce(translator as never);
+  try{
+   for(const language of ['hindi','hinglish']){
+    const result=await translateWords(source,language,'english');
+    expect(result.words.map(w=>w.text).join(' ')).toBe('This is an AI tool.');
+    expect(result.translated).toBe(true);expect(result.timingEstimated).toBe(true);
+    expect(result.words[0].start).toBe(source[0].start);expect(result.words.at(-1)!.end).toBe(source.at(-1)!.end);
+   }
+   expect(translator).toHaveBeenCalledWith('यह AI है।',{src_lang:'hi',tgt_lang:'en',max_new_tokens:192,num_beams:1,do_sample:false});
+  }finally{await disposeTranslator();vi.mocked(pipeline).mockReset();}
  });
 });

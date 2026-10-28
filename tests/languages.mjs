@@ -39,7 +39,7 @@ const installAsrStub=async context=>context.addInitScript(({fixtures})=>{
    const translated=captionLanguage!=='same'&&captionLanguage!==(source==='hinglish'?'hindi':source)&&!(source==='hindi'&&captionLanguage==='hinglish');
    let text=fixtures[source]??fixtures.english;
    if(captionLanguage==='english'&&source!=='english')text=fixtures.hindiEnglish;
-   else if((captionLanguage==='hindi'||captionLanguage==='hinglish')&&source==='english')text=fixtures.englishHindi;
+
    const words=text.split(/\s+/).map((word,i,all)=>({id:`ui-asr-${i}`,text:word,start:i*.3,end:(i+1)*.3,breakAfter:i===all.length-1}));
    setTimeout(()=>{if(this.stopped)return;const data={type:'done',words,translated,timingEstimated:translated};const event=new MessageEvent('message',{data});this.onmessage?.(event);this.dispatchEvent(event);},50);
   }
@@ -63,6 +63,16 @@ try{
  let dialog=dialogFor(page);await dialog.waitFor();
  assert.equal(await dialog.getByRole('combobox',{name:'Spoken language',exact:true}).inputValue(),'auto');
  assert.equal(await dialog.getByRole('combobox',{name:'Caption language',exact:true}).inputValue(),'same');
+ const assertModal=async dialog=>{
+  assert.deepEqual(await dialog.getByRole('combobox',{name:'Caption language',exact:true}).locator('option').evaluateAll(nodes=>nodes.map(n=>({value:n.value,label:n.textContent}))),[{value:'same',label:'Same as Spoken Language (Default)'},{value:'english',label:'Translate to English'}]);
+  const advanced=dialog.locator('details');assert.equal(await advanced.count(),1);assert.equal(await advanced.getAttribute('open'),null,'technical settings start collapsed');
+  for(const name of ['Recognition mode','Processing mode','Recognition engine','Speech model','Transcription audio'])assert.equal(await dialog.getByRole('combobox',{name,exact:true}).isVisible(),false,name+' is hidden by default');
+  assert.equal(await dialog.getByRole('button',{name:'Generate captions',exact:true}).isVisible(),true);
+  await advanced.locator('summary').click();for(const name of ['Recognition mode','Processing mode','Recognition engine','Speech model','Transcription audio'])assert.equal(await dialog.getByRole('combobox',{name,exact:true}).isVisible(),true,name+' is accessible in Advanced Settings');
+  assert.deepEqual(await dialog.locator('select[aria-label="Caption language"] option').evaluateAll(nodes=>nodes.map(n=>n.value)),['same','english'],'removed destinations are not moved into Advanced Settings');
+  await advanced.locator('summary').click();
+ };
+ await assertModal(dialog);
  const spokenOptions=await dialog.getByRole('combobox',{name:'Spoken language',exact:true}).locator('option').evaluateAll(nodes=>nodes.map(node=>node.value));for(const language of ['urdu','spanish','japanese'])assert.ok(spokenOptions.includes(language),`${language} is offered as a spoken language`);
  await page.screenshot({path:root+'test-results/languages-import-dialog.png'});
  const scenarios=[
@@ -70,19 +80,22 @@ try{
   {name:'Hinglish → Same',spoken:'hinglish',caption:'same',expected:fixtures.hinglish},
   {name:'English → Same',spoken:'english',caption:'same',expected:fixtures.english},
   {name:'Hindi → English',spoken:'hindi',caption:'english',expected:fixtures.hindiEnglish},
-  {name:'English → Hindi',spoken:'english',caption:'hindi',expected:fixtures.englishHindi},
+  {name:'Hinglish → English',spoken:'hinglish',caption:'english',expected:fixtures.hindiEnglish},
+  {name:'English → English',spoken:'english',caption:'english',expected:fixtures.english},
   {name:'Auto → Same (Hindi fixture)',spoken:'auto',caption:'same',expected:fixtures.hindi},
-  {name:'Regenerate with new selections',spoken:'english',caption:'hinglish',expected:fixtures.englishHindi},
+  {name:'Regenerate with new selections',spoken:'hinglish',caption:'same',expected:fixtures.hinglish},
  ];
  const outcomes=[];
  for(const scenario of scenarios){
   dialog=await openLanguageDialog(page);
+  assert.equal(await dialog.locator('details').getAttribute('open'),null,'regeneration reopens collapsed');
   await dialog.getByRole('combobox',{name:'Spoken language',exact:true}).selectOption(scenario.spoken);
   await dialog.getByRole('combobox',{name:'Caption language',exact:true}).selectOption(scenario.caption);
   await dialog.getByRole('button',{name:'Generate captions',exact:true}).click();
   await dialog.waitFor({state:'hidden'});await page.waitForFunction(()=>document.querySelector('.job-tray')===null);await page.waitForTimeout(100);
   const words=await textWords(page),project=await stored(page);
   assert.equal(words.join(' '),scenario.expected);assertLatin(words);
+  assert.equal(project.timingEstimated,scenario.caption==='english'&&!['english'].includes(scenario.spoken),'translation timing is marked separately from transcription');
   assert.equal(project.languageSettings.spoken,scenario.spoken);assert.equal(project.languageSettings.caption,scenario.caption);
   const request=await page.evaluate(()=>window.__languageRequests.at(-1));assert.equal(request.language,scenario.spoken);assert.equal(request.captionLanguage,scenario.caption);assert.ok(Number.isFinite(request.duration)&&request.duration>0,'worker receives source duration');
   assert.ok(project.words.every(word=>word.start<word.end),'word timings retained');
@@ -98,7 +111,12 @@ try{
 
  const projectDownload=page.waitForEvent('download');await page.getByTitle('Download editable project').click();const download=await projectDownload;await download.saveAs(root+'test-results/languages.frame.json');
  const exported=JSON.parse(readFileSync(root+'test-results/languages.frame.json','utf8'));
- assert.equal(exported.languageSettings.spoken,'english');assert.equal(exported.languageSettings.caption,'hinglish');
+ assert.equal(exported.languageSettings.spoken,'hinglish');assert.equal(exported.languageSettings.caption,'same');
+ for(const caption of ['hindi','hinglish']){
+  exported.languageSettings={...exported.languageSettings,spoken:'hinglish',caption};
+  await page.locator('input[type=file]').nth(2).setInputFiles({name:'legacy-language.frame.json',mimeType:'application/json',buffer:Buffer.from(JSON.stringify(exported))});
+  dialog=await openLanguageDialog(page);assert.equal(await dialog.getByRole('combobox',{name:'Caption language',exact:true}).inputValue(),'same');assert.equal(await dialog.getByRole('combobox',{name:'Spoken language',exact:true}).inputValue(),'hinglish');await assertModal(dialog);await dialog.getByRole('button',{name:'Close dialog',exact:true}).click();assert.deepEqual(await textWords(page),baseline,'legacy project captions retained');
+ }
  exported.languageSettings={...exported.languageSettings,spoken:'hindi',caption:'english'};
  await page.locator('input[type=file]').nth(2).setInputFiles({name:'language-project.frame.json',mimeType:'application/json',buffer:Buffer.from(JSON.stringify(exported))});
  dialog=await openLanguageDialog(page);assert.equal(await dialog.getByRole('combobox',{name:'Spoken language',exact:true}).inputValue(),'hindi');assert.equal(await dialog.getByRole('combobox',{name:'Caption language',exact:true}).inputValue(),'english');await dialog.getByRole('button',{name:'Close dialog',exact:true}).click();
@@ -117,7 +135,7 @@ try{
   mp4={tested:true,realRenderWorker:true,fullyDecoded:true,width:probe.streams.find(stream=>stream.codec_type==='video').width,height:probe.streams.find(stream=>stream.codec_type==='video').height};
  }
  assert.deepEqual(errors,[]);await context.close();
- const mobile=await browser.newContext({...devices['Pixel 7']});await installAsrStub(mobile);const m=await mobile.newPage();await m.goto('http://127.0.0.1:4185');await m.waitForFunction(()=>document.querySelector('video')?.readyState>=2);await m.locator('input[type=file]').first().setInputFiles(root+'test-results/language-source.mp4');await dialogFor(m).waitFor();assert.equal(await m.evaluate(()=>document.documentElement.scrollWidth>innerWidth),false);await m.screenshot({path:root+'test-results/languages-mobile-dialog.png',fullPage:true});await mobile.close();
+ const mobile=await browser.newContext({...devices['Pixel 7']});await installAsrStub(mobile);const m=await mobile.newPage();await m.goto('http://127.0.0.1:4185');await m.waitForFunction(()=>document.querySelector('video')?.readyState>=2);await m.locator('input[type=file]').first().setInputFiles(root+'test-results/language-source.mp4');await dialogFor(m).waitFor();await assertModal(dialogFor(m));assert.equal(await m.evaluate(()=>document.documentElement.scrollWidth>innerWidth),false);await m.screenshot({path:root+'test-results/languages-mobile-dialog.png',fullPage:true});await mobile.close();
  const report={scope:'UI language workflow uses ASR stub; MP4 is real; model inference tested separately',outcomes,allSixPresetsPreserveLatinText:true,subtitleLatin:true,jsonImportExport:true,languagePersistence:true,mobileDialog:true,mp4};
  writeFileSync(root+'test-results/languages-workflow.json',JSON.stringify(report,null,2));console.log('LANGUAGE_WORKFLOW_PASS',JSON.stringify(report));
 }finally{await browser?.close();server.kill('SIGTERM');}
