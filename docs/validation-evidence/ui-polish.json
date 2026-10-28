@@ -1,0 +1,21 @@
+{
+  "systemTheme": true,
+  "persistedTheme": true,
+  "themeDoesNotChangeCaptionPixels": true,
+  "accurateProgressWidth": true,
+  "indeterminateProgress": true,
+  "cancel": true,
+  "reducedMotion": true,
+  "viewportWidths": [
+    360,
+    390,
+    720,
+    768,
+    1024,
+    1440
+  ],
+  "noOverflow": true,
+  "blockedStorageFallback": true,
+  "pageErrors": [],
+  "jobTest": "Controlled worker events; not speech accuracy"
+}

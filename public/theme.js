@@ -1,0 +1,2 @@
+// Apply before first paint, including when browser storage is unavailable.
+(()=>{let theme;try{theme=localStorage.getItem('frame-theme');}catch{}if(theme!=='light'&&theme!=='dark')theme=matchMedia('(prefers-color-scheme: light)').matches?'light':'dark';document.documentElement.dataset.theme=theme;document.querySelector('meta[name="theme-color"]')?.setAttribute('content',theme==='light'?'#f5f6fa':'#111216');})();

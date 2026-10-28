@@ -72,3 +72,11 @@ The current release passes 33 unit tests. It fixes real Auto Detect, timestamp-c
 Visible captions now expose a pointer-captured drag target on the video. Mouse and touch move both axes in video-relative coordinates; drag updates paint directly and commit once on release. Pointer cancellation restores the previous placement. Keyboard arrows adjust position, with Shift for larger steps. Renderer-derived hit bounds follow each phrase and support all six styles. Horizontal defaults preserve older projects; chosen placement persists through preset changes, project reload and export.
 
 Executed `tests/caption-drag.mjs`: desktop mouse drag, Pixel 7 touch events in Chromium emulation, one-step Undo/Redo, keyboard adjustment, unchanged transcript, preset/reload persistence and a real fully decoded 720p MP4. The exported frame was visually inspected and shows the moved caption. Physical phone hardware was not available. Numerical results are in `validation-evidence/caption-drag.json`.
+
+## UI themes and motion — October 28, 2026
+
+Added light/dark mode with pre-paint system preference, persisted manual choice, and a storage-unavailable fallback. Theme changes leave preview canvas pixels unchanged. Removed repeated promotional copy and added job-driven import, transcription and export motion with reduced-motion support.
+
+Production-build browser checks passed at 360, 390, 720, 768, 1024 and 1440px: no horizontal overflow, theme toggle accessible, refresh persistence, blocked-storage fallback, and reduced-motion animation suppression. Controlled worker events verified indeterminate status, a real 42% progress-bar width and cancellation (not speech recognition accuracy). Native job lifecycle regression passed; all 37 unit tests and the production build passed. Evidence: `validation-evidence/ui-polish.json`. Mobile checks use Chromium emulation, not physical Android hardware.
+
+The existing caption-drag browser regression also passed after the UI changes: mouse and emulated touch placement, keyboard adjustment, undo/redo, saved placement, and an actual 720p MP4 export fully decoded by FFmpeg.
