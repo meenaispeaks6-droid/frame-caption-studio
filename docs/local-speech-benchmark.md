@@ -11,16 +11,17 @@ user's device. The deployment remains a static Cloudflare Pages application.
 | --- | --- | --- |
 | Hindi | Shruti | Shruti with Silero voice segmentation |
 | Hinglish | Shruti | Shruti with Silero voice segmentation |
-| English | Shruti | Whisper Base on desktop or a phone reporting at least 8 GB; otherwise Shruti with voice segmentation |
-| Auto Detect / other languages | Existing multilingual Whisper | Existing multilingual Whisper, device-aware model recommendation |
+| English | Shruti | Shruti with voice segmentation |
+| Auto Detect (Hindi/English) | Shruti | Shruti with voice segmentation |
+| Other selected languages | Existing multilingual Whisper | Existing multilingual Whisper, device-aware model recommendation |
 
-Explicit Shruti remains Shruti in either mode. Explicit Tiny/Base/Small choices
-and older projects' manual selections remain available. Old projects with an
-`auto` model preference adopt recommendations; projects without that preference
-retain their prior Whisper model. Auto Detect remains multilingual by default:
-select Hindi/Hinglish/English for compact recognition, or explicitly choose
-Shruti to restrict automatic detection to Hindi/English. No unverified Indic or
-Apex option appears in the editor.
+Shruti is selected by default for new projects, including automatic Hindi/English
+detection. Existing Recommended/automatic preferences also resolve to Shruti
+for Hindi, Hinglish, English and Auto Detect in both modes. Selecting another
+spoken language uses multilingual Whisper. Explicit Whisper selections and
+older projects' manual model choices remain available. Whisper Base can still
+be chosen manually, including for English. No unverified Indic or Apex option
+appears in the editor.
 
 High Accuracy is a processing preference, not a guarantee or a second Hindi
 model. Shruti uses the same compact weights in both modes; High Accuracy adds
