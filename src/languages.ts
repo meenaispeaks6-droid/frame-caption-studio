@@ -1,3 +1,4 @@
+import { processingProfile } from './processing';
 import type { LanguageSettings } from './types';
 
 export const SPOKEN_LANGUAGES = [
@@ -10,11 +11,12 @@ export const SPOKEN_LANGUAGES = [
  ['spanish','Spanish'],['swedish','Swedish'],['tamil','Tamil'],['telugu','Telugu'],['thai','Thai'],
  ['turkish','Turkish'],['ukrainian','Ukrainian'],['urdu','Urdu'],['vietnamese','Vietnamese'],
 ] as const;
-export const DEFAULT_LANGUAGES:LanguageSettings={spoken:'auto',caption:'same',model:'small'};
+export const DEFAULT_LANGUAGES:LanguageSettings={spoken:'auto',caption:'same',model:typeof navigator==='undefined'?'small':processingProfile().model,modelPreference:'auto',processingMode:'auto'};
 export function readLanguageSettings(value:unknown):LanguageSettings{
  if(value===undefined||value===null)return {...DEFAULT_LANGUAGES};
  const v=value as LanguageSettings;
  if(!SPOKEN_LANGUAGES.some(([id])=>id===v.spoken)||!['same','english','hindi','hinglish'].includes(v.caption)||!['tiny','base','small'].includes(v.model))throw new Error('Invalid language settings in this project.');
  if(v.audioMode&&!['original','light','center'].includes(v.audioMode))throw new Error('Invalid speech audio option.');
- return {spoken:v.spoken,caption:v.caption,model:v.model,audioMode:v.audioMode??'original'};
+ if(v.processingMode&&!['auto','mobile','standard'].includes(v.processingMode))throw Error('Invalid processing mode.');
+ return {processingMode:v.processingMode??'auto',modelPreference:v.modelPreference??'explicit',spoken:v.spoken,caption:v.caption,model:v.model,audioMode:v.audioMode??'original'};
 }

@@ -1,6 +1,6 @@
 // Consume the MIT engine's public media classes without its optional Whisper 4
 // integration. The pinned package layout avoids bundling a second ONNX runtime.
-export { MediaBunnyTranscodeCoordinator } from '../node_modules/@tscaps/engine/dist/modules/video/mediabunny/MediaBunnyTranscodeCoordinator.js';
+export { MediaBunnyTranscodeCoordinator } from './coordinator';
 export { WebCodecsOnlyVideoFrameDecoderFactory } from '../node_modules/@tscaps/engine/dist/modules/video/mediabunny/frame/WebCodecsOnlyVideoFrameDecoderFactory.js';
 export { DefaultVideoFrameDecoderFactory } from '../node_modules/@tscaps/engine/dist/modules/video/mediabunny/frame/DefaultVideoFrameDecoderFactory.js';
 export { MediaBunnyCanvasVideoTrackEncoderFactory } from '../node_modules/@tscaps/engine/dist/modules/video/mediabunny/encoder/MediaBunnyCanvasVideoTrackEncoderFactory.js';

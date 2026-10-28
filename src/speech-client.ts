@@ -5,6 +5,7 @@ export class SpeechClient {
  private cache=new Map<string,Message>();
  private files=new WeakMap<File,number>();private sequence=0;
  private active:{reject:(e:Error)=>void;timer:ReturnType<typeof setTimeout>}|null=null;
+ private model:unknown;
  private idle:ReturnType<typeof setTimeout>|undefined;
  constructor(private factory=()=>new Worker(new URL('./transcribe.worker.ts',import.meta.url),{type:'module'}),private timeoutMs=15*60*1000,private idleMs=30000){}
  async run(file:File,settings:object,prepare:()=>Promise<Message>,onMessage:(data:Message)=>void){
@@ -13,17 +14,21 @@ export class SpeechClient {
   const key=JSON.stringify([this.files.get(file),settings]);const cached=this.cache.get(key);
   if(cached){onMessage({...structuredClone(cached),cacheHit:true});return;}
   clearTimeout(this.idle);
+  const options=settings as {model?:string;constrained?:boolean};if(this.model!==options.model){this.release();this.model=options.model;}
   await new Promise<void>((resolve,reject)=>{
    const job={reject,timer:setTimeout(()=>{this.cancel();onMessage({type:'error',message:'Caption generation exceeded the device time limit. Try a shorter clip or a smaller speech model.'});},this.timeoutMs)};
    this.active=job;
-   const finish=()=>{clearTimeout(job.timer);this.active=null;this.idle=setTimeout(()=>this.release(),this.idleMs);resolve();};
+   const finish=()=>{clearTimeout(job.timer);this.active=null;if(options.constrained)this.release();else this.idle=setTimeout(()=>this.release(),this.idleMs);resolve();};
    void prepare().then(payload=>{
     if(this.active!==job)return;
     const worker=this.worker??=this.factory();
     worker.onmessage=({data})=>{
      if(this.active!==job)return;
-     if(data.type==='done'){this.cache.set(key,structuredClone(data));while(this.cache.size>3)this.cache.delete(this.cache.keys().next().value!);finish();}
-     else if(data.type==='error')finish();
+     if(data.type==='recognized'){
+      this.release();try{const translation=new Worker(new URL('./translation.worker.ts',import.meta.url),{type:'module'});this.worker=translation;translation.onmessage=worker.onmessage;translation.onerror=worker.onerror;translation.onmessageerror=worker.onmessageerror;translation.postMessage(data);}catch{finish();onMessage({type:'error',message:'Translation worker could not start. Keep the spoken language or retry.'});}return;
+     }
+     if(data.type==='done'){if(payload.captionLanguage&&payload.captionLanguage!=='same')this.release();data={...data,audioOffset:payload.audioOffset??0};this.cache.set(key,structuredClone(data));while(this.cache.size>3)this.cache.delete(this.cache.keys().next().value!);finish();}
+     else if(data.type==='error'){this.release();finish();}
      onMessage(data);
     };
     worker.onerror=e=>{if(this.active!==job)return;this.release();finish();onMessage({type:'error',message:e.message||'Speech worker stopped unexpectedly. Retry with a smaller model.'});};

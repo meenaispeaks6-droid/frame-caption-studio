@@ -1,0 +1,3 @@
+import {translateWords,disposeTranslator} from './translate';
+import {romanizeWords} from './romanize';
+self.onmessage=async({data})=>{try{const result=await translateWords(data.words,data.sourceLanguage,data.targetLanguage,p=>self.postMessage({type:'download',stage:'translation',...p}));self.postMessage({...data,type:'done',words:romanizeWords(result.words),translated:result.translated,timingEstimated:result.timingEstimated,usedPhraseTiming:data.usedPhraseTiming&&!result.translated});}catch(e){self.postMessage({type:'error',message:(e as Error).message});}finally{await disposeTranslator();}};
