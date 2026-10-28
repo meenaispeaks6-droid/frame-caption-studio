@@ -1,0 +1,10 @@
+{
+ "baseline": "Full readable phrase region unavailable; native chip title existed but provided no persistent touch readout",
+ "desktop": "passed",
+ "mobile": "Pixel 7 Chromium touch emulation passed",
+ "checks": ["short imported cues", "full phrase readout", "start/end display", "numbered accessible chips", "ellipsis on text span", "full phrase list", "mouse and touch seeking", "keyboard Space seeks without toggling playback", "saved words and timestamps unchanged", "no horizontal overflow", "no browser errors"],
+ "liveWordRegression": "desktop and mobile emulation passed",
+ "unitTestsPassed": 41,
+ "productionBuild": "passed",
+ "physicalAndroid": "not tested"
+}
