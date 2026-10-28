@@ -6,6 +6,7 @@ import { analyzeAudio, enhanceSpeech, speechSpans } from './audio-processing';
 import { reliableWords, phraseFallback, repetitive, type SpeechResult } from './recognition';
 import type { Word } from './types';
 import { detectSpeech } from './vad';
+import { boundedSpeechSpans, shrutiWords } from './speech-review';
 import wasmModule from '../node_modules/@huggingface/transformers/dist/ort-wasm-simd-threaded.jsep.mjs?url';
 import wasmBinary from '../node_modules/@huggingface/transformers/dist/ort-wasm-simd-threaded.jsep.wasm?url';
 env.allowLocalModels=false;
@@ -34,10 +35,28 @@ self.onmessage=async({data})=>{
   }
   report.processing=prepared===original?'original':settings.audioMode;
   let spans=speechSpans(original);
-  if(spans.length){self.postMessage({type:'stage',label:'Detecting speech with the local voice model'});try{const detected=await detectSpeech(original,p=>self.postMessage({type:'vad-progress',progress:p}));spans=detected.spans;report.voiceDetection={model:'silero',regions:spans.length,uncertain:detected.uncertain,maxProbability:detected.maxSpeechProbability};if(detected.uncertain)warnings.push('Voice detection was uncertain; quiet sound regions were retained.');}catch{warnings.push('Voice detector unavailable; conservative silence segmentation was used.');}}
+  if(spans.length&&(data.speechEngine!=='shruti'||data.accuracyMode==='accuracy')){self.postMessage({type:'stage',label:'Detecting speech with the local voice model'});try{const detected=await detectSpeech(original,p=>self.postMessage({type:'vad-progress',progress:p}));spans=detected.spans;report.voiceDetection={model:'silero',regions:spans.length,uncertain:detected.uncertain,maxProbability:detected.maxSpeechProbability};if(detected.uncertain)warnings.push('Voice detection was uncertain; quiet sound regions were retained.');}catch{warnings.push('Voice detector unavailable; conservative silence segmentation was used.');}}
   const rawResults:SpeechResult[]=[];
   let words:Word[]=[],translated=false,timingEstimated=false,detectedLanguage:string|undefined,usedPhraseTiming=false,draftTranscript='';
   if(!spans.length){self.postMessage({type:'done',words:[],translated:false,timingEstimated:false,audioReport:report});return;}
+  if(data.speechEngine==='shruti'){
+   const {loadShruti,recognizeShruti}=await import('./shruti');
+   const engine=await loadShruti(progress=>self.postMessage({type:'download',stage:'speech',status:'progress',file:'Shruti · 30 MB',progress}));
+   const windows=boundedSpeechSpans(prepared,spans);let words:Word[]=[];
+   for(let i=0;i<windows.length;i++){
+    const span=windows[i],begin=Math.round(span.start*16000),end=Math.round(span.end*16000);
+    self.postMessage({type:'stage',label:`Shruti · listening locally · ${i+1} of ${windows.length}`});
+    const result=recognizeShruti(engine,prepared.subarray(begin,end),settings.spoken);
+    recoveredText=[recoveredText,result.text].filter(Boolean).join(' ');
+    detectedLanguage=result.language??detectedLanguage;
+    const aligned=shrutiWords(result,(end-begin)/16000);
+    words.push(...aligned.map(w=>({...w,start:w.start+span.start,end:w.end+span.start})));
+   }
+   const usedPhraseTiming=words.some(w=>w.timing==='segment');
+   if(settings.caption!=='same'&&words.length){self.postMessage({type:'recognized',words,sourceLanguage:settings.spoken==='auto'?detectedLanguage??'auto':settings.spoken==='hinglish'?'hindi':settings.spoken,targetLanguage:settings.caption,detectedLanguage,usedPhraseTiming,audioReport:report,warnings});return;}
+   words=validateWords(romanizeWords(words),duration);
+   self.postMessage({type:'done',words,detectedLanguage,usedPhraseTiming,audioReport:report,warnings,...(data.diagnostics?{heapBytes:engine.HEAPU8.byteLength}:{})});return;
+  }
   const name=`Xenova/whisper-${settings.model}`;
   if(!transcriber||modelName!==name){
    await transcriber?.dispose();transcriber=undefined;modelName='';
@@ -81,7 +100,7 @@ self.onmessage=async({data})=>{
    self.postMessage({type:'recognized',words,sourceLanguage:settings.spoken==='auto'?detectedLanguage??'auto':settings.spoken,targetLanguage:settings.caption,translated,timingEstimated,detectedLanguage,usedPhraseTiming,audioReport:report,warnings});return;
   }
   self.postMessage({type:'stage',label:'Writing captions in Latin script'});
-  words=validateWords(romanizeWords(words),duration);
+  words=validateWords(romanizeWords(words.map(w=>({...w,review:w.timing==='segment'?'alignment' as const:'recognition' as const}))),duration);
   self.postMessage({type:'done',words,translated,timingEstimated,detectedLanguage,usedPhraseTiming,audioReport:report,warnings,...(data.diagnostics?{sourceResults:rawResults}: {})});
  }catch(e){self.postMessage({type:'error',message:(e as Error).message,draftTranscript:recoveredText||undefined});}
  finally{busy=false;}

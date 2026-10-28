@@ -14,11 +14,11 @@ export class SpeechClient {
   const key=JSON.stringify([this.files.get(file),settings]);const cached=this.cache.get(key);
   if(cached){onMessage({...structuredClone(cached),cacheHit:true});return;}
   clearTimeout(this.idle);
-  const options=settings as {model?:string;constrained?:boolean};if(this.model!==options.model){this.release();this.model=options.model;}
+  const options=settings as {model?:string;speechEngine?:string;constrained?:boolean};const identity=JSON.stringify([options.speechEngine,options.model]);if(this.model!==identity){this.release();this.model=identity;}
   await new Promise<void>((resolve,reject)=>{
    const job={reject,timer:setTimeout(()=>{this.cancel();onMessage({type:'error',message:'Caption generation exceeded the device time limit. Try a shorter clip or a smaller speech model.'});},this.timeoutMs)};
    this.active=job;
-   const finish=()=>{clearTimeout(job.timer);this.active=null;if(options.constrained)this.release();else this.idle=setTimeout(()=>this.release(),this.idleMs);resolve();};
+   const finish=()=>{clearTimeout(job.timer);this.active=null;if(options.constrained||options.speechEngine==='shruti')this.release();else this.idle=setTimeout(()=>this.release(),this.idleMs);resolve();};
    void prepare().then(payload=>{
     if(this.active!==job)return;
     const worker=this.worker??=this.factory();

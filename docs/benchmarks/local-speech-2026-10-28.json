@@ -1,0 +1,379 @@
+{
+  "date": "2026-10-28",
+  "host": "Linux desktop, Chromium 154, WASM single thread",
+  "physicalAndroid": false,
+  "independentManualReview": false,
+  "wordTimingReferenceAvailable": false,
+  "normalization": "application romanizer; lowercase NFKC; punctuation -> spaces; Latin letters and digits only",
+  "caveats": [
+    "Public dataset annotations; no independent 20-clip human listening review.",
+    "First 10 MUCS test rows are one tutorial; limited speaker/domain diversity.",
+    "WASM linear memory is not total browser process memory.",
+    "Whisper runs include the existing word-timing generation configuration and repetition failures.",
+    "Base Hindi/Hinglish stopped manually after 16 completed clips.",
+    "Some comparator timing overlapped development work.",
+    "Apex initialization timed out after 180 seconds; no inference completed."
+  ],
+  "scores": [
+    {
+      "model": "shruti",
+      "language": "hindi",
+      "clips": 10,
+      "referenceWords": 267,
+      "errors": 56,
+      "romanizedWer": 0.20973782771535582,
+      "secondsOfAudio": 113.63999999999999,
+      "inferenceSeconds": 37.21100000000745,
+      "realTimeFactor": 0.32744632171777066,
+      "loadMs": 1364.5999999977648,
+      "validTimingTokens": 265,
+      "totalTimingTokens": 265,
+      "wasmHeapMax": 85327872
+    },
+    {
+      "model": "shruti",
+      "language": "hinglish",
+      "clips": 10,
+      "referenceWords": 149,
+      "errors": 28,
+      "romanizedWer": 0.18791946308724833,
+      "secondsOfAudio": 68.225,
+      "inferenceSeconds": 19.533399999998508,
+      "realTimeFactor": 0.2863085379259584,
+      "loadMs": 1364.5999999977648,
+      "validTimingTokens": 141,
+      "totalTimingTokens": 142,
+      "wasmHeapMax": 85327872
+    },
+    {
+      "model": "tiny",
+      "language": "hindi",
+      "clips": 10,
+      "referenceWords": 267,
+      "errors": 830,
+      "romanizedWer": 3.108614232209738,
+      "secondsOfAudio": 113.63999999999999,
+      "inferenceSeconds": 119.61299999999628,
+      "realTimeFactor": 1.0525607180569896,
+      "loadMs": 11542.5,
+      "validTimingTokens": 164,
+      "totalTimingTokens": 811,
+      "wasmHeapMax": null
+    },
+    {
+      "model": "tiny",
+      "language": "hinglish",
+      "clips": 10,
+      "referenceWords": 149,
+      "errors": 210,
+      "romanizedWer": 1.4093959731543624,
+      "secondsOfAudio": 68.225,
+      "inferenceSeconds": 94.58930000001938,
+      "realTimeFactor": 1.3864316599489832,
+      "loadMs": 11542.5,
+      "validTimingTokens": 111,
+      "totalTimingTokens": 181,
+      "wasmHeapMax": null
+    },
+    {
+      "model": "base",
+      "language": "hindi",
+      "clips": 10,
+      "referenceWords": 267,
+      "errors": 660,
+      "romanizedWer": 2.4719101123595504,
+      "secondsOfAudio": 113.63999999999999,
+      "inferenceSeconds": 278.16159999999405,
+      "realTimeFactor": 2.4477437521998775,
+      "loadMs": 12945.29999999702,
+      "validTimingTokens": 270,
+      "totalTimingTokens": 665,
+      "wasmHeapMax": null
+    },
+    {
+      "model": "base",
+      "language": "hinglish",
+      "clips": 6,
+      "referenceWords": 103,
+      "errors": 228,
+      "romanizedWer": 2.2135922330097086,
+      "secondsOfAudio": 47.025,
+      "inferenceSeconds": 285.536400000006,
+      "realTimeFactor": 6.072012759170781,
+      "loadMs": 12945.29999999702,
+      "validTimingTokens": 50,
+      "totalTimingTokens": 431,
+      "wasmHeapMax": null
+    },
+    {
+      "model": "shruti-english",
+      "language": "english",
+      "clips": 5,
+      "referenceWords": 104,
+      "errors": 18,
+      "romanizedWer": 0.17307692307692307,
+      "secondsOfAudio": 40.86,
+      "inferenceSeconds": 10.73689999999851,
+      "realTimeFactor": 0.2627728830151373,
+      "loadMs": 4512.60000000149,
+      "validTimingTokens": 105,
+      "totalTimingTokens": 105,
+      "wasmHeapMax": 71106560
+    },
+    {
+      "model": "tiny-english",
+      "language": "english",
+      "clips": 5,
+      "referenceWords": 104,
+      "errors": 33,
+      "romanizedWer": 0.3173076923076923,
+      "secondsOfAudio": 40.86,
+      "inferenceSeconds": 47.79409999999404,
+      "realTimeFactor": 1.1697038668623112,
+      "loadMs": 11628.10000000149,
+      "validTimingTokens": 107,
+      "totalTimingTokens": 107,
+      "wasmHeapMax": null
+    },
+    {
+      "model": "base-english",
+      "language": "english",
+      "clips": 5,
+      "referenceWords": 104,
+      "errors": 12,
+      "romanizedWer": 0.11538461538461539,
+      "secondsOfAudio": 40.86,
+      "inferenceSeconds": 64.45340000001342,
+      "realTimeFactor": 1.577420460108013,
+      "loadMs": 18972,
+      "validTimingTokens": 103,
+      "totalTimingTokens": 103,
+      "wasmHeapMax": null
+    }
+  ],
+  "corpus": [
+    {
+      "id": "hi-0",
+      "source": "google/fleurs",
+      "sourceRow": 0,
+      "language": "hindi",
+      "duration": 9.12,
+      "audioSha256": "217f3abbd8e9cd3767d6e8b87d49fbf82421fc920a103de026b4586d7e644dc5"
+    },
+    {
+      "id": "hi-1",
+      "source": "google/fleurs",
+      "sourceRow": 1,
+      "language": "hindi",
+      "duration": 13.8,
+      "audioSha256": "b63e6ae5a8a5b53fcd5b60c467790baca13ca0c8490d35418d692ef7751a5459"
+    },
+    {
+      "id": "hi-2",
+      "source": "google/fleurs",
+      "sourceRow": 2,
+      "language": "hindi",
+      "duration": 15.0,
+      "audioSha256": "6c1e02d23469dcb2717843a2f4db5f363841a4967376fb587a902fea992c8868"
+    },
+    {
+      "id": "hi-3",
+      "source": "google/fleurs",
+      "sourceRow": 3,
+      "language": "hindi",
+      "duration": 5.1,
+      "audioSha256": "e15385240ea707ea4edfce9db06808efc73658090d132015b8baee99514e2f30"
+    },
+    {
+      "id": "hi-4",
+      "source": "google/fleurs",
+      "sourceRow": 4,
+      "language": "hindi",
+      "duration": 13.2,
+      "audioSha256": "ebe88dec83ef1fc371bb3b5f6343cd8920d275a8a281b9976977d71a838bc2f4"
+    },
+    {
+      "id": "hi-5",
+      "source": "google/fleurs",
+      "sourceRow": 5,
+      "language": "hindi",
+      "duration": 10.62,
+      "audioSha256": "b853e4f4cc9e2c0e312a8ae0ce59bc3637319866de1a674045e0de3f5d240693"
+    },
+    {
+      "id": "hi-6",
+      "source": "google/fleurs",
+      "sourceRow": 6,
+      "language": "hindi",
+      "duration": 17.1,
+      "audioSha256": "c1c970d98d4ac10c9fe8e5eb7e22779945ff8fb75c71bf384ba2709261210c65"
+    },
+    {
+      "id": "hi-7",
+      "source": "google/fleurs",
+      "sourceRow": 7,
+      "language": "hindi",
+      "duration": 8.22,
+      "audioSha256": "1627aac0f973d5bf25cbfe47cd0185538858b76c88a944fe9e7d7d89e068b932"
+    },
+    {
+      "id": "hi-8",
+      "source": "google/fleurs",
+      "sourceRow": 8,
+      "language": "hindi",
+      "duration": 7.8,
+      "audioSha256": "a8e30e9bf7c9e9ece854275692c8ca7d0a2e4045e09197220ce1bda41fc6fb09"
+    },
+    {
+      "id": "hi-9",
+      "source": "google/fleurs",
+      "sourceRow": 9,
+      "language": "hindi",
+      "duration": 13.68,
+      "audioSha256": "4cbdfdd0d2e1e986955475152cffa0c28a85792873c6ffa47504842a490c3111"
+    },
+    {
+      "id": "mix-0",
+      "source": "dianavdavidson/MUCS-Hinglish",
+      "sourceRow": 0,
+      "language": "hinglish",
+      "duration": 8.275,
+      "audioSha256": "a5c06d1063825a37962386d9bab8016060768f78296f149d93376699b51fb24f"
+    },
+    {
+      "id": "mix-1",
+      "source": "dianavdavidson/MUCS-Hinglish",
+      "sourceRow": 1,
+      "language": "hinglish",
+      "duration": 13.55,
+      "audioSha256": "2b5ad80d78a230d2aa00d8aa7576465a02b99cd8b5d2ec8ee7020221f18843b1"
+    },
+    {
+      "id": "mix-2",
+      "source": "dianavdavidson/MUCS-Hinglish",
+      "sourceRow": 2,
+      "language": "hinglish",
+      "duration": 8.55,
+      "audioSha256": "6144b783786228cd5cff6b290996877a81287ef85aff8ff642bfc4ccf6b0d5f5"
+    },
+    {
+      "id": "mix-3",
+      "source": "dianavdavidson/MUCS-Hinglish",
+      "sourceRow": 3,
+      "language": "hinglish",
+      "duration": 6.55,
+      "audioSha256": "a1c091db410920e87d796884526819af2eb70c49ea8c2351ab299a025c00d90f"
+    },
+    {
+      "id": "mix-4",
+      "source": "dianavdavidson/MUCS-Hinglish",
+      "sourceRow": 4,
+      "language": "hinglish",
+      "duration": 4.55,
+      "audioSha256": "b058a585ed1ae09346910b75ac4acae29e83d011d6ad47ddb154c2e2acb93a4e"
+    },
+    {
+      "id": "mix-5",
+      "source": "dianavdavidson/MUCS-Hinglish",
+      "sourceRow": 5,
+      "language": "hinglish",
+      "duration": 5.55,
+      "audioSha256": "76e01e4481986ba5d4c51ac74fa5cceb107364f8e730eda6625834bf88277590"
+    },
+    {
+      "id": "mix-6",
+      "source": "dianavdavidson/MUCS-Hinglish",
+      "sourceRow": 6,
+      "language": "hinglish",
+      "duration": 5.55,
+      "audioSha256": "a326f68bfea6f40daec8252a9ed60adbff7377d44ff04ddd9e28365e561f274b"
+    },
+    {
+      "id": "mix-7",
+      "source": "dianavdavidson/MUCS-Hinglish",
+      "sourceRow": 7,
+      "language": "hinglish",
+      "duration": 3.55,
+      "audioSha256": "9927067c6339b302649c708ec07acae716066a6cb77f67034ae1b37f64cb9b53"
+    },
+    {
+      "id": "mix-8",
+      "source": "dianavdavidson/MUCS-Hinglish",
+      "sourceRow": 8,
+      "language": "hinglish",
+      "duration": 3.55,
+      "audioSha256": "32430adc768e72f9206d3afdbebc20bed3f3f1b1ffd0e99738e9949305bd75d1"
+    },
+    {
+      "id": "mix-9",
+      "source": "dianavdavidson/MUCS-Hinglish",
+      "sourceRow": 9,
+      "language": "hinglish",
+      "duration": 8.55,
+      "audioSha256": "95fd0fbd97e9fe52a36c5a9369185be367d9e86b0bfe2de22e77aa0ff8471852"
+    },
+    {
+      "id": "en-0",
+      "source": "google/fleurs",
+      "sourceRow": 0,
+      "language": "english",
+      "duration": 10.56,
+      "audioSha256": "33aca50159ec2e3cbcc894eb26faa916d6badb1b49fb75994973561540a7f012"
+    },
+    {
+      "id": "en-1",
+      "source": "google/fleurs",
+      "sourceRow": 1,
+      "language": "english",
+      "duration": 8.76,
+      "audioSha256": "7603cae3294309ef70d234180cefccc3b13865ee525262228a636069b9b62841"
+    },
+    {
+      "id": "en-2",
+      "source": "google/fleurs",
+      "sourceRow": 2,
+      "language": "english",
+      "duration": 11.46,
+      "audioSha256": "260bdd1a15e1d35bcc5d91667516ca3bc659285e10f94872182715bcd7880398"
+    },
+    {
+      "id": "en-3",
+      "source": "google/fleurs",
+      "sourceRow": 3,
+      "language": "english",
+      "duration": 5.76,
+      "audioSha256": "b174be7730f0aab6a26762130b66f2125392b50550645727bd057d8479fb6219"
+    },
+    {
+      "id": "en-4",
+      "source": "google/fleurs",
+      "sourceRow": 4,
+      "language": "english",
+      "duration": 4.32,
+      "audioSha256": "bfa2f3fb72a05cbcb7c0000a460435f2d0eedca7c5cc90f01aacc89127df7f63"
+    }
+  ],
+  "productionWorker": {
+    "shortClipsPassed": 20,
+    "shortClipWasmLinearHeapBytes": 71106560,
+    "highAccuracyHindiPassed": true,
+    "stress180": {
+      "firstMs": 68527,
+      "words": 409,
+      "wasmLinearHeapBytes": 122945536,
+      "accuracyTest": false
+    },
+    "actualShrutiMp4": {
+      "actualShrutiWords": true,
+      "captionVisible": true,
+      "fullyDecoded": true,
+      "width": 720,
+      "height": 1280,
+      "audio": {
+        "lagSamples": 0,
+        "correlation": 1
+      },
+      "duration": 9.125
+    }
+  }
+}
