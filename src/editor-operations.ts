@@ -3,7 +3,7 @@ export type BulkAction = 'punctuation' | 'emphasis' | 'gaps' | 'emojis';
 export function bulkEdit(words:Word[],action:BulkAction):Word[]{
  if(action==='emphasis')return words.map(w=>({...w,emphasis:false}));
  if(action==='gaps')return words.map((w,i)=>({...w,end:words[i+1]?.start??w.end}));
- return words.map(w=>({...w,text:w.text.replace(action==='punctuation'?/[\p{P}]/gu:/[\p{Extended_Pictographic}\uFE0F\u200D]/gu,'').trim()})).filter(w=>w.text);
+ return words.map(w=>({...w,text:w.text.replace(action==='punctuation'?/[\p{P}]/gu:/(?:\p{Regional_Indicator}{2}|[#*0-9]\uFE0F?\u20E3|\p{Extended_Pictographic}(?:\uFE0F|\p{Emoji_Modifier})?(?:\u200D\p{Extended_Pictographic}(?:\uFE0F|\p{Emoji_Modifier})?)*)/gu,'').trim()})).filter(w=>w.text);
 }
 export function delayWords(words:Word[],delta:number,duration:number):Word[]{
  if(!words.length)return words;

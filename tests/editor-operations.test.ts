@@ -6,6 +6,7 @@ import type { Word } from '../src/types';
 const words:Word[]=[{id:'a',text:'Bhai,',start:1,end:1.3,emphasis:true},{id:'b',text:'AI',start:1.5,end:2},{id:'c',text:'tool!🔥',start:2.1,end:3}];
 describe('editor operations share timed source data',()=>{
  it('removes punctuation and emoji without rewriting words or changing times',()=>{expect(bulkEdit(words,'punctuation').map(w=>w.text)).toEqual(['Bhai','AI','tool🔥']);expect(bulkEdit(words,'emojis')[2].text).toBe('tool!');expect(bulkEdit(words,'emphasis').every(w=>!w.emphasis)).toBe(true);expect(bulkEdit(words,'gaps').map(w=>w.end)).toEqual([1.5,2.1,3]);});
+ it('removes complete emoji sequences while preserving Hindi joiners and numbers',()=>{const next=bulkEdit([{...words[0],text:'Hi 👍🏽 🇮🇳 👨‍👩‍👧 1️⃣ 123 क्‍ष'}],'emojis');expect(next[0].text).toBe('Hi     123 क्‍ष');});
  it('clamps bulk delay to the available source duration',()=>{expect(delayWords(words,-5,4)[0].start).toBe(0);expect(delayWords(words,5,4).at(-1)!.end).toBe(4);expect(delayWords(words,.4,4)[1].start).toBe(1.9);});
  it('moves phrases together without crossing neighbors',()=>{const next=retime(words,['a','b'],5,'move',4);expect(next[1].end).toBe(2.1);expect(next[1].start-next[0].start).toBeCloseTo(.5);expect(validateWords(next,4)).toHaveLength(3);});
  it('clamps resize to neighbors and a positive duration',()=>{expect(retime(words,['b'],-9,'start',4)[1].start).toBe(1.3);expect(retime(words,['b'],9,'end',4)[1].end).toBe(2.1);expect(retime(words,['b'],-9,'end',4)[1].end).toBeCloseTo(1.52);});
