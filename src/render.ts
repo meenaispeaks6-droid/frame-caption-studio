@@ -1,4 +1,5 @@
 import type { CaptionStyle, Word } from './types';
+import { motionAt } from './motion';
 import { activeGroup } from './captions';
 type Context = CanvasRenderingContext2D | OffscreenCanvasRenderingContext2D;
 const clamp=(v:number)=>Math.max(0,Math.min(1,v));
@@ -6,15 +7,15 @@ function hexToRgba(hex:string,alpha:number){const m=/^#([a-f\d]{2})([a-f\d]{2})(
 export function spring(t:number,frequency=17,damping=9){return 1-Math.exp(-Math.max(0,t)*damping)*Math.cos(Math.max(0,t)*frequency);}
 // The reference holds complete, handwritten phrases still, then replaces them.
 // Shape each line as one string so spacing/kerning never shifts between words.
-function drawHandwritten(ctx:Context,width:number,height:number,time:number,group:Word[],s:CaptionStyle){
+function drawHandwritten(ctx:Context,width:number,height:number,time:number,group:Word[],s:CaptionStyle,alpha=1){
  const unit=Math.min(width,height)/720,strength=s.strength/100;
  const texts=group.map(w=>s.uppercase?w.text.toLocaleUpperCase():w.text);
  let fs=s.size*unit,lines:string[]=[];
  for(let attempt=0;attempt<16;attempt++){
-  ctx.font=`400 ${fs}px "${s.font}", "Noto Sans Devanagari", sans-serif`;
+  ctx.font=`${s.italic?"italic ":""}${s.weight??400} ${fs}px "${s.font}", "Noto Sans Devanagari", sans-serif`;
   lines=[''];
   for(const text of texts){const last=lines.length-1,next=lines[last]?`${lines[last]} ${text}`:text;if(lines[last]&&ctx.measureText(next).width>width*.84)lines.push(text);else lines[last]=next;}
-  if(lines.length<=2&&lines.every(line=>ctx.measureText(line).width<=width*.84))break;
+  if(lines.length<=(s.lines??2)&&lines.every(line=>ctx.measureText(line).width<=width*.84))break;
   fs*=.88;
  }
  const age=time-group[0].start,remaining=group.at(-1)!.end-time;
@@ -24,41 +25,47 @@ function drawHandwritten(ctx:Context,width:number,height:number,time:number,grou
  const pad=Math.max(12*unit,fs*.25+s.stroke*unit),half=Math.max(...lines.map(line=>ctx.measureText(line).width))/2;
  const baseX=Math.max(half+pad,Math.min(width-half-pad,width*(s.positionX??50)/100));
  const baseY=Math.min(height-30*unit-lineHeight*lines.length/2,Math.max(30*unit+lineHeight*lines.length/2,height*s.position/100));
- ctx.globalAlpha=Math.min(enter,exit);ctx.textAlign='center';ctx.textBaseline='alphabetic';ctx.lineJoin='round';
+ ctx.globalAlpha=Math.min(enter,exit)*alpha;ctx.textAlign='center';ctx.textBaseline='alphabetic';ctx.lineJoin='round';
  ctx.shadowColor=`rgba(0,0,0,${s.shadow/100})`;ctx.shadowBlur=fs*.12;ctx.shadowOffsetY=fs*.035;
  lines.forEach((line,i)=>{
   const m=ctx.measureText(line),y=baseY+(i-(lines.length-1)/2)*lineHeight+(m.actualBoundingBoxAscent-m.actualBoundingBoxDescent)/2+(1-eased)*fs*.12*strength;
-  if(s.stroke>0){ctx.strokeStyle=s.strokeColor;ctx.lineWidth=s.stroke*unit*2;ctx.strokeText(line,baseX,y);}
-  ctx.fillStyle=s.color;ctx.fillText(line,baseX,y);
+  const x=baseX+(s.align==='left'?-(half-m.width/2):s.align==='right'?(half-m.width/2):0);
+  if(s.background){ctx.save();ctx.fillStyle=s.background;ctx.fillRect(x-m.width/2-fs*.2,y-m.actualBoundingBoxAscent-fs*.15,m.width+fs*.4,fs*1.4);ctx.restore();}
+  if(s.stroke>0){ctx.strokeStyle=s.strokeColor;ctx.lineWidth=s.stroke*unit*2;ctx.strokeText(line,x,y);}
+  ctx.fillStyle=s.color;ctx.fillText(line,x,y);if(s.underline)ctx.fillRect(x-m.width/2,y+fs*.12,m.width,Math.max(1,fs*.045));
  });
  return {x:baseX-half-pad,y:baseY-lineHeight*lines.length/2-pad,width:2*(half+pad),height:lineHeight*lines.length+2*pad};
 }
 export function drawCaptions(ctx:Context,width:number,height:number,time:number,groups:Word[][],s:CaptionStyle){
+ if(s.mask){const m=s.mask;ctx.save();ctx.fillStyle=m.color;ctx.fillRect(width*m.x/100,height*m.y/100,width*m.width/100,height*m.height/100);ctx.restore();}
  const active=activeGroup(groups,time);if(!active)return;
  // Wrap phrase fallback text naturally while retaining its one real time
  // window. Every visual token enters together; no word times are invented.
  const group=active.flatMap(word=>word.timing==='segment'?word.text.split(/\s+/).filter(Boolean).map(text=>({...word,text})): [word]);
  ctx.save();
- if(s.preset==='handwritten'){const bounds=drawHandwritten(ctx,width,height,time,group,s);ctx.restore();return bounds;}
+ const motion=motionAt(active[0].transitions??s.transitions,time-active[0].start,active.at(-1)!.end-time);
+ const cx=width*(s.positionX??50)/100,cy=height*s.position/100;
+ ctx.translate(cx+motion.x*Math.min(width,height)/720,cy+motion.y*Math.min(width,height)/720);ctx.rotate(motion.rotate);ctx.scale(motion.scale,motion.scale);ctx.translate(-cx,-cy);
+ if(s.preset==='handwritten'&&!group.some(w=>w.wordTransitions)){const bounds=drawHandwritten(ctx,width,height,time,group,s,motion.alpha);ctx.restore();return bounds;}
  const unit=Math.min(width,height)/720, strength=s.strength/100;
  let fs=s.size*unit;
  const fontFamily=`"${s.font}", "Noto Sans Devanagari", sans-serif`;
- const weight=s.preset==='cinematic'?600:800;
+ const weight=s.weight??(s.preset==='handwritten'?400:s.preset==='cinematic'?600:800);
  const texts=group.map(w=>s.uppercase?w.text.toLocaleUpperCase():w.text);
  let widths:number[]=[];let lines:number[][]=[];let gap=0;
  // Fit the whole phrase in two lines, including unusually long manual words.
  for(let attempt=0;attempt<12;attempt++){
-  ctx.font=`${weight} ${fs}px ${fontFamily}`;gap=fs*.24;
+  ctx.font=`${s.italic?"italic ":""}${weight} ${fs}px ${fontFamily}`;gap=fs*.24;
   widths=texts.map(t=>ctx.measureText(t).width);lines=[[]];let rowWidth=0;
   widths.forEach((w,i)=>{if(rowWidth+w>width*.84&&lines.at(-1)!.length){lines.push([]);rowWidth=0;}lines.at(-1)!.push(i);rowWidth+=w+gap;});
-  if(lines.length<=2 && Math.max(...widths)<width*.84)break;fs*=.88;
+  if(lines.length<=(s.lines??2) && Math.max(...widths)<width*.84)break;fs*=.88;
  }
  const lineHeight=fs*(s.font==='Noto Sans Devanagari'?1.55:1.34);
  const elapsed=time-group[0].start,remaining=group.at(-1)!.end-time;
  const cinematic=s.preset==='cinematic';
  const enter=cinematic?clamp(elapsed/.22):1;
  const exit=cinematic?clamp(remaining/.16):1;
- ctx.globalAlpha=Math.min(enter,exit);ctx.textBaseline='middle';ctx.textAlign='center';ctx.lineJoin='round';
+ ctx.globalAlpha=Math.min(enter,exit)*motion.alpha;ctx.textBaseline='middle';ctx.textAlign='center';ctx.lineJoin='round';
  if(s.letterSpacing)(ctx as unknown as {letterSpacing:string}).letterSpacing=`${s.letterSpacing}px`;
  const maxWidth=Math.max(...lines.map(line=>line.reduce((acc,i)=>acc+widths[i],0)+gap*(line.length-1)));
  const pad=Math.max(14*unit,fs*.3+s.stroke*unit);
@@ -66,8 +73,9 @@ export function drawCaptions(ctx:Context,width:number,height:number,time:number,
  const baseY=Math.min(height-lineHeight*lines.length/2-25*unit,Math.max(lineHeight*lines.length/2+25*unit,height*s.position/100));
  lines.forEach((line,li)=>{
   const lineWidth=line.reduce((acc,i)=>acc+widths[i],0)+gap*(line.length-1);
-  let x=baseX-lineWidth/2;
+  let x=baseX-lineWidth/2+(s.align==='left'?-(maxWidth-lineWidth)/2:s.align==='right'?(maxWidth-lineWidth)/2:0);
   const y=baseY+(li-(lines.length-1)/2)*lineHeight+(cinematic?(1-enter)*fs*.2*strength:0);
+  if(s.background){ctx.save();ctx.fillStyle=s.background;ctx.fillRect(x-fs*.2,y-fs*.68,lineWidth+fs*.4,fs*1.36);ctx.restore();}
   if(s.box==='line-pill'&&s.boxColor){ctx.save();ctx.fillStyle=s.boxColor;ctx.beginPath();ctx.roundRect(baseX-lineWidth/2-fs*.35,y-fs*.68,lineWidth+fs*.7,fs*1.36,fs*.34);ctx.fill();ctx.restore();}
   line.forEach(i=>{
    const word=group[i],active=time>=word.start&&time<word.end,age=Math.max(0,time-word.start),future=time<word.start;
@@ -80,7 +88,8 @@ export function drawCaptions(ctx:Context,width:number,height:number,time:number,
    if(!future && s.preset==='neon'){scale=1+(spring(age,20,10)-1)*.2*strength;}
    if(!future && s.preset==='glass'){scale=1+(spring(age,18,9)-1)*.18*strength;}
    const emphasized=active||word.emphasis;
-   ctx.save();ctx.translate(x+widths[i]/2,y+dy);ctx.rotate(angle);ctx.scale(scale,scale);
+   const wm=motionAt(word.wordTransitions,time-word.start,word.end-time);
+   ctx.save();ctx.globalAlpha*=wm.alpha;ctx.translate(x+widths[i]/2+wm.x*unit,y+dy+wm.y*unit);ctx.rotate(angle+wm.rotate);ctx.scale(scale*wm.scale,scale*wm.scale);
    ctx.shadowColor=`rgba(0,0,0,${s.shadow/100})`;ctx.shadowBlur=s.shadow/100*fs*.24;ctx.shadowOffsetY=s.shadow/100*fs*.08;
    if(s.glow){ctx.shadowColor=s.accent;ctx.shadowBlur=s.glow/100*fs*.6;ctx.shadowOffsetY=0;}
    if(s.preset==='power'&&emphasized){ctx.fillStyle=s.accent;ctx.beginPath();ctx.roundRect(-widths[i]/2-fs*.12,-fs*.65,widths[i]+fs*.24,fs*1.3,fs*.1);ctx.fill();ctx.shadowColor='transparent';}
@@ -105,6 +114,7 @@ export function drawCaptions(ctx:Context,width:number,height:number,time:number,
      cx+=charWidths[ci];
     });
    } else ctx.fillText(texts[i],0,0);
+   if(s.underline){ctx.fillRect(-widths[i]/2,fs*.55,widths[i],Math.max(1,fs*.045));}
    if(s.scribble&&emphasized){
     ctx.strokeStyle=s.accent;ctx.lineWidth=Math.max(2,fs*.07);ctx.lineCap='round';ctx.beginPath();
     const w=widths[i]/2,y2=fs*.62;ctx.moveTo(-w,y2);
