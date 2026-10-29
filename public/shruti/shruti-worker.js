@@ -14,7 +14,7 @@
  * _needle_stream_transcribe_stop take about one second of audio at a time. See needle.h in Cactus-Compute/needle3.
  */
 'use strict'
-importScripts('needle/needle.js') /* global createNeedle */
+importScripts('timing.js', 'needle/needle.js') /* global createNeedle */
 
 var CACHE_NAME = 'shruti-example-v1'
 var MAGIC = [0x84, 0x2a, 0xe1, 0x05] // the first four bytes of every .cact file
@@ -203,6 +203,7 @@ function transcribeCaptionWindow(pcm, language) {
 
 async function runCaptionJob(msg) {
   var transcript = []
+  var words = []
   try {
     if (!loaded) {
       await init({ url: SHRUTI_MODEL_URL, sha256: SHRUTI_SHA, bytes: SHRUTI_BYTES })
@@ -214,9 +215,7 @@ async function runCaptionJob(msg) {
     var windowLength = 28 * SR
     var total = Math.ceil(audio.length / windowLength)
     var language = msg.language === 'english' ? 'en' : null
-    var words = []
     var detectedLanguage = null
-    var lastEnd = 0
     var started = performance.now()
     for (var i = 0; i < total; i++) {
       send({type:'stage', label:'Shruti · processing speech window ' + (i + 1) + ' of ' + total})
@@ -225,29 +224,15 @@ async function runCaptionJob(msg) {
       var result = transcribeCaptionWindow(segment, language)
       if (result.text && result.text.trim()) transcript.push(result.text.trim())
       if (result.language) detectedLanguage = result.language
-      var segments = Array.isArray(result.words) ? result.words : []
-      if (result.text && result.text.trim() && !segments.length) {
-        throw new Error('Shruti produced text but no real word timestamps. Use Whisper or correct the saved draft.')
-      }
-      for (var j = 0; j < segments.length; j++) {
-        var w = segments[j]
-        var word = String(w.word || w.text || '').trim()
-        if (!word) continue
-        var a = Number(w.start) + startSample / SR
-        var b = Number(w.end) + startSample / SR
-        if (!Number.isFinite(a) || !Number.isFinite(b) || a < 0 || b <= a || a + 0.05 < lastEnd || b > audio.length / SR + 0.1) {
-          throw new Error('Shruti returned invalid word timing. Its raw transcript was preserved.')
-        }
-        a = Math.max(a, lastEnd)
-        if (b <= a) throw new Error('Shruti returned overlapping word times. Its raw transcript was preserved.')
-        words.push({id: self.crypto.randomUUID(), text: word, start: a, end: b, timing: 'word'})
-        lastEnd = b
-      }
+      var aligned = recoverShrutiTiming(result, segment.length / SR, startSample / SR)
+      words.push.apply(words, aligned)
+
     }
     send({type:'done', words:words, translated:false, timingEstimated:false,
-      usedPhraseTiming:false, detectedLanguage:detectedLanguage, elapsedMs: performance.now()-started,
-      warnings: ['Shruti is experimental. Review word accuracy and timings, especially across 28-second boundaries.']})
+      usedPhraseTiming:words.some(function(w){return w.timing==='segment'}), detectedLanguage:detectedLanguage, elapsedMs: performance.now()-started,
+      warnings: [words.some(function(w){return w.timing==='segment'}) ? 'Some native word timings overlapped or had zero duration. Those words were preserved as phrase captions; review their timing.' : 'Shruti is experimental. Review word accuracy and timings, especially across 28-second boundaries.']})
   } catch (e) {
-    send({type:'error', message: String(e && e.message || e), draftTranscript:transcript.join('\n') || undefined})
+    if(words.length) send({type:'done',words:words,translated:false,timingEstimated:false,usedPhraseTiming:words.some(function(w){return w.timing==='segment'}),draftTranscript:transcript.join('\n'),warnings:['Only part of the recording was timed. The recognized transcript is saved for review. '+String(e && e.message || e)]})
+    else send({type:'error', message: String(e && e.message || e), draftTranscript:transcript.join('\n') || undefined})
   }
 }

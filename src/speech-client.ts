@@ -22,7 +22,7 @@ export class SpeechClient {
     const worker=this.worker??=this.factory();
     worker.onmessage=({data})=>{
      if(this.active!==job)return;
-     if(data.type==='done'){this.cache.set(key,structuredClone(data));while(this.cache.size>3)this.cache.delete(this.cache.keys().next().value!);finish();}
+     if(data.type==='done'){if(!data.draftTranscript)this.cache.set(key,structuredClone(data));while(this.cache.size>3)this.cache.delete(this.cache.keys().next().value!);finish();}
      else if(data.type==='error')finish();
      onMessage(data);
     };
