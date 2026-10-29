@@ -6,4 +6,5 @@ import '@fontsource-variable/nunito';
 import '@fontsource-variable/noto-sans-devanagari';
 import App from './App';
 import './styles.css';
+import './editor.css';
 createRoot(document.getElementById('root')!).render(<React.StrictMode><App/></React.StrictMode>);

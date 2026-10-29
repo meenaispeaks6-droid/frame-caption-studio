@@ -6,7 +6,7 @@ import { drawCaptions } from './render';
 import { loadFonts } from './fonts';
 export async function renderVideo(file:File,info:MediaInfo,words:Word[],style:CaptionStyle,options:ExportOptions,signal:AbortSignal,progress:(n:number)=>void,fallback=false){
  await loadFonts();
- const groups=groupWords(words,style.grouping);let width=0,height=0;
+ const groups=groupWords(words,style.grouping,style.maxChars??24);let width=0,height=0;
  const painter:FramePainter={
   async begin(w,h){width=w;height=h;},lookAhead:()=>1,
   async paint(requests){return requests.map(({frame})=>ctx=>{ctx.imageSmoothingEnabled=true;ctx.imageSmoothingQuality='high';frame.draw(ctx,0,0,width,height);drawCaptions(ctx,width,height,frame.timestamp,groups,style);});},end(){}

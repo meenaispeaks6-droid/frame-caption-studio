@@ -1,3 +1,4 @@
+import { readTransitions } from './motion';
 import type { Word } from './types';
 export const uid = () => crypto.randomUUID();
 export function validateWords(value: unknown, duration=Infinity): Word[] {
@@ -7,15 +8,15 @@ export function validateWords(value: unknown, duration=Infinity): Word[] {
   const w=v as Word;
   if(!w || typeof w.text!=='string'||!w.text.trim()||w.text.length>(w.timing==='segment'?4000:160)||!Number.isFinite(w.start)||!Number.isFinite(w.end)||w.start<previous||w.start<0||w.end<=w.start||w.end>duration+.1) throw new Error(`Check word ${i+1}: use text and increasing times within the video.`);
   previous=w.end;
-  return {id:typeof w.id==='string'?w.id:uid(),text:w.text.trim(),start:w.start,end:w.end,emphasis:!!w.emphasis,breakAfter:!!w.breakAfter,timing:['word','segment','estimated'].includes(w.timing??'')?w.timing:undefined};
+  return {id:typeof w.id==='string'?w.id:uid(),text:w.text.trim(),start:w.start,end:w.end,emphasis:!!w.emphasis,breakAfter:!!w.breakAfter,joinAfter:!!w.joinAfter,transitions:readTransitions(w.transitions),wordTransitions:readTransitions(w.wordTransitions),timing:['word','segment','estimated'].includes(w.timing??'')?w.timing:undefined};
  });
 }
-export function groupWords(words:Word[],count:number):Word[][] {
+export function groupWords(words:Word[],count:number,maxChars=Infinity):Word[][] {
  const groups:Word[][]=[]; let current:Word[]=[];
  for(const word of words){
-  if(current.length && (word.timing==='segment' || current.at(-1)?.timing==='segment' || current.length>=count || word.start-current[current.length-1].end>.6)){groups.push(current);current=[];}
+  if(current.length && (word.timing==='segment' || current.at(-1)?.timing==='segment' || (!current.at(-1)?.joinAfter&&(current.length>=count || current.reduce((n,w)=>n+w.text.length+1,0)+word.text.length>maxChars)) || word.start-current[current.length-1].end>.6)){groups.push(current);current=[];}
   current.push(word);
-  if(word.breakAfter || /[.!?।]$/.test(word.text)){groups.push(current);current=[];}
+  if(word.breakAfter || (!word.joinAfter&&/[.!?।]$/.test(word.text))){groups.push(current);current=[];}
  }
  if(current.length)groups.push(current);
  return groups;
@@ -28,7 +29,7 @@ export function timeLabel(sec:number,ms=false){
  const ticks=ms?Math.round(Math.max(0,sec)*1000):Math.floor(Math.max(0,sec))*1000;return `${String(Math.floor(ticks/60000)).padStart(2,'0')}:${String(Math.floor(ticks/1000)%60).padStart(2,'0')}${ms?'.'+String(ticks%1000).padStart(3,'0'):''}`;
 }
 const srtTime=(t:number)=>`${String(Math.floor(t/3600)).padStart(2,'0')}:${timeLabel(t%3600,true).replace('.',',')}`;
-export function toSrt(words:Word[],grouping:number){return groupWords(words,grouping).map((g,i)=>`${i+1}\n${srtTime(g[0].start)} --> ${srtTime(g[g.length-1].end)}\n${g.map(w=>w.text).join(' ')}`).join('\n\n')+'\n';}
+export function toSrt(words:Word[],grouping:number,maxChars=Infinity){return groupWords(words,grouping,maxChars).map((g,i)=>`${i+1}\n${srtTime(g[0].start)} --> ${srtTime(g[g.length-1].end)}\n${g.map(w=>w.text).join(' ')}`).join('\n\n')+'\n';}
 export function parseSrt(text:string,duration:number):Word[]{
  const blocks=text.replace(/\r/g,'').trim().split(/\n\s*\n/);const words:Word[]=[];
  const parse=(v:string)=>{const p=v.replace(',','.').split(':').map(Number);return p.length===3?p[0]*3600+p[1]*60+p[2]:p[0]*60+p[1];};

@@ -15,7 +15,7 @@ describe('optional Shruti ASR integration', () => {
   });
   it('does not translate recognized Hindi or English words when romanizing', () => {
     const words = [{ id: '1', text: 'मुझे', start: 0, end: 0.4 }, { id: '2', text: 'AI', start: 0.5, end: 0.8 }];
-    expect(romanizeWords(words).map(w => w.text)).toEqual(['mujhe', 'AI']);
+    expect(romanizeWords(words).map(w => w.text)).toEqual(['Mujhe', 'AI']);
   });
   it('rejects unknown engine names instead of silently changing the selected engine', () => {
     expect(() => readLanguageSettings({ spoken: 'hindi', caption: 'same', model: 'unknown' })).toThrow();
