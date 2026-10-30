@@ -8,6 +8,11 @@ function recoverShrutiTiming(result, duration, offset) {
   if (!tokens.length || normalize(tokens.map(function (w) { return w.word || w.text || '' }).join(' ')) !== normalize(text)) {
     throw new Error('Shruti recognized speech but could not time every word. The transcript is saved; try Whisper Base or import subtitles.')
   }
+  // Decoder probabilities are useful review hints, not calibrated guarantees.
+  // A merged phrase carries the lowest available token probability.
+  function combineConfidence(a, b) {
+    return typeof a === 'number' && typeof b === 'number' ? Math.min(a, b) : typeof a === 'number' ? a : b
+  }
   var groups = [], pending = null
   for (var i = 0; i < tokens.length; i++) {
     var token = tokens[i], word = String(token.word || token.text || '').trim()
@@ -17,18 +22,19 @@ function recoverShrutiTiming(result, duration, offset) {
       throw new Error('Shruti returned unusable alignment boundaries. The transcript is saved; try Whisper Base or import subtitles.')
     }
     a = Math.max(0, Math.min(duration, a)); b = Math.max(a, Math.min(duration, b))
-    var current = {text:word,start:a,end:b,timing:'word'}
-    if (pending) { current.text = pending.text + ' ' + word; current.start = Math.min(pending.start,a); current.end = Math.max(pending.end,b); current.timing = 'segment'; pending = null }
+    var confidence = typeof token.probability === 'number' && Number.isFinite(token.probability) && token.probability >= 0 && token.probability <= 1 ? token.probability : undefined
+    var current = {text:word,start:a,end:b,timing:'word',confidence:confidence}
+    if (pending) { current.text = pending.text + ' ' + word; current.start = Math.min(pending.start,a); current.end = Math.max(pending.end,b); current.timing = 'segment'; current.confidence = combineConfidence(current.confidence, pending.confidence); pending = null }
     while (groups.length && (current.start < groups[groups.length-1].end || current.end === current.start)) {
       var previous = groups.pop()
-      current = {text:previous.text+' '+current.text,start:Math.min(previous.start,current.start),end:Math.max(previous.end,current.end),timing:'segment'}
+      current = {text:previous.text+' '+current.text,start:Math.min(previous.start,current.start),end:Math.max(previous.end,current.end),timing:'segment',confidence:combineConfidence(previous.confidence,current.confidence)}
     }
     if (current.end <= current.start) pending = current
     else groups.push(current)
   }
   if (pending) {
     if (!groups.length) throw new Error('Shruti recognized speech without a usable time interval. The transcript is saved; try Whisper Base.')
-    var last = groups[groups.length-1];last.text += ' '+pending.text;last.end = Math.max(last.end,pending.end);last.timing = 'segment'
+    var last = groups[groups.length-1];last.text += ' '+pending.text;last.end = Math.max(last.end,pending.end);last.timing = 'segment';last.confidence = combineConfidence(last.confidence,pending.confidence)
   }
-  return groups.map(function (g) {return {id:self.crypto.randomUUID(),text:g.text,start:g.start+offset,end:g.end+offset,timing:g.timing}})
+  return groups.map(function (g) {return {id:self.crypto.randomUUID(),text:g.text,start:g.start+offset,end:g.end+offset,timing:g.timing,...(typeof g.confidence === 'number' ? {confidence:g.confidence} : {})}})
 }
