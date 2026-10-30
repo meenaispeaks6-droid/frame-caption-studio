@@ -11,7 +11,8 @@
     "test:browser": "node tests/browser.mjs",
     "licenses": "node scripts/licenses.mjs",
     "test:caption-panel": "node tests/caption-panel-browser.mjs",
-    "test:templates": "node tests/new-template-exports.mjs"
+    "test:templates": "node tests/new-template-exports.mjs",
+    "test:styles": "node tests/caption-style-layout.mjs"
   },
   "dependencies": {
     "@fontsource-variable/inter": "^5.2.8",
