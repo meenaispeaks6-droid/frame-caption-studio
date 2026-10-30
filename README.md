@@ -1,4 +1,4 @@
-# Frame — on-device caption studio
+# Capzi — on-device caption studio
 
 A complete static React/TypeScript application that imports local video, transcribes speech in a Web Worker, edits individual word timings, previews six animated caption styles, and exports real H.264 MP4 or VP9 WebM on the user's device. No account, API key, analytics, media upload, server processing, or paid service.
 
