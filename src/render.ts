@@ -86,18 +86,31 @@ export function drawCaptions(ctx:Context,width:number,height:number,time:number,
    if(!future && s.preset==='sticker'){scale=1+(spring(age,18,8)-1)*.22*strength;dy=-Math.sin(time*3+i*.7)*fs*.07*strength;angle=((s.rotate??0)*Math.PI)/180;}
    if(!future && s.preset==='blast'&&(active||word.emphasis))scale*=(s.emphasisScale??1.35);
    if(!future && s.preset==='neon'){scale=1+(spring(age,20,10)-1)*.2*strength;}
+   if(!future && s.preset==='neelneon'){scale=1+(spring(age,20,10)-1)*.2*strength;}
    if(!future && s.preset==='glass'){scale=1+(spring(age,18,9)-1)*.18*strength;}
+   if(!future && s.preset==='harabox'){scale=1+(spring(age,18,7)-1)*.22*strength;}
+   if(!future && s.preset==='scalegreen'&&(active||word.emphasis))scale*=(s.emphasisScale??1.3);
+   if(!future && s.preset==='gradkey'&&(active||word.emphasis))scale*=(s.emphasisScale??1.3);
+   if(s.riseFade&&!future)dy=(1-clamp(age/.25))*fs*.3*strength;
    const emphasized=active||word.emphasis;
    const wm=motionAt(word.wordTransitions,time-word.start,word.end-time);
-   ctx.save();ctx.globalAlpha*=wm.alpha;ctx.translate(x+widths[i]/2+wm.x*unit,y+dy+wm.y*unit);ctx.rotate(angle+wm.rotate);ctx.scale(scale*wm.scale,scale*wm.scale);
+   ctx.save();ctx.globalAlpha*=wm.alpha;
+   if((s.riseFade||s.fadeIn)&&future)ctx.globalAlpha=0;
+   if(s.fadeIn&&!future)ctx.globalAlpha*=clamp(age/.35);
+   if(s.riseFade&&!future)ctx.globalAlpha*=clamp(age/.25);
+   ctx.translate(x+widths[i]/2+wm.x*unit,y+dy+wm.y*unit);ctx.rotate(angle+wm.rotate);ctx.scale(scale*wm.scale,scale*wm.scale);
    ctx.shadowColor=`rgba(0,0,0,${s.shadow/100})`;ctx.shadowBlur=s.shadow/100*fs*.24;ctx.shadowOffsetY=s.shadow/100*fs*.08;
    if(s.glow){ctx.shadowColor=s.accent;ctx.shadowBlur=s.glow/100*fs*.6;ctx.shadowOffsetY=0;}
+   if(s.offsetShadow){ctx.shadowColor=s.accent;ctx.shadowBlur=s.shadow/100*fs*.12;ctx.shadowOffsetX=s.offsetShadow/100*fs*.22;ctx.shadowOffsetY=s.shadow/100*fs*.08;}
    if(s.preset==='power'&&emphasized){ctx.fillStyle=s.accent;ctx.beginPath();ctx.roundRect(-widths[i]/2-fs*.12,-fs*.65,widths[i]+fs*.24,fs*1.3,fs*.1);ctx.fill();ctx.shadowColor='transparent';}
    if(s.box==='word-pill'&&s.boxColor&&(!s.charReveal||!future)){ctx.fillStyle=s.boxColor;ctx.beginPath();ctx.roundRect(-widths[i]/2-fs*.22,-fs*.68,widths[i]+fs*.44,fs*1.36,fs*.3);ctx.fill();}
    if(s.box==='glass'&&s.boxColor){ctx.fillStyle=hexToRgba(s.boxColor,.22);ctx.beginPath();ctx.roundRect(-widths[i]/2-fs*.22,-fs*.68,widths[i]+fs*.44,fs*1.36,fs*.34);ctx.fill();}
    if(s.preset==='boxkaraoke'&&active){ctx.fillStyle=s.accent;ctx.beginPath();ctx.roundRect(-widths[i]/2-fs*.14,-fs*.65,widths[i]+fs*.28,fs*1.3,fs*.12);ctx.fill();ctx.shadowColor='transparent';}
+   if(s.marker&&emphasized){ctx.save();ctx.fillStyle=s.accent;ctx.globalAlpha*=.92;ctx.rotate(-.02);ctx.fillRect(-widths[i]/2-fs*.14,-fs*.42,widths[i]+fs*.28,fs*.72);ctx.restore();}
+   if(s.rectBox&&s.boxColor){ctx.fillStyle=s.boxColor;ctx.fillRect(-widths[i]/2-fs*.2,-fs*.68,widths[i]+fs*.4,fs*1.36);}
    if(s.stroke>0){ctx.strokeStyle=s.strokeColor;ctx.lineWidth=s.stroke*unit*2;if(!s.charReveal)ctx.strokeText(texts[i],0,0);}
    ctx.fillStyle=s.preset==='power'&&emphasized?'#15151c':s.preset==='boxkaraoke'&&active?s.color:emphasized&&!cinematic?s.accent:s.color;
+   if(s.gradient&&emphasized){const g=ctx.createLinearGradient(-widths[i]/2,0,widths[i]/2,0);g.addColorStop(0,s.accent);g.addColorStop(1,'#ffc46b');ctx.fillStyle=g;}
    if(future&&(s.preset==='impact'||s.preset==='desi'))ctx.globalAlpha*=.86;
    if(s.preset==='wide'){ctx.globalAlpha*=future?0:clamp(age/.4);}
    if(s.charReveal){
@@ -113,6 +126,7 @@ export function drawCaptions(ctx:Context,width:number,height:number,time:number,
      }
      cx+=charWidths[ci];
     });
+    if(s.cursor&&age>=0&&Math.sin(time*6)>-.4){const revealedX=-charTotal/2+chars.reduce((acc,_c,ci)=>acc+(age-ci*.07>=0?charWidths[ci]:0),0);ctx.save();ctx.fillStyle=s.accent;ctx.fillRect(revealedX, -fs*.62, Math.max(2,fs*.05), fs*1.24);ctx.restore();}
    } else ctx.fillText(texts[i],0,0);
    if(s.underline){ctx.fillRect(-widths[i]/2,fs*.55,widths[i],Math.max(1,fs*.045));}
    if(s.scribble&&emphasized){
