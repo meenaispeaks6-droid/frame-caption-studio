@@ -1,0 +1,286 @@
+{
+  "engineRevision": "3391a1007e7db31d2fe5c69c734bbe93a9c1ce79",
+  "modelSha256": "b189e954aaed4a9fd41acbad3ac05e486381e96325b22a4c695b9ea5153d7065",
+  "runtime": "Desktop Chromium, real WASM; cached model; alternating arm order; one run per clip/arm",
+  "references": "Existing dataset annotations, not independently manually re-reviewed for this change",
+  "hints": [
+    "AI",
+    "ChatGPT",
+    "OpenAI",
+    "YouTube",
+    "Python",
+    "Google"
+  ],
+  "summary": {
+    "baseline": {
+      "wer": 0.21634615384615385,
+      "inferenceMs": 58968.20500000031
+    },
+    "keywords": {
+      "wer": 0.21634615384615385,
+      "inferenceMs": 51322.87999999989
+    }
+  },
+  "rows": [
+    {
+      "id": "hi-0",
+      "referenceWords": 24,
+      "referenceStatus": "dataset annotation; not independently re-reviewed",
+      "baseline": {
+        "errors": 4,
+        "ms": 7353.114999999991
+      },
+      "keywords": {
+        "errors": 4,
+        "ms": 2310.685000000056
+      }
+    },
+    {
+      "id": "hi-1",
+      "referenceWords": 40,
+      "referenceStatus": "dataset annotation; not independently re-reviewed",
+      "baseline": {
+        "errors": 8,
+        "ms": 3602.685000000056
+      },
+      "keywords": {
+        "errors": 8,
+        "ms": 3385.8850000000093
+      }
+    },
+    {
+      "id": "hi-2",
+      "referenceWords": 29,
+      "referenceStatus": "dataset annotation; not independently re-reviewed",
+      "baseline": {
+        "errors": 8,
+        "ms": 3448.399999999907
+      },
+      "keywords": {
+        "errors": 8,
+        "ms": 3215.869999999879
+      }
+    },
+    {
+      "id": "hi-3",
+      "referenceWords": 12,
+      "referenceStatus": "dataset annotation; not independently re-reviewed",
+      "baseline": {
+        "errors": 3,
+        "ms": 8727.274999999907
+      },
+      "keywords": {
+        "errors": 3,
+        "ms": 7543.684999999823
+      }
+    },
+    {
+      "id": "hi-4",
+      "referenceWords": 18,
+      "referenceStatus": "dataset annotation; not independently re-reviewed",
+      "baseline": {
+        "errors": 4,
+        "ms": 5285.939999999944
+      },
+      "keywords": {
+        "errors": 4,
+        "ms": 2431.0400000000373
+      }
+    },
+    {
+      "id": "hi-5",
+      "referenceWords": 26,
+      "referenceStatus": "dataset annotation; not independently re-reviewed",
+      "baseline": {
+        "errors": 6,
+        "ms": 2194.255000000121
+      },
+      "keywords": {
+        "errors": 6,
+        "ms": 2201.744999999879
+      }
+    },
+    {
+      "id": "hi-6",
+      "referenceWords": 39,
+      "referenceStatus": "dataset annotation; not independently re-reviewed",
+      "baseline": {
+        "errors": 6,
+        "ms": 4738.160000000149
+      },
+      "keywords": {
+        "errors": 6,
+        "ms": 4525.155000000028
+      }
+    },
+    {
+      "id": "hi-7",
+      "referenceWords": 20,
+      "referenceStatus": "dataset annotation; not independently re-reviewed",
+      "baseline": {
+        "errors": 3,
+        "ms": 1630.214999999851
+      },
+      "keywords": {
+        "errors": 3,
+        "ms": 1641.1899999999441
+      }
+    },
+    {
+      "id": "hi-8",
+      "referenceWords": 21,
+      "referenceStatus": "dataset annotation; not independently re-reviewed",
+      "baseline": {
+        "errors": 11,
+        "ms": 1726.1000000000931
+      },
+      "keywords": {
+        "errors": 11,
+        "ms": 1717.8900000001304
+      }
+    },
+    {
+      "id": "hi-9",
+      "referenceWords": 38,
+      "referenceStatus": "dataset annotation; not independently re-reviewed",
+      "baseline": {
+        "errors": 9,
+        "ms": 3945.7700000000186
+      },
+      "keywords": {
+        "errors": 9,
+        "ms": 3683.7750000001397
+      }
+    },
+    {
+      "id": "mix-0",
+      "referenceWords": 19,
+      "referenceStatus": "MUCS annotation; not independently re-reviewed",
+      "baseline": {
+        "errors": 2,
+        "ms": 1765.9350000000559
+      },
+      "keywords": {
+        "errors": 2,
+        "ms": 1768.160000000149
+      }
+    },
+    {
+      "id": "mix-1",
+      "referenceWords": 27,
+      "referenceStatus": "MUCS annotation; not independently re-reviewed",
+      "baseline": {
+        "errors": 6,
+        "ms": 2388.3499999998603
+      },
+      "keywords": {
+        "errors": 6,
+        "ms": 2385.5100000000093
+      }
+    },
+    {
+      "id": "mix-2",
+      "referenceWords": 19,
+      "referenceStatus": "MUCS annotation; not independently re-reviewed",
+      "baseline": {
+        "errors": 5,
+        "ms": 1635.9250000000466
+      },
+      "keywords": {
+        "errors": 5,
+        "ms": 1619.619999999879
+      }
+    },
+    {
+      "id": "mix-3",
+      "referenceWords": 15,
+      "referenceStatus": "MUCS annotation; not independently re-reviewed",
+      "baseline": {
+        "errors": 3,
+        "ms": 1691.9850000001024
+      },
+      "keywords": {
+        "errors": 3,
+        "ms": 1307.7849999999162
+      }
+    },
+    {
+      "id": "mix-4",
+      "referenceWords": 9,
+      "referenceStatus": "MUCS annotation; not independently re-reviewed",
+      "baseline": {
+        "errors": 0,
+        "ms": 1334.0849999999627
+      },
+      "keywords": {
+        "errors": 0,
+        "ms": 754.8450000002049
+      }
+    },
+    {
+      "id": "mix-5",
+      "referenceWords": 14,
+      "referenceStatus": "MUCS annotation; not independently re-reviewed",
+      "baseline": {
+        "errors": 4,
+        "ms": 1353.190000000177
+      },
+      "keywords": {
+        "errors": 4,
+        "ms": 1333.7900000000373
+      }
+    },
+    {
+      "id": "mix-6",
+      "referenceWords": 16,
+      "referenceStatus": "MUCS annotation; not independently re-reviewed",
+      "baseline": {
+        "errors": 6,
+        "ms": 1241.5600000000559
+      },
+      "keywords": {
+        "errors": 6,
+        "ms": 2392.3599999998696
+      }
+    },
+    {
+      "id": "mix-7",
+      "referenceWords": 5,
+      "referenceStatus": "MUCS annotation; not independently re-reviewed",
+      "baseline": {
+        "errors": 1,
+        "ms": 879.3950000000186
+      },
+      "keywords": {
+        "errors": 1,
+        "ms": 1699.0600000000559
+      }
+    },
+    {
+      "id": "mix-8",
+      "referenceWords": 9,
+      "referenceStatus": "MUCS annotation; not independently re-reviewed",
+      "baseline": {
+        "errors": 1,
+        "ms": 1150.089999999851
+      },
+      "keywords": {
+        "errors": 1,
+        "ms": 2019.969999999972
+      }
+    },
+    {
+      "id": "mix-9",
+      "referenceWords": 16,
+      "referenceStatus": "MUCS annotation; not independently re-reviewed",
+      "baseline": {
+        "errors": 0,
+        "ms": 2875.7750000001397
+      },
+      "keywords": {
+        "errors": 0,
+        "ms": 3384.8599999998696
+      }
+    }
+  ]
+}

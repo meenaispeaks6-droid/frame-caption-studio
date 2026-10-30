@@ -1,4 +1,4 @@
-needle.js and needle.wasm in this folder are the WebAssembly build of the Cactus needle engine,
+needle.js, needle.wasm and needle.h in this folder are the WebAssembly build of the Cactus needle engine,
 by Cactus Compute, Inc., copied unmodified from the wasm/ folder of
 https://huggingface.co/Cactus-Compute/needle3 (revision 3391a1007e7db31d2fe5c69c734bbe93a9c1ce79).
 Source: https://github.com/cactus-compute/needle
