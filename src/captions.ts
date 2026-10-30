@@ -8,7 +8,7 @@ export function validateWords(value: unknown, duration=Infinity): Word[] {
   const w=v as Word;
   if(!w || typeof w.text!=='string'||!w.text.trim()||w.text.length>(w.timing==='segment'?4000:160)||!Number.isFinite(w.start)||!Number.isFinite(w.end)||w.start<previous||w.start<0||w.end<=w.start||w.end>duration+.1) throw new Error(`Check word ${i+1}: use text and increasing times within the video.`);
   previous=w.end;
-  return {id:typeof w.id==='string'?w.id:uid(),text:w.text.trim(),start:w.start,end:w.end,emphasis:!!w.emphasis,breakAfter:!!w.breakAfter,joinAfter:!!w.joinAfter,transitions:readTransitions(w.transitions),wordTransitions:readTransitions(w.wordTransitions),timing:['word','segment','estimated'].includes(w.timing??'')?w.timing:undefined};
+  return {probability:typeof w.probability==='number'&&Number.isFinite(w.probability)&&w.probability>=0&&w.probability<=1?w.probability:undefined,id:typeof w.id==='string'?w.id:uid(),text:w.text.trim(),start:w.start,end:w.end,emphasis:!!w.emphasis,breakAfter:!!w.breakAfter,joinAfter:!!w.joinAfter,transitions:readTransitions(w.transitions),wordTransitions:readTransitions(w.wordTransitions),timing:['word','segment','estimated'].includes(w.timing??'')?w.timing:undefined};
  });
 }
 export function groupWords(words:Word[],count:number,maxChars=Infinity):Word[][] {

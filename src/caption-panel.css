@@ -128,3 +128,5 @@
 .caption-delay-card input[type=range]::-moz-range-progress{height:7px;border-radius:6px;background:#ececec}
 .caption-delay-card input[type=range]::-moz-range-thumb{width:8px;height:18px;border:0;border-radius:5px;background:#ececec}
 .caption-delay-card input[type=range]:focus-visible{outline:2px solid var(--lime);outline-offset:5px;border-radius:4px}
+.library-panel .tools-panel textarea{display:block;width:100%;max-width:100%;box-sizing:border-box;background:var(--surface);color:var(--text);border:1px solid var(--line);border-radius:8px;padding:10px;font:inherit;resize:vertical}
+.speech-review-row{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}

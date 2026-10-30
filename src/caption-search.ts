@@ -24,7 +24,7 @@ export function replaceCaptionMatches(words: Word[], matches: CaptionMatch[], re
   const first = next[match.first], last = next[match.last];
   const text = first.text.slice(0, match.start) + replacement + last.text.slice(match.end);
   next.splice(match.first, match.last - match.first + 1, {
-   ...first, text, end: last.end,
+   ...first, text, probability:undefined, end: last.end,
    ...(match.first !== match.last || /\s/u.test(text.trim()) ? { timing: 'segment', breakAfter: last.breakAfter, joinAfter: last.joinAfter } : {}),
   });
  }

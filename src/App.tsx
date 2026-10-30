@@ -1,3 +1,5 @@
+import { SpeechReview } from './SpeechReview';
+import { hintsFor, parseVocabulary, retryRange, mergeRetry, VOCABULARY_KEY } from './vocabulary';
 import { Transcript } from './CaptionTranscript';
 import { CaptionTools } from './CaptionTools';
 import { useState, useRef, useEffect, useMemo, type CSSProperties, type ReactNode, type PointerEvent as ReactPointerEvent } from 'react';
@@ -86,6 +88,8 @@ export default function App(){
  const [,setTab]=useState<'styles'|'transcript'>('transcript');
  const [panel,setPanel]=useState('text'),[sheet,setSheet]=useState<string|null>(null),[expanded,setExpanded]=useState(false),[inspectorOpen,setInspectorOpen]=useState(true),[selected,setSelected]=useState<string[]>([]),[safeZone,setSafeZone]=useState(false),[templateQuery,setTemplateQuery]=useState(''),[myPresets,setMyPresets]=useState(false);
  const [transitionTarget,setTransitionTarget]=useState('');
+ const [vocabulary,setVocabulary]=useState(()=>{try{return localStorage.getItem(VOCABULARY_KEY)??'';}catch{return '';}});
+ const [retryProposal,setRetryProposal]=useState<{words:Word[];start:number;end:number;source:Word[]}|null>(null);
  const sheetDrag=useRef<number|null>(null);
  const textGroups=useRef<string[][]|null>(null);
  const textTransaction=useRef<EditState|null>(null),editRef=useRef(edit);editRef.current=edit;
@@ -175,13 +179,34 @@ export default function App(){
      setJob(null);
     }
    };
-   await (model==='shruti'?shrutiSpeech.current!:speech.current!).run(file,{language,captionLanguage,model,audioMode:languageSettings.audioMode??'original'},async()=>{
+   await (model==='shruti'?shrutiSpeech.current!:speech.current!).run(file,{language,captionLanguage,model,audioMode:languageSettings.audioMode??'original',keywords:model==='shruti'?hintsFor(parseVocabulary(vocabulary)):[]},async()=>{
    let stereo:[Float32Array,Float32Array]|undefined;
    if(languageSettings.audioMode==='center'){try{const decoded=await extractStereoAudio(file,()=>{});if(decoded.stereo[0].length!==cached.audio.length)throw Error('Stereo timing differs from the original audio.');stereo=decoded.stereo;}catch{setNotice('Stereo focus unavailable; using the original audio.');}}
    if(id!==taskId.current)throw new DOMException('Cancelled','AbortError');
-   const audio=cached.audio.slice();return {type:'transcribe',audio,stereo,audioMode:languageSettings.audioMode??'original',language,captionLanguage,model,duration:Math.max(0,info.duration-cached.offset)};
+   const audio=cached.audio.slice();return {type:'transcribe',keywords:model==='shruti'?hintsFor(parseVocabulary(vocabulary)):[],audio,stereo,audioMode:languageSettings.audioMode??'original',language,captionLanguage,model,duration:Math.max(0,info.duration-cached.offset)};
    },receive);
   }catch(e){if(id===taskId.current&&(e as Error).name!=='AbortError'){setError((e as Error).message);setJob(null);}}finally{if(id===taskId.current)generationLock.current=false;}
+ }
+ async function retrySelected(){
+  if(!file||!info||job||generationLock.current)return;
+  let range:ReturnType<typeof retryRange>;try{range=retryRange(edit.words,selected,info.duration);}catch(e){setError((e as Error).message);return;}
+  generationLock.current=true;const id=++taskId.current,source=edit.words;setRetryProposal(null);setError('');video.current?.pause();setJob({kind:'transcribe',label:'Preparing selected audio',progress:null});
+  try{
+   const cached=audioCache.current?.file===file?audioCache.current:await extractAudio(file,()=>{});if(id!==taskId.current)return;
+   const a=Math.max(0,Math.floor((range.contextStart-cached.offset)*16000)),b=Math.min(cached.audio.length,Math.ceil((range.contextEnd-cached.offset)*16000)),offset=cached.offset+a/16000;
+   if(b<=a)throw Error('This selection has no audio. Select words inside the recording.');
+   const keywords=hintsFor(parseVocabulary(vocabulary),source.filter(w=>w.end>=range.contextStart&&w.start<=range.contextEnd));
+   await shrutiSpeech.current!.run(file,{retry:[a,b],keywords,language},async()=>({type:'transcribe',audio:cached.audio.slice(a,b),language,keywords}),data=>{
+    if(id!==taskId.current)return;
+    if(data.type==='stage')setJob({kind:'transcribe',label:data.label,progress:null});
+    if(data.type==='error')setError(String(data.message));
+    if(data.type==='done'){
+     if(data.draftTranscript){setError('Only part of the selected audio was recognized. Original captions are retained.');return;}
+     try{const words=validateWords(romanizeWords(data.words??[]), (b-a)/16000).map(w=>({...w,start:w.start+offset,end:w.end+offset})).filter(w=>(w.start+w.end)/2>=range.start&&(w.start+w.end)/2<range.end).map(w=>({...w,start:Math.max(range.start,w.start),end:Math.min(range.end,w.end)})).filter(w=>w.end>w.start);
+     if(!words.length){setError('No usable words in this selection. Original captions are retained.');return;}setRetryProposal({words,start:range.start,end:range.end,source});}catch(e){setError('Retry returned unusable timing. Original captions are retained. '+(e as Error).message);}
+    }
+   });
+  }catch(e){if(id===taskId.current&&(e as Error).name!=='AbortError')setError((e as Error).message);}finally{if(id===taskId.current){setJob(null);generationLock.current=false;}}
  }
  async function startExport(){
   if(!file||!info||job||supported!==true)return;speech.current?.release();shrutiSpeech.current?.release();setDialog(null);setError('');setExported(null);video.current?.pause();const id=++taskId.current;
@@ -220,6 +245,8 @@ export default function App(){
    {edit.timingEstimated&&<p className="micro-copy">Estimated word timing · review before export.</p>}{edit.phraseTiming&&<p className="micro-copy">Real phrase timing · no word-level alignment.</p>}
    {edit.draftTranscript&&<label className="recovered-transcript">Recovered transcript<textarea value={edit.draftTranscript} onChange={e=>setEdit({...edit,draftTranscript:e.target.value})}/></label>}
    {!!Object.keys(comparison).length&&<details className="recovered-transcript"><summary>Recognition runs</summary>{Object.entries(comparison).map(([engine,result])=><details key={engine}><summary>{engine} · {result.cacheHit?'cached':`${(result.ms/1000).toFixed(1)}s`} · {result.words} timed words</summary><p>{result.transcript}</p></details>)}</details>}
+   <SpeechReview words={edit.words} change={changeWords} select={setSelected} seek={seek} vocabulary={vocabulary} setVocabulary={setVocabulary} retry={()=>void retrySelected()} busy={!!job} canRetry={!!file&&!!selected.length}/>
+   {retryProposal&&<div className="privacy-card"><div><strong>Review retried phrase</strong><p>{retryProposal.words.map(w=>w.text).join(' ')}</p><button disabled={!!job||edit.words!==retryProposal.source} onClick={()=>{changeWords(mergeRetry(edit.words,retryProposal.words,retryProposal));setRetryProposal(null);}}>Apply retried phrase</button><button onClick={()=>setRetryProposal(null)}>Discard retry</button><p className="micro-copy">Applying replaces the selected time range, including any edits in it. Undo is available.</p></div></div>}
    <Transcript words={edit.words} groups={groups} time={time} selected={selected} select={setSelected} change={changeWords} live={liveWords} begin={beginText} end={endText} seek={seek} duration={info?.duration??9} disabled={!!job} animate={ids=>{setSelected(ids);openPanel('transitions');setTransitionTarget(ids.join(','));}} tools={<CaptionTools words={edit.words} style={edit.style} duration={info?.duration??9} change={changeWords} styleChange={changeStyle} begin={beginText} end={endText} live={liveWords}/>}/>
    {!!edit.words.length&&<div className="transcript-actions"><button className="button primary" disabled={!file||!info?.hasAudio||!!job} onClick={()=>setDialog('transcribe')}><WandSparkles size={14}/> Generate captions</button><button className="text-button" disabled={!file||!!job} onClick={()=>captionInput.current?.click()}>Import SRT / VTT</button></div>}
    <div className="inline-actions"><button className="text-button" disabled={!file||!!job} onClick={addWord}><Plus size={14}/> Add word</button><button className="text-button" disabled={!edit.words.length} onClick={()=>saveBlob(new Blob([toSrt(edit.words,edit.style.grouping,edit.style.maxChars??24)],{type:'text/plain'}),`${exportName}.srt`)}><Download size={14}/> SRT</button><button className="text-button" onClick={()=>projectInput.current?.click()}>Open project</button><button className="text-button" onClick={()=>saveBlob(new Blob([JSON.stringify({version:1,...edit,languageSettings,title,media:info,sourceName:file?.name},null,2)],{type:'application/json'}),`${exportName}.frame.json`)}>Save project</button><button className="text-button" onClick={()=>setDialog('help')}>Help & shortcuts</button></div>
