@@ -128,3 +128,7 @@
 .caption-delay-card input[type=range]::-moz-range-progress{height:7px;border-radius:6px;background:#ececec}
 .caption-delay-card input[type=range]::-moz-range-thumb{width:8px;height:18px;border:0;border-radius:5px;background:#ececec}
 .caption-delay-card input[type=range]:focus-visible{outline:2px solid var(--lime);outline-offset:5px;border-radius:4px}
+
+/* Shruti decoder's low-confidence tokens are review hints, never auto-corrections. */
+.editable-token.low-confidence input { text-decoration: underline wavy #d97706; text-underline-offset: 4px; }
+.editable-token.low-confidence input:focus { text-decoration-style: solid; }
