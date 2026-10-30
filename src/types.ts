@@ -1,7 +1,7 @@
 export type MotionName = 'none' | 'fade' | 'pop' | 'zoom' | 'scale' | 'slide-up' | 'slide-down' | 'slide-left' | 'slide-right' | 'rise-up' | 'rise-down' | 'hook-left';
 export interface Motion { name:MotionName; duration:number; intensity:number; easing:'linear'|'ease-out'|'spring'; }
 export type Transitions = Partial<Record<'in'|'hold'|'out',Motion>>;
-export interface Word { id: string; text: string; start: number; end: number; emphasis?: boolean; joinAfter?:boolean; transitions?:Transitions; wordTransitions?:Transitions; breakAfter?: boolean; timing?: 'word' | 'segment' | 'estimated' }
+export interface Word { id: string; text: string; start: number; end: number; emphasis?: boolean; joinAfter?:boolean; transitions?:Transitions; wordTransitions?:Transitions; breakAfter?: boolean; timing?: 'word' | 'segment' | 'estimated'; confidence?: number }
 export type PresetId = 'impact' | 'power' | 'cinematic' | 'bubble' | 'desi' | 'handwritten' | 'sticker' | 'blast' | 'retro' | 'glass' | 'scribble' | 'akshar' | 'boxkaraoke' | 'pillline' | 'wide' | 'neon';
 export type FontId = 'Inter' | 'Barlow Condensed' | 'Nunito' | 'Noto Sans Devanagari' | 'Mynerve' | 'Courier New';
 // Optional look fields for the newer template family. They default to off when
