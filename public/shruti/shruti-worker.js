@@ -144,17 +144,36 @@ async function init(msg) {
   }
 }
 
+// Native keyword biasing accepts newline-separated UTF-8 terms, not a JS array.
+// Do not send unlimited phrases: too many hints can hurt ordinary recognition.
+function normalizeKeywordHints(value) {
+  var entries = Array.isArray(value) ? value : typeof value === 'string' ? value.split(/[\n,]/) : []
+  var seen = Object.create(null), terms = []
+  for (var i = 0; i < entries.length; i++) {
+    var word = String(entries[i]).normalize('NFC').replace(/[\r\n\0]/g, ' ').replace(/\s+/g, ' ').trim()
+    if (!word || word.length > 64 || word.length < 2) continue
+    var key = word.toLowerCase()
+    if (seen[key]) continue
+    seen[key] = true
+    terms.push(word)
+    if (terms.length >= 32) break
+  }
+  return terms.join('\n')
+}
+
 function transcribe(msg) {
   var pcm = msg.pcm // Float32Array, 16 kHz mono, [-1, 1]
   var seconds = pcm.length / SR
   var p = copyIn(new Uint8Array(pcm.buffer, pcm.byteOffset, pcm.length * 4))
   var lp = msg.language ? copyIn(encoder.encode(msg.language + '\0')) : 0
+  var hints = normalizeKeywordHints(msg.keywords)
+  var kp = hints ? copyIn(encoder.encode(hints + '\0')) : 0
   var cap = Math.max(1 << 16, Math.ceil(seconds) * 4096 + (1 << 14)) // room for the JSON result
   var out = alloc(cap)
   try {
     var t0 = performance.now()
     // needle_transcribe(samples, count, language, keywords, word_timestamps, out, out_size) -> bytes written, or < 0
-    var n = M._needle_transcribe(p, pcm.length, lp, 0, 0, out, cap)
+    var n = M._needle_transcribe(p, pcm.length, lp, kp, 0, out, cap)
     var ms = performance.now() - t0
     if (n < 0) throw new Error(lastError())
     var r = JSON.parse(M.UTF8ToString(out))
@@ -163,6 +182,7 @@ function transcribe(msg) {
     M._free(out)
     M._free(p)
     if (lp) M._free(lp)
+    if (kp) M._free(kp)
   }
 }
 
@@ -184,20 +204,22 @@ var SHRUTI_MODEL_URL = 'https://huggingface.co/udgamlabs/Shruti/resolve/main/shr
 var SHRUTI_SHA = 'b189e954aaed4a9fd41acbad3ac05e486381e96325b22a4c695b9ea5153d7065'
 var SHRUTI_BYTES = 29546527
 
-function transcribeCaptionWindow(pcm, language) {
+function transcribeCaptionWindow(pcm, language, keywords) {
   var p = copyIn(new Uint8Array(pcm.buffer, pcm.byteOffset, pcm.byteLength))
   var lp = language ? copyIn(encoder.encode(language + '\0')) : 0
+  var kp = keywords ? copyIn(encoder.encode(keywords + '\0')) : 0
   var cap = Math.max(131072, Math.ceil(pcm.length / SR) * 12000 + 65536)
   var out = alloc(cap)
   try {
     // Word timings come from the native engine. Never distribute words evenly.
-    var n = M._needle_transcribe(p, pcm.length, lp, 0, 1, out, cap)
+    var n = M._needle_transcribe(p, pcm.length, lp, kp, 1, out, cap)
     if (n < 0) throw new Error(lastError())
     return JSON.parse(M.UTF8ToString(out))
   } finally {
     M._free(out)
     M._free(p)
     if (lp) M._free(lp)
+    if (kp) M._free(kp)
   }
 }
 
@@ -215,13 +237,14 @@ async function runCaptionJob(msg) {
     var windowLength = 28 * SR
     var total = Math.ceil(audio.length / windowLength)
     var language = msg.language === 'english' ? 'en' : null
+    var keywords = normalizeKeywordHints(msg.keywords)
     var detectedLanguage = null
     var started = performance.now()
     for (var i = 0; i < total; i++) {
       send({type:'stage', label:'Shruti · processing speech window ' + (i + 1) + ' of ' + total})
       var startSample = i * windowLength
       var segment = audio.subarray(startSample, Math.min(audio.length, startSample + windowLength))
-      var result = transcribeCaptionWindow(segment, language)
+      var result = transcribeCaptionWindow(segment, language, keywords)
       if (result.text && result.text.trim()) transcript.push(result.text.trim())
       if (result.language) detectedLanguage = result.language
       var aligned = recoverShrutiTiming(result, segment.length / SR, startSample / SR)
